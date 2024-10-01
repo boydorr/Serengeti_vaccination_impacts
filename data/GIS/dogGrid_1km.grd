@@ -1,0 +1,27 @@
+[general]
+creator=R package 'raster'
+created=2024-09-20 20:58:13
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=1
+bandorder=BIL
+categorical=FALSE
+minvalue=0
+maxvalue=344
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=layer
+[georeference]
+nrows=83
+ncols=70
+xmin=637189.04711012
+ymin=9754894.16695382
+xmax=707189.04711012
+ymax=9837894.16695382
+projection=+proj=utm +zone=36 +south +ellps=clrk80 +units=m +no_defs
+wkt=PROJCRS["UTM_Zone_36_Southern_Hemisphere",    BASEGEOGCRS["GCS_unnamed ellipse",        DATUM["D_unknown",            ELLIPSOID["Unknown",6378249.145,293.466300000007,                LENGTHUNIT["metre",1,                    ID["EPSG",9001]]]],        PRIMEM["Greenwich",0,            ANGLEUNIT["Degree",0.0174532925199433]]],    CONVERSION["UTM zone 36S",        METHOD["Transverse Mercator",            ID["EPSG",9807]],        PARAMETER["Latitude of natural origin",0,            ANGLEUNIT["Degree",0.0174532925199433],            ID["EPSG",8801]],        PARAMETER["Longitude of natural origin",33,            ANGLEUNIT["Degree",0.0174532925199433],            ID["EPSG",8802]],        PARAMETER["Scale factor at natural origin",0.9996,            SCALEUNIT["unity",1],            ID["EPSG",8805]],        PARAMETER["False easting",500000,            LENGTHUNIT["metre",1],            ID["EPSG",8806]],        PARAMETER["False northing",10000000,            LENGTHUNIT["metre",1],            ID["EPSG",8807]],        ID["EPSG",17036]],    CS[Cartesian,2],        AXIS["(E)",east,            ORDER[1],            LENGTHUNIT["metre",1,                ID["EPSG",9001]]],        AXIS["(N)",north,            ORDER[2],            LENGTHUNIT["metre",1,                ID["EPSG",9001]]]]

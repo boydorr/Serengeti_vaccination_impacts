@@ -1,0 +1,572 @@
+District,Ward,Ward_Match_Groundtruthed_Shapefile,Village,Village_Match_2012_Shapefile,Village_Match_Groundtruthed_Shapefile,Population
+Tarime,Susuni,Susuni,Matamankwe,Matamankwe,Matamankwe,2114
+Tarime,Susuni,Susuni,Nyabirongo,Nyabirongo,Nyabirongo,2157
+Tarime,Susuni,Susuni,Kiongera,Kiongeza,Kiongeza,2197
+Tarime,Susuni,Susuni,Keroti,Keroti,Keroti,1559
+Tarime,Susuni,Susuni,Kikomori,Kikomori,Kikomori,2353
+Tarime,Mwema,Mwema,Nyamohonda,Nyamohonda,Nyamohonda,2791
+Tarime,Mwema,Mwema,Kubiterere,Kubiterere,Kubiterere,2774
+Tarime,Mwema,Mwema,Nyakangara,Nyakangara,Nyakangara,867
+Tarime,Mwema,Mwema,Korotambe,Korotambe,Korotambe,3771
+Tarime,Sirari,Sirari,Mpakani,Mpakani,Mpakani,6443
+Tarime,Sirari,Sirari,Sokoni,Sokoni,Sokoni,4892
+Tarime,Sirari,Sirari,Kanisani,Kanisani,Kanisani,2492
+Tarime,Sirari,Sirari,Buriba,Buriba,Buriba,2090
+Tarime,Pemba,Pemba,Kyoruba,Kyoruba,Kyoruba,3170
+Tarime,Pemba,Pemba,Pemba,Pemba,Pemba,2972
+Tarime,Pemba,Pemba,Nyabisanga,Nyabisaga,Nyabisaga,4702
+Tarime,Nyakonga,Nyakonga,Kebweye,Kebweye,Kebweye,2574
+Tarime,Nyakonga,Nyakonga,Magoto,Magoto,Magoto,1767
+Tarime,Nyakonga,Nyakonga,Nyakonga,Nyakonga,Nyakonga,2456
+Tarime,Nyarero,Nyarero,Rosana,Rosana,Rosana,1644
+Tarime,Nyarero,Nyarero,Soroneta,Soroneta,Soroneta,2867
+Tarime,Nyarero,Nyarero,Kemakorere,Kemakorere,Kemakorere,5027
+Tarime,Nyarero,Nyarero,Nyarero,Nyarero,Nyarero,2793
+Tarime,Nyamwaga,Nyamwaga,Kimusi,Kimusi,Kimusi,4714
+Tarime,Nyamwaga,Nyamwaga,Keisangura,Keisangura,Keisangura,3206
+Tarime,Nyamwaga,Nyamwaga,Komarera,Komarera,Komarera,1895
+Tarime,Nyamwaga,Nyamwaga,Nyamwaga,Nyamwaga,Nyamwaga,4101
+Tarime,Muriba,Muriba,Kobori,Kobori,Kobori,2077
+Tarime,Muriba,Muriba,Bungurere,Bungurere,Bungurere,2760
+Tarime,Muriba,Muriba,Muriba,Muriba,Muriba,2751
+Tarime,Muriba,Muriba,Tagare,Tagare,Tagare,3272
+Tarime,Nyanungu,Nyanungu,Nyamombara,Nyamombara,Nyamombara,2964
+Tarime,Nyanungu,Nyanungu,Mangucha,Mangucha,Mangucha,3303
+Tarime,Nyanungu,Nyanungu,Nyandage,Nyandage,Nyandage,2966
+Tarime,Nyanungu,Nyanungu,Kegonga,Kegonga,Kegonga,2040
+Tarime,Gorong'a,Gorong'a,Masurura,Masusura,Masusura,3897
+Tarime,Gorong'a,Gorong'a,Kitawasi,Kitawasi,Kitawasi,2421
+Tarime,Gorong'a,Gorong'a,Masanga,Masanga,Masanga,2512
+Tarime,Gorong'a,Gorong'a,Kenyamosabi,Kenyamosabi,Kenyamosabi,2232
+Tarime,Nyarokoba,Nyarokoba,Gibaso,Gibaso,Gibaso,8355
+Tarime,Nyarokoba,Nyarokoba,Musege,Musege,Musege,3939
+Tarime,Nyarokoba,Nyarokoba,Genkuru,Genkuru,Genkuru,3376
+Tarime,Kemambo,Kemambo,Kewanja,Kewanja,Kewanja,4588
+Tarime,Kemambo,Kemambo,Kerende,Kerenge,Kerenge,4149
+Tarime,Kemambo,Kemambo,Mrito,Mrito,Mrito,4600
+Tarime,Kibasuka,Kibasuka,Weigita,Weigita,Weigita,4388
+Tarime,Kibasuka,Kibasuka,Nyarwana,Nyarwana,Nyarwana,5084
+Tarime,Kibasuka,Kibasuka,Nyakunguru,Nyakunguru,Nyakunguru,5666
+Tarime,Binagi,Binagi,Nyasaricho,Nyasaricho,Nyasaricho,1528
+Tarime,Binagi,Binagi,Magoma,Magoma,Magoma,3922
+Tarime,Binagi,Binagi,Nyamwingura,Nyamwingura,Nyamwingura,3993
+Tarime,Turwa,Turwa,Nkende,Nkende,Nkende,2067
+Tarime,Turwa,Turwa,Magena,Magena,Magena,3491
+Tarime,Turwa,Turwa,Romori,Romori,Romori,2479
+Tarime,Turwa,Turwa,Rebu,Rebu,Rebu,5148
+Tarime,Turwa,Turwa,Mturu,Mturu,Mturu,4445
+Tarime,Turwa,Turwa,Kenyamanyori,Kenyamori,Kenyamori,4442
+Tarime,Turwa,Turwa,Tagota,Tagota,Tagota,5167
+Tarime,Bomani,Bomani,Buhemba,Buhemba,Buhemba,522
+Tarime,Bomani,Bomani,Biambwi,Biambwi,Biambwi,2121
+Tarime,Bomani,Bomani,Mawasiliano,Mawasiliano,Mawasiliano,4500
+Tarime,Bomani,Bomani,National Housing,National Housing,National Housing,1608
+Tarime,Bomani,Bomani,Anglican,Anglikan,Anglikan,414
+Tarime,Nyandoto,Nyandoto,Kemange,Kemange,Kemange,3661
+Tarime,Nyandoto,Nyandoto,Gamasara,Gamasara,Gamasara,2911
+Tarime,Nyandoto,Nyandoto,Nyandoto,Nyandoto,Nyandoto,1321
+Tarime,Matongo,Matongo,Matongo,Matongo,Matongo,4932
+Tarime,Matongo,Matongo,Nyangoto,Nyangoto,Nyangoto,14244
+Tarime,Manga,Manga,Mtana,Mtana,Mtana,2287
+Tarime,Manga,Manga,Kembwi,Kembwi,Kembwi,1554
+Tarime,Manga,Manga,Bisarwi,Bisarwi,Bisarwi,3408
+Tarime,Bumera,Bumera,Kiterere,Kiterere,Kiterere,1073
+Tarime,Bumera,Bumera,Kitenga,Kitenga,Kitenga,3720
+Tarime,Bumera,Bumera,Kwisarara,Kwisarara,Kwisarara,2815
+Tarime,Bumera,Bumera,Turugeti,Turugeti,Turugeti,1993
+Tarime,Komaswa,Komaswa,Sombanyasoko,Sombanyasoko,Sombanyasoko,1162
+Tarime,Komaswa,Komaswa,Surubu,Surubu,Surubu,3735
+Tarime,Komaswa,Komaswa,Nyamerambaro,Nyamerambaro,Nyamerambaro,1962
+Tarime,Kiore,Kiore,Nyagisya,Nyagisya,Nyagisya,2481
+Tarime,Kiore,Kiore,Kewamamba,Kewamamba,Kewamamba,2170
+Tarime,Kiore,Kiore,Nkerege,Nkerege,Nkerege,3369
+Tarime,Sabasaba,Sabasaba,Chambiri,Chambiri,Chambiri,3486
+Tarime,Sabasaba,Sabasaba,Songambele,Songambele,Songambele,3403
+Tarime,Sabasaba,Sabasaba,Serengeti,Serengeti,Serengeti,1443
+Tarime,Sabasaba,Sabasaba,Sabasaba,Sabasaba,Sabasaba,3192
+Tarime,Nyamisangura,Nyamisangura,Msati,Msati,Msati,2717
+Tarime,Nyamisangura,Nyamisangura,Starehe,Starehe,Starehe,2181
+Tarime,Nyamisangura,Nyamisangura,Mwangaza,Mwanga,Mwanga,2575
+Tarime,Nyamisangura,Nyamisangura,Msati Highway,Msati Highway,Msati Highway,2971
+Tarime,Nyamisangura,Nyamisangura,Ronsoti,Ronsonti,Ronsonti,2298
+Tarime,Kentare,Kentare,Ntaburo,Ntaburo,Ntaburo,1870
+Tarime,Kentare,Kentare,Nkongore,Nkongore,Nkongore,1726
+Tarime,Kentare,Kentare,Mogabiri,Mogabiri,Mogabiri,5879
+Tarime,Nyamaranga,Nyamaranga,Gwitiryo,Gwitiryo,Gwitiryo,3343
+Tarime,Nyamaranga,Nyamaranga,Gitagasembe,Kitagasembe,Kitagasembe,1803
+Tarime,Nyamaranga,Nyamaranga,Remagwe,Remangwe,Remangwe,2980
+Tarime,Nyamaranga,Nyamaranga,Ngerengere,Ng'ereng'ere,Ng'ereng'ere,2839
+Tarime,Mbogi,Mbogi,Getenga,Getenga,Getenga,3625
+Tarime,Mbogi,Mbogi,Borega 'B',Borega B,Borega B,2242
+Tarime,Mbogi,Mbogi,Nyabitocho,Nyabitocho,Nyabitocho,2256
+Tarime,Genyange,Genyange,Borega 'A',Borega A,Borega A,3386
+Tarime,Genyange,Genyange,Nyakalima,Nyakalima,Nyakalima,1437
+Tarime,Genyange,Genyange,Genyange,Genyange,Genyange,2630
+Tarime,Nyansicha,Nyansicha,Nyantira,Nyantira,Nyantira,4478
+Tarime,Nyansicha,Nyansicha,Nyansincha,Nyansicha,Nyansicha,2583
+Tarime,Itiryo,Itiryo,Itiryo,Itiryo,Itiryo,3324
+Tarime,Itiryo,Itiryo,Nyankoni,Nyankoni,Nyankoni,3238
+Tarime,Itiryo,Itiryo,Kangariani,Kangariani,Kangariani,3410
+Serengeti,Kenyamonta,Kenyamonta,Hekwe,Hekwe,Hekwe,1901
+Serengeti,Kenyamonta,Kenyamonta,Magatini,Magatini,Magatini,584
+Serengeti,Kenyamonta,Kenyamonta,Mesaga,Mesaga,Mesaga,2961
+Serengeti,Kenyamonta,Kenyamonta,Nyagasense,Nyagasense,Nyagasense,3819
+Serengeti,Kenyamonta,Kenyamonta,Kenyamonta,Kenyamonta,Kenyamonta,2071
+Serengeti,Busawe,Busawe,Busawe,Busawe,Busawe,1521
+Serengeti,Busawe,Busawe,Gantamome,Gentamome,Gantamome,2213
+Serengeti,Busawe,Busawe,Nyamehuru,Nyamhuru,Nyamehuru,1798
+Serengeti,Kisaka,Kisaka,Nyansurumunti,Nyansurumunti,Nyansurumunti,1883
+Serengeti,Kisaka,Kisaka,Buchanchari,Bunchachari,Buchanchari,3725
+Serengeti,Kisaka,Kisaka,Nyiboko,Nyiboko,Nyiboko,3566
+Serengeti,Kisaka,Kisaka,Borenga,Borenga,Borenga,3361
+Serengeti,Kebanchabancha,Kebanchebanche,Musati,Musati,Musati,3432
+Serengeti,Kebanchabancha,Kebanchebanche,Sogoti,Sogoti,Sogoti,1904
+Serengeti,Kebanchabancha,Kebanchebanche,Kebanchabancha,Kebanchabancha,Kebanchebanche,2905
+Serengeti,Ring'wani,Ring'wani,Nyamitita,Nyamitita,Nyamitita,3720
+Serengeti,Ring'wani,Ring'wani,Kenyana,Kenyana,Kenyana,3308
+Serengeti,Ring'wani,Ring'wani,Ring'wani,Ring'wani,Ring'wani,1757
+Serengeti,Rung'abure,Rung'abure,Gesarya,Gesarya,Gesarya,4031
+Serengeti,Rung'abure,Rung'abure,Nyamerama,Nyamerama,Nyamerama,1756
+Serengeti,Rung'abure,Rung'abure,Rung'abure,Rung'abure,Rung'abure,3911
+Serengeti,Machochwe,Machochwe,Machochwe,Machochwe,Machochwe,3917
+Serengeti,Machochwe,Machochwe,Nyamakendo,Nyamakendo,Nyamakendo,3999
+Serengeti,Machochwe,Machochwe,Manyata,Manyata,Manyata,1955
+Serengeti,Kisangura,Kisangura,Kibeyo,Kibeyo,Kibeyo,2133
+Serengeti,Kisangura,Kisangura,Kisangura,Kisangura,Kisangura,4043
+Serengeti,Kisangura,Kisangura,Kebosongo,Kebosongo,Kebosongo,2330
+Serengeti,Mugumu,Mugumu,Sedeco,Sedeco,Sedeco,1598
+Serengeti,Mugumu,Mugumu,NHC,Nhc,Nhc,3365
+Serengeti,Mugumu,Mugumu,Kyambai,Kyambai,Kyambai,1049
+Serengeti,Mugumu,Mugumu,M.c.u,M.C.U,M.C.U,2304
+Serengeti,Mugumu,Mugumu,Stendi Mpya,Stendi Mpya,Stendi Mpya,1911
+Serengeti,Ikoma,Ikoma,Park Nyigoti,Park Nyigoti,Park Nyigoti,1994
+Serengeti,Ikoma,Ikoma,Robanda,Robanda,Robanda,4508
+Serengeti,Natta,Natta,Kono,Natta,Kono,1719
+Serengeti,Natta,Natta,Natta Mbiso,Natta Mbiso,Mbisso,3479
+Serengeti,Natta,Natta,Makundusi,Makundusi,Makundusi,4529
+Serengeti,Natta,Natta,Motukeri,Motukeri,Motukeri,3122
+Serengeti,Issenye,Issenye,Singisi,Singisi,Singisi,2146
+Serengeti,Issenye,Issenye,Iharara,Iharara,Iharara,2292
+Serengeti,Issenye,Issenye,Nyiberekera,Nyiberekera,Nyiberekera,3651
+Serengeti,Issenye,Issenye,Nyamisingisi,Nyamisingisi,Nyamasingisi,2072
+Serengeti,Rigicha,Rigicha,Nyankomogo,Nyankomogo,Nyankomogo,2088
+Serengeti,Rigicha,Rigicha,Rigicha,Rigicha,Rigicha,3166
+Serengeti,Rigicha,Rigicha,Wagete,Wagete,Wagete,2097
+Serengeti,Rigicha,Rigicha,Kitembere,Kitembere,Kitembere,2113
+Serengeti,Nyambureti,Nyambureti,Gusuhi,Gusuhi,Gusuhi,3171
+Serengeti,Nyambureti,Nyambureti,Kerukerege,Kerukerege,Kerukerege,1598
+Serengeti,Nyambureti,Nyambureti,Maburi,Maburi,Maburi,3451
+Serengeti,Nyambureti,Nyambureti,Monuna,Monuna,Monuna,2757
+Serengeti,Nyambureti,Nyambureti,Nyambureti,Nyambureti,Nyambureti,3181
+Serengeti,Nyamoko,Nyamoko,Kwitete,Kwitete,Kwitete,2641
+Serengeti,Nyamoko,Nyamoko,Masangura,Masangura,Masangura,2073
+Serengeti,Nyamoko,Nyamoko,Itununu,Itununu,Itununu,2250
+Serengeti,Nyamoko,Nyamoko,Kerenero,Kerenero,Kerenero,1273
+Serengeti,Manchira,Manchira,Bwitengi,Bwitengi,Bwitengi,2217
+Serengeti,Manchira,Manchira,Misseke,Misseke,Misseke,2763
+Serengeti,Manchira,Manchira,Rwamchanga,Rwamchanga,Rwamchanga,2908
+Serengeti,Kyambahi,Kyambahi,Nyanungu,Nyanungu,Nyanungu,2413
+Serengeti,Kyambahi,Kyambahi,Nyichoka,Nyichoka,Nyichoka,2930
+Serengeti,Kyambahi,Kyambahi,Bokore,Bokore,Bokore,1679
+Serengeti,Nyamatare,Nyamatare,Kemgesi,Kemgesi,Kemgesi,2748
+Serengeti,Nyamatare,Nyamatare,Nyirongo,Nyirongo,Nyirongo,947
+Serengeti,Nyamatare,Nyamatare,Nyamatare,Nyamatare,Nyamatare,1781
+Serengeti,Majimoto,Majimoto,Majimoto,Majimoto,Majimoto,3197
+Serengeti,Majimoto,Majimoto,Nyamakobiti,Nyamakobiti,Nyamakobiti,2919
+Serengeti,Majimoto,Majimoto,Iseresere,Iseresere,Iseresere,2419
+Serengeti,Magange,Magange,Masinki,Masinki,Masinki,2665
+Serengeti,Magange,Magange,Magange,Magange,Magange,1831
+Serengeti,Magange,Magange,Remung'orori,Remung'orori,Remung'orori,2766
+Serengeti,Nyansurura,Nyansurura,Marasomoche,Marasomoche,Marasomoche,1404
+Serengeti,Nyansurura,Nyansurura,Nyansurura,Nyansurura,Nyansurura,2377
+Serengeti,Nyansurura,Nyansurura,Merenga,Merenga,Merenga,3554
+Serengeti,Nyansurura,Nyansurura,Kitarungu,Kitarungu,Kitarungu,2794
+Serengeti,Mosongo,Mosongo,Nyamatoke,Nyamatoke,Nyamatoke,3187
+Serengeti,Mosongo,Mosongo,Kenokwe,Kenokwe,Kenokwe,4076
+Serengeti,Mosongo,Mosongo,Mosongo,Mosongo,Mosongo,4355
+Serengeti,Sedeco,Sedeco,Nyambori,Nyamburi,Nyamburi,2748
+Serengeti,Sedeco,Sedeco,Bisarara,Bisarara,Bisarara,2816
+Serengeti,Sedeco,Sedeco,Mbirikili,Mbirikili,Mbirikiri,2074
+Serengeti,Sedeco,Sedeco,Bonchugu,Bonchugu,Bonchugu,3798
+Serengeti,Mbalibali,Mbalibali,Koreri,Koreri,Koreri,2898
+Serengeti,Mbalibali,Mbalibali,Kitunguruma,Kitunguruma,Kitunguruma,3405
+Serengeti,Mbalibali,Mbalibali,Mbalibali,Mbalibali,Mbalibali,2431
+Serengeti,Mbalibali,Mbalibali,Tamkeri,Tamkeri,Tamkeri,2656
+Serengeti,Stendi Kuu,Stendi Kuu,Bomani,Bomani,Bomani,3245
+Serengeti,Stendi Kuu,Stendi Kuu,Chamoto,Chamoto,Chamoto,3380
+Serengeti,Geitasamo,Geitasamo,Nyamoko,Nyamoko,Nyamoko,2467
+Serengeti,Geitasamo,Geitasamo,Kegonga,Kegonga,Kegonga,1824
+Serengeti,Geitasamo,Geitasamo,Matare,Matare,Matare,1229
+Serengeti,Morotonga,Morotonga,Morotonga,Morotonga,Morotonga,4108
+Serengeti,Uwanja wa Ndege,Uwanja wa Ndege,Burunga,Burunga,Burunga,2509
+Serengeti,Uwanja wa Ndege,Uwanja wa Ndege,Kyambahi,Kyambahi,Kyambahi,1271
+Serengeti,Uwanja wa Ndege,Uwanja wa Ndege,Ngarawani,Ngarawani,Ngarawani,2530
+Musoma,Bukumi,Bukumi,Buraga,Buraga,Buraga,2977
+Musoma,Bukumi,Bukumi,Bukumi,Bukumi,Bukumi,3173
+Musoma,Bukumi,Bukumi,Busekera,Busekera,Busekera,5947
+Musoma,Makojo,Makojo,Chimati,Chimati,Chimati,2889
+Musoma,Makojo,Makojo,Makojo,Makojo,Makojo,2696
+Musoma,Makojo,Makojo,Chitare,Chitare,Chitare,4063
+Musoma,Bwasi,Bwasi,Kome,Kome,Kome,4405
+Musoma,Bwasi,Bwasi,Bugunda,Bugunda,Bugunda,3971
+Musoma,Bwasi,Bwasi,Bwasi,Bwasi,Bwasi,3340
+Musoma,Bulinga,Bulinga,Bulinga,Bulinga,Bulinga,2182
+Musoma,Bulinga,Bulinga,Bujaga,Bujaga,Bujaga,2269
+Musoma,Bulinga,Bulinga,Busungu,Busungu,Busungu,1917
+Musoma,Bukima,Bukima,Bukima,Bukima,Bukima,4978
+Musoma,Bukima,Bukima,Butata,Butata,Butata,5889
+Musoma,Bukima,Bukima,Buanga,Buanga,Buanga,3193
+Musoma,Bukima,Bukima,Rusoli,Rujoli,Rujoli,3420
+Musoma,Bukima,Bukima,Kwikerege,Kwikerege,Kwikerege,1058
+Musoma,Murangi,Murangi,Lyasembe,Lyasembe,Lyasembe,3312
+Musoma,Murangi,Murangi,Murangi,Murangi,Murangi,5315
+Musoma,Murangi,Murangi,Musanja,Musanja,Musanja,5417
+Musoma,Murangi,Murangi,Mabuimerafuru,Mabui Merafuru,Mabui Merafuru,2889
+Musoma,Bugwema,Bugwema,Bugwema,Bugwema,Bugwema,2934
+Musoma,Bugwema,Bugwema,Masinono,Masinono,Masinono,5828
+Musoma,Bugwema,Bugwema,Muhoji,Muhoji,Muhoji,2489
+Musoma,Nyamrandirira,Nyamrandirira,Chumwi,Chumwi,Chumwi,3121
+Musoma,Nyamrandirira,Nyamrandirira,Kaboni,Kaboni,Kaboni,1516
+Musoma,Nyamrandirira,Nyamrandirira,Kasoma,Kasoma,Kasoma,3251
+Musoma,Nyamrandirira,Nyamrandirira,Seka,Seka,Seka,4179
+Musoma,Nyamrandirira,Nyamrandirira,Mikuyu,Mikuyu,Mikuyu,1637
+Musoma,Nyambono,Nyambono,Nyambono,Nyambono,Nyambono,4716
+Musoma,Nyambono,Nyambono,Saragana,Sapagana,Sapagana,4948
+Musoma,Nyambono,Nyambono,Bugoji,Bugoji,Bugoji,5870
+Musoma,Nyambono,Nyambono,Kaburabura,Kaburabura,Kaburabura,2572
+Musoma,Suguti,Suguti,Suguti,Suguti,Suguti,3467
+Musoma,Suguti,Suguti,Kusenyi,Kasenyi,Kasenyi,2450
+Musoma,Suguti,Suguti,Chirorwe,Chirorwe,Chirorwe,3453
+Musoma,Suguti,Suguti,Wanyere,Wanyere,Wanyere,4358
+Musoma,Tegeruka,Tegeruka,Tegeruka,Tegeruka,Tegeruka,2799
+Musoma,Tegeruka,Tegeruka,Mayani,Mayani,Mayani,3234
+Musoma,Tegeruka,Tegeruka,Kataryo,Kataryo,Kataryo,4668
+Musoma,Kiriba,Kiriba,Bwai Kumsoma,Bwai Kumsoma,Bwai Kumsoma,7352
+Musoma,Kiriba,Kiriba,Kiriba,Kiriba,Kiriba,4114
+Musoma,Kiriba,Kiriba,Bwai Kwitururu,Bwai Kwitururu,Bwai Kwitururu,5271
+Musoma,Busambara,Busambara,Kwikuba,Kwikuba,Kwikuba,1609
+Musoma,Busambara,Busambara,Maneke,Maneke,Maneke,3939
+Musoma,Busambara,Busambara,Mwiringo,Mwiringo,Mwiringo,3158
+Musoma,Mugango,Mugango,Kwibara,Kwibara,Kwibara,5494
+Musoma,Mugango,Mugango,Nyang'oma,Nyangoma,Nyangoma,2491
+Musoma,Mugango,Mugango,Kurwaki,Kurwaki,Kurwaki,2136
+Bunda,Nyamuswa,Nyamuswa,Nyamuswa,Nyamuswa,Nyamuswa,3911
+Bunda,Nyamuswa,Nyamuswa,Makongoro ''B'',Makongoro B,Makongoro B,1480
+Bunda,Nyamuswa,Nyamuswa,Bukama,Bukama,Bukama,2410
+Bunda,Nyamuswa,Nyamuswa,M akongoro ''A'',Makongoro A,Makongoro A,1523
+Bunda,Salama,Salama,Salama ''A'',Salama A,Salama A,2916
+Bunda,Salama,Salama,Salama Kati,Salama Kati,Salama Kati,1937
+Bunda,Salama,Salama,Kurusanga,Kurusanga,Kurusanga,4220
+Bunda,Mihingo,Mihingo,Mekomariro,Mekomariro,Mekomariro,4583
+Bunda,Mihingo,Mihingo,Mahanga,Mahanga,Mahanga,1785
+Bunda,Mihingo,Mihingo,Manchimweru,Manchimweru,Manchimweru,3359
+Bunda,Mihingo,Mihingo,Mihingo,Mihingo,Mihingo,3435
+Bunda,Mugeta,Mugeta,Sanzate,Sanzate,Sanzate,3503
+Bunda,Mugeta,Mugeta,Nyang'aranga,Nyang'aranga,Nyang'aranga,4288
+Bunda,Mugeta,Mugeta,Tingirima,Tingirima,Tingirima,2473
+Bunda,Mugeta,Mugeta,Kyandege,Kyandege,Kyandege,1763
+Bunda,Mugeta,Mugeta,Mugeta,Mugeta,Mugeta,2336
+Bunda,Hunyari,Hunyari,Mariwanda,Mariwanda,Mariwanda,6559
+Bunda,Hunyari,Hunyari,Kihumbu,Kihumbu,Kihumbu,3458
+Bunda,Hunyari,Hunyari,Hunyari,Hunyari,Hunyari,4552
+Bunda,Mcharo,Mcharo,Mcharo,Mcharo,Mcharo,1567
+Bunda,Mcharo,Mcharo,Kisangwa,Kisangwa,Kisangwa,1647
+Bunda,Mcharo,Mcharo,Changuge,Changuge,Changuge,2265
+Bunda,Mcharo,Mcharo,Nyamatoke,Nyamatoke,Nyamatoke,2343
+Bunda,Mcharo,Mcharo,Mihale,Mihale,Mihale,2294
+Bunda,Sazira,Sazira,Kitaramaka,Kitaramaka,Kitaramaka,2378
+Bunda,Sazira,Sazira,Sazira,Sazira,Sazira,2097
+Bunda,Sazira,Sazira,Misisi,Misisi,Misisi,3434
+Bunda,Sazira,Sazira,Ligamba ''B'',Ligamba B,Ligamba B,2894
+Bunda,Kunzugu,Kunzugu,Serengeti,Serengeti,Serengeti,1454
+Bunda,Kunzugu,Kunzugu,Nyatwali,Nyatwali,Nyatwali,2466
+Bunda,Kunzugu,Kunzugu,Tamau,Tamau,Tamau,2143
+Bunda,Kunzugu,Kunzugu,Kuzungu,Kunzugu,Kunzugu,2736
+Bunda,Kunzugu,Kunzugu,Bukore,Bukore,Bukore,2449
+Bunda,Bunda Mjini,Bunda Mjini,Bunda Mjini,Bunda Mjini,Bunda Mjini,17280
+Bunda,Guta,Guta,Kinyambwiga,Kinyambwiga,Kinyambwiga,2735
+Bunda,Guta,Guta,Kunanga,Kunanga,Kunanga,1958
+Bunda,Guta,Guta,Tairo,Tairo,Tairo,3219
+Bunda,Guta,Guta,Guta ''A'',Guta A,Guta A,3243
+Bunda,Guta,Guta,Guta ''B'',Guta B,Guta B,2514
+Bunda,Guta,Guta,Nyabehu,Nyabehu,Nyabehu,2006
+Bunda,Butimba,Butimba,Mwiseni,Mwiseni,Mwiseni,2211
+Bunda,Butimba,Butimba,Bulamba,Bulamba,Bulamba,3535
+Bunda,Butimba,Butimba,Buzimbwe,Buzimbwe,Buzimbwe,2759
+Bunda,Neruma,Neruma,Mumagunga,Mumagunga,Mumagunga,1611
+Bunda,Neruma,Neruma,Neruma,Neruma,Neruma,4055
+Bunda,Neruma,Neruma,Haruzare,Haruzale,Haruzale,1602
+Bunda,Neruma,Neruma,Mahyolo,Mahyolo,Mahyolo,1775
+Bunda,Neruma,Neruma,Nyamitwebili,Nyamitwebili,Nyamitwebili,2103
+Bunda,Neruma,Neruma,Kasahunga,Kasahunga,Kasahunga,2607
+Bunda,Neruma,Neruma,Namibu,Namibu,Namibu,2031
+Bunda,Kibara,Kibara,Mwibara,Mwibara,Mwibara,2436
+Bunda,Kibara,Kibara,Kibara ''A'',Kibara A,Kibara A,1430
+Bunda,Kibara,Kibara,Kibara ''B'',Kibara B,Kibara B,2182
+Bunda,Kibara,Kibara,Kibara Stoo,Kibara Stoo,Kibara Stoo,2364
+Bunda,Nansimo,Nansimo,Kigaga,Kigaga,Kigaga,2279
+Bunda,Nansimo,Nansimo,Mwitende,Mwitende,Mwitende,2580
+Bunda,Nansimo,Nansimo,Nansimo,Nansimo,Nansimo,2931
+Bunda,Nansimo,Nansimo,Nambaza,Nambaza,Nambaza,2489
+Bunda,Nansimo,Nansimo,Nafuba [Kisiwa],Nafuba,Nafuba,2435
+Bunda,Kisorya,Kisorya,Masahunga,Masahunga,Masahunga,2462
+Bunda,Kisorya,Kisorya,Nambubi,Nambubi,Nambubi,3103
+Bunda,Kisorya,Kisorya,Kisorya,Kisorya,Kisorya,2383
+Bunda,Kisorya,Kisorya,Nampangala,Nampangala,Nampangala,2231
+Bunda,Igundu,Igundu,Namalama,Namalama,Namalama,1871
+Bunda,Igundu,Igundu,Mchigondo,Mchigondo,Mchigondo,3260
+Bunda,Igundu,Igundu,Igundu,Igundu,Igundu,4118
+Bunda,Igundu,Igundu,Bulenda Bufwe,Bulenda Bufwe,Bulenda Bufwe,3257
+Bunda,Iramba,Iramba,Mugara,Mugara,Mugara,2396
+Bunda,Iramba,Iramba,Nyarugoma,Nyarugoma,Nyarugoma,2198
+Bunda,Iramba,Iramba,Isanju,Isanju,Isanju,2216
+Bunda,Iramba,Iramba,Mwiruruma,Mwiruruma,Mwiruruma,2031
+Bunda,Iramba,Iramba,Sikiro,Sikiro,Sikiro,1873
+Bunda,Namhula,Namhula,Namhula,Namhula,Namhula,3775
+Bunda,Namhula,Namhula,Muranda,Muranda,Muranda,2348
+Bunda,Namhula,Namhula,Chingurubila,Chingurubila,Chingurubila,2148
+Bunda,Namhula,Namhula,Karukekere,Karukekere,Karukekere,4880
+Bunda,Wariku,Wariku,Kiwasi,Kiwasi,Kiwasi,1680
+Bunda,Wariku,Wariku,Kamkenga,Kamkenga,Kamkenga,3266
+Bunda,Wariku,Wariku,Kangetuya,Kangetutya,Kangetutya,2612
+Bunda,Wariku,Wariku,Rwabu,Rwabu,Rwabu,2342
+Bunda,Kabasa,Kabasa,Nyasana,Nyasana,Nyasana,1673
+Bunda,Kabasa,Kabasa,Kabasa,Kabasa,Kabasa,3689
+Bunda,Kabasa,Kabasa,Kung'ombe,Kung'ombe,Kung'ombe,3542
+Bunda,Kabasa,Kabasa,Bitaraguru,Bitaraguru,Bitaraguru,4328
+Bunda,Nampindi,Nampindi,Bwanza,Bwanza,Bwanza,2351
+Bunda,Nampindi,Nampindi,Sunsi,Sunsi,Sunsi,2878
+Bunda,Nampindi,Nampindi,Busambu,Busambu,Busambu,1908
+Bunda,Nampindi,Nampindi,Makwa,Makwa,Makwa,2501
+Bunda,Chitengule,Chitengule,Bunere,Bunere,Bunere,1721
+Bunda,Chitengule,Chitengule,Nakatuba,Nakatuba,Nakatuba,2350
+Bunda,Chitengule,Chitengule,Namalebe,Namalebe,Namalebe,3773
+Bunda,Chitengule,Chitengule,Chitengule,Chitengule,Chitengule,3310
+Bunda,Chitengule,Chitengule,Busambara,Busambara,Busambara,1759
+Bunda,Kasuguti,Kasuguti,Kabainja,Kabainja,Kabainja,2515
+Bunda,Kasuguti,Kasuguti,Ragata,Ragata,Ragata,2181
+Bunda,Kasuguti,Kasuguti,Kasuguti,Kasuguti,Kasuguti,2389
+Bunda,Balili,Balili,Nyamakokoto,Nyamakokoto,Nyamakokoto,10441
+Bunda,Balili,Balili,Balili,Balili,Balili,5083
+Bunda,Bunda Stoo,Bunda Stoo,Bunda Stoo,Bunda Stoo,Bunda Stoo,12632
+Bunda,Nyasura,Nyasura,Manyamanyama,Manyamanyama,Manyamanyama,3878
+Bunda,Nyasura,Nyasura,Nyasura,Nyasura,Nyasura,13687
+Bunda,Nyamang'uta,Nyamang'uta,Kambubu,Kambubu,Kambubu,1535
+Bunda,Nyamang'uta,Nyamang'uta,Sarawe,Sarawe,Sarawe,2454
+Bunda,Nyamang'uta,Nyamang'uta,Nyangere,Nyangere,Nyangere,2730
+Bunda,Nyamang'uta,Nyamang'uta,Kiroleli,Kiroleli,Kiroleli,2355
+Bunda,Nyamang'uta,Nyamang'uta,Nyabuzuma,Nyabuzume,Nyabuzume,1075
+Bunda,Ketare,Ketare,Bigegu,Bigegu,Bigegu,2186
+Bunda,Ketare,Ketare,Nyaburundu,Nyaburundu,Nyaburundu,3185
+Bunda,Ketare,Ketare,Marambeka,Marambeka,Marambeka,2183
+Bunda,Ketare,Ketare,Tiring'ati,Tiring'ati,Tiring'ati,1289
+Musoma Municipal,Mukendo,Mukendo,Mukendo,Mukendo,Mukendo,717
+Musoma Municipal,Mukendo,Mukendo,Sokoine,Sokoine,Sokoine,513
+Musoma Municipal,Mukendo,Mukendo,Nyerere,Nyerere,Nyerere,1196
+Musoma Municipal,Mwigobero,Mwigobero,Mwigobero 'D',Mwigobero D,Mwigobero D,297
+Musoma Municipal,Mwigobero,Mwigobero,Mwigobero,Mwigobero C,Mwigobero C,570
+Musoma Municipal,Mwigobero,Mwigobero,Mwigobero 'B',Mwigobero B,Mwigobero B,569
+Musoma Municipal,Mwigobero,Mwigobero,Mwigobero 'A',Mwigobero A,Mwigobero A,743
+Musoma Municipal,Iringo,Iringo,Iringo 'B',Iringo B,Iringo B,510
+Musoma Municipal,Iringo,Iringo,Iringo 'A',Iringo A,Iringo A,1838
+Musoma Municipal,Iringo,Iringo,Iringo 'D',Iringo D,Iringo D,1575
+Musoma Municipal,Iringo,Iringo,Iringo 'C',Iringo C,Iringo C,1398
+Musoma Municipal,Kitaji,Kitaji,Kitaji 'A',Kitaji A,Kitaji A,529
+Musoma Municipal,Kitaji,Kitaji,Kitaji 'B',Kitaji B,Kitaji B,1386
+Musoma Municipal,Kitaji,Kitaji,Kitaji 'C',Kitaji C,Kitaji C,2175
+Musoma Municipal,Kitaji,Kitaji,Kitaji 'D',Kitaji D,Kitaji D,1373
+Musoma Municipal,Nyasho,Nyasho,Nyasho Mlango Mmoja,Nyasho Mlango Mmoja,Nyasho Mlango Mmoja,969
+Musoma Municipal,Nyasho,Nyasho,Nyasho Sokoni,Nyasho Sokoni,Nyasho Sokoni,879
+Musoma Municipal,Nyasho,Nyasho,Nyasho Shuleni,Nyasho Shuleni,Nyasho Shuleni,1545
+Musoma Municipal,Nyasho,Nyasho,Nyasho Kati,Nyasho Kati,Nyasho Kati,1608
+Musoma Municipal,Nyasho,Nyasho,Nyasho Magereza,Nyasho Magereza,Nyasho Magereza,1343
+Musoma Municipal,Bweri,Bweri,Rwamlimi,Rwamlimi,Rwamlimi,10891
+Musoma Municipal,Bweri,Bweri,Nyarusurya,Nyarusurya,Nyarusurya,1227
+Musoma Municipal,Bweri,Bweri,Machinjioni,Machinjioni,Machinjioni,2031
+Musoma Municipal,Bweri,Bweri,Nyabisare,Nyabisire,Nyabisire,7607
+Musoma Municipal,Bweri,Bweri,Bweri,Bweri,Bweri,4187
+Musoma Municipal,Nyakato,Nyakato,Mshikamano,Mshikamo,Mshikamo,4345
+Musoma Municipal,Nyakato,Nyakato,Sanane,Mtaa Saanane,Mtaa Saanane,3326
+Musoma Municipal,Nyakato,Nyakato,Bondeni,Bondeni,Bondeni,4266
+Musoma Municipal,Nyakato,Nyakato,Maziwa,Maziwa,Maziwa,1640
+Musoma Municipal,Nyakato,Nyakato,Baruti,Baruti,Baruti,2613
+Musoma Municipal,Nyakato,Nyakato,Mlimani,Mlimani,Mlimani,4230
+Musoma Municipal,Kigera,Kigera,Kwangwa,Kwangwa,Kwangwa,6228
+Musoma Municipal,Kigera,Kigera,Kiara,Kiara,Kiara,5991
+Musoma Municipal,Kigera,Kigera,Mwiyare,Mwiyare,Mwiyare,4942
+Musoma Municipal,Kigera,Kigera,Bonde Kati,Bonde Kati,Bonde Kati,3918
+Musoma Municipal,Kamunyonge,Kamunyonge,Bondeni,Bondeni,Bondeni,1084
+Musoma Municipal,Kamunyonge,Kamunyonge,Uwanja wa Ndege,Air Port,Air Port,1644
+Musoma Municipal,Kamunyonge,Kamunyonge,Biafra,Biafra,Biafra,1017
+Musoma Municipal,Kamunyonge,Kamunyonge,Majita Road,Majita Road,Majita Road,1259
+Musoma Municipal,Nyamatare,Nyamatare,Nyaburangi,Nyaburangi,Nyaburangi,1192
+Musoma Municipal,Nyamatare,Nyamatare,Mtongoli,Mtongoli,Mtongoli,1013
+Musoma Municipal,Nyamatare,Nyamatare,Wakara,Wakara,Wakara,1241
+Musoma Municipal,Nyamatare,Nyamatare,Mara Secondary,Mara Secondari,Mara Secondari,1059
+Musoma Municipal,Nyamatare,Nyamatare,Nyamatare,Nyamatare,Nyamatare,2023
+Musoma Municipal,Mwisenge,Mwisenge,Majita Road,Majita Road,Majita Road,2162
+Musoma Municipal,Mwisenge,Mwisenge,Mtakuja,Mtakuja,Mtakuja,5319
+Musoma Municipal,Mwisenge,Mwisenge,Pwani,Pwani,Pwani,2355
+Musoma Municipal,Mwisenge,Mwisenge,Mkinyerero,Mkinyerero,Mkinyerero,1961
+Musoma Municipal,Mwisenge,Mwisenge,Mwisenge Kati,Mwisenge Kati,Mwisenge Kati,1806
+Musoma Municipal,Buhare,Buhare,Buhare Kati,Buhare Kati,Buhare Kati,3180
+Musoma Municipal,Buhare,Buhare,Mgalanjabo,Mgalanjabho,Mgalanjabho,3587
+Musoma Municipal,Buhare,Buhare,Buhare,Buhare,Buhare,3362
+Musoma Municipal,Makoko,Makoko,Bukanga,Bukanga,Bukanga,1101
+Musoma Municipal,Makoko,Makoko,Ziwani,Ziwani,Ziwani,1361
+Musoma Municipal,Makoko,Makoko,Nyarigamba,Nyarigamba,Nyarigamba,1411
+Musoma Municipal,Makoko,Makoko,Kinyang'wena,Kinyang'wena,Kinyang'wena,1355
+Musoma Municipal,Makoko,Makoko,Nyamiongo,Nyamiongo,Nyamiongo,4659
+Rorya,Kigunga,Kigunga,Bukama,Bukama,Bukama,4379
+Rorya,Kigunga,Kigunga,Randa,Randa,Randa,4418
+Rorya,Kigunga,Kigunga,Luanda,Luanda,Luanda,2124
+Rorya,Kigunga,Kigunga,Masike,Masike,Masike,2903
+Rorya,Kirogo,Kirogo,Burere,Burere,Burere,2118
+Rorya,Kirogo,Kirogo,Radienya,Radienya,Radienya,2118
+Rorya,Kirogo,Kirogo,Kirogo,Kirogo,Kirogo,3014
+Rorya,Nyamtinga,Nyamtinga,Rwang'enyi,Rwang'enyi,Rwang'enyi,3623
+Rorya,Nyamtinga,Nyamtinga,Manila,Manila,Manila,1859
+Rorya,Nyamtinga,Nyamtinga,Nyarombo,Nyarombo,Nyarombo,2402
+Rorya,Nyamtinga,Nyamtinga,Busanga,Busanga,Busanga,3319
+Rorya,Nyamagaro,Nyamagaro,Nyang'ombe,Nyang'ombe,Nyang'ombe,6509
+Rorya,Nyamagaro,Nyamagaro,Muharango,Muharango,Muharango,5160
+Rorya,Nyamagaro,Nyamagaro,Kyangasaga,Kyangasaga,Kyangasaga,5337
+Rorya,Nyahongo,Nyahongo,Minigo,Minigo,Minigo,2365
+Rorya,Nyahongo,Nyahongo,Ryagati,Ryagati,Ryagati,2421
+Rorya,Nyahongo,Nyahongo,Lolwe,Lolwe,Lolwe,1817
+Rorya,Nyahongo,Nyahongo,Omoche,Omoche,Omoche,3948
+Rorya,Nyahongo,Nyahongo,Nyabikondo,Nyabikondo,Nyabikondo,2722
+Rorya,Nyahongo,Nyahongo,Nyamkonge,Nyamkonge,Nyamkonge,1747
+Rorya,Nyahongo,Nyahongo,Manyanyi,Manyanyi,Manyanyi,3434
+Rorya,Mkoma,Mkoma,Mkoma,Mkoma,Mkoma,6150
+Rorya,Mkoma,Mkoma,Kyariko,Kyariko,Kyariko,6517
+Rorya,Mkoma,Mkoma,Raranya,Raranya,Raranya,4465
+Rorya,Tai,Tai,Shirati Sota,Shirati Sota,Shirati Sota,4219
+Rorya,Tai,Tai,Masonga,Masonga,Masonga,3198
+Rorya,Tai,Tai,Nyahera,Nyahera,Nyahera,2873
+Rorya,Tai,Tai,Nyamagongo,Nyamagongo,Nyamagongo,2216
+Rorya,Bukura,Bukura,Kirongwe,Kirongwe,Kirongwe,4090
+Rorya,Bukura,Bukura,Bubombi,Bubombi,Bubombi,4530
+Rorya,Bukura,Bukura,Thabache,Thabache,Thabache,2128
+Rorya,Bukura,Bukura,Nyambori,Nyambori,Nyambori,2227
+Rorya,Bukura,Bukura,Bwiri,Bwiri,Bwiri,2254
+Rorya,Roche,Roche,Osiri,Osiri,Osiri,2571
+Rorya,Roche,Roche,Roche,Roche,Roche,3405
+Rorya,Roche,Roche,Ng'ope,Ng'ope,Ng'ope,2751
+Rorya,Kitembe,Kitembe,Sakawa,Sakawa,Sakawa,3985
+Rorya,Kitembe,Kitembe,Kitembe,Kitembe,Kitembe,2389
+Rorya,Kitembe,Kitembe,Nyambogo,Nyambogo,Nyambogo,3471
+Rorya,Mirare,Mirare,Malongo,Malongo,Malongo,2225
+Rorya,Mirare,Mirare,Ingiri Juu,Ingiri Juu,Ingiri Juu,2436
+Rorya,Mirare,Mirare,Ryagobo,Ryagoro,Ryagoro,2979
+Rorya,Mirare,Mirare,Sudi,Sudi Village,Sudi Village,4775
+Rorya,Goribe,Goribe,Tatwe,Tatwe,Tatwe,2887
+Rorya,Goribe,Goribe,Panyakoo,Panyakoo,Panyakoo,3162
+Rorya,Goribe,Goribe,Nyamusi,Nyamusi,Nyamusi,3866
+Rorya,Ikoma,Ikoma,Nyamasanda,Nyamasanda,Nyamasanda,2816
+Rorya,Ikoma,Ikoma,Kagoja,Kogaja,Kogaja,3299
+Rorya,Ikoma,Ikoma,Ikoma,Ikoma,Ikoma,4283
+Rorya,Koryo,Koryo,Utegi,Utegi,Utegi,3302
+Rorya,Koryo,Koryo,Nyanduga,Nyanduga,Nyanduga,2973
+Rorya,Koryo,Koryo,Mang'ore,Mang'ore,Mang'ore,1376
+Rorya,Bukwe,Bukwe,Mika,Mika,Mika,3219
+Rorya,Bukwe,Bukwe,Buganjo,Bugamjo,Bugamjo,3910
+Rorya,Bukwe,Bukwe,Nyasoro,Nyasoro,Nyasoro,2790
+Rorya,Nyathorogo,Nyathorogo,Kowaki,Kowaki,Kowaki,3546
+Rorya,Nyathorogo,Nyathorogo,Omuga,Omuga,Omuga,2666
+Rorya,Nyathorogo,Nyathorogo,Nyasoko,Nyasoko,Nyasoko,1373
+Rorya,Nyathorogo,Nyathorogo,Ochuna,Ochuma,Ochuma,1548
+Rorya,Nyathorogo,Nyathorogo,Dett,Dett,Dett,1815
+Rorya,Nyathorogo,Nyathorogo,Chereche,Chereche,Chereche,3860
+Rorya,Rabour,Rabour,Makongoro,Makongoro,Makongoro,4129
+Rorya,Rabour,Rabour,Oliyo,Oliyo,Oliyo,3743
+Rorya,Rabour,Rabour,Rabour,Rabour,Rabour,3387
+Rorya,Kisumwa,Kisumwa,Kisumwa,Kisumwa,Kisumwa,2410
+Rorya,Kisumwa,Kisumwa,Nyanjagi,Nyanjagi,Nyanjagi,1473
+Rorya,Kisumwa,Kisumwa,Marasibora,Marasibora,Marasibora,2301
+Rorya,Kisumwa,Kisumwa,Kwibuse,Kwibuse,Kwibuse,3266
+Rorya,Kisumwa,Kisumwa,Nyanchabakenye,Nyanghabakenye,Nyanghabakenye,2997
+Rorya,Komuge,Komuge,Komuge,Komuge,Komuge,2991
+Rorya,Komuge,Komuge,Irienyi,Irenyi,Irenyi,4253
+Rorya,Komuge,Komuge,Kuruya,Kuruya,Kuruya,4423
+Rorya,Komuge,Komuge,Kyamwame,Kyamwame,Kyamwame,1984
+Rorya,Nyamunga,Nyamunga,Kibuyi,Kibuyi,Kibuyi,7266
+Rorya,Nyamunga,Nyamunga,Kinesi,Kinesi,Kinesi,5895
+Rorya,Kyang'ombe,Kyang'ombe,Muhundwe,Muhundwe,Muhundwe,2297
+Rorya,Kyang'ombe,Kyang'ombe,Ruhu,Ruhu,Ruhu,4074
+Rorya,Kyang'ombe,Kyang'ombe,Nyihara,Nyihara,Nyihara,3627
+Rorya,Kyang'ombe,Kyang'ombe,Bitiryo,Bitiryo,Bitiryo,4369
+Rorya,Kyang'ombe,Kyang'ombe,Baraki,Baraki,Baraki,4071
+Butiama,Bwiregi,Bwiregi,Masurura,Masurura,Masurura,3637
+Butiama,Bwiregi,Bwiregi,Kitasakwa,Kitasakwa,Kitasakwa,2045
+Butiama,Bwiregi,Bwiregi,Ryamisanga,Ryamisanga,Ryamisanga,2378
+Butiama,Bwiregi,Bwiregi,Kamgendi,Kamgendi,Kamgendi,2215
+Butiama,Buswahili,Buswahili,Buswahili,Buswahili,Buswahili,2359
+Butiama,Buswahili,Buswahili,Kongoto,Kongoto,Kongoto,1501
+Butiama,Buswahili,Buswahili,Wegero,Wegero,Wegero,3841
+Butiama,Buswahili,Buswahili,Baranga,Baranga,Baranga,3875
+Butiama,Nyamimange,Nyamimange,Kwisaro,Kwisaro,Kwisaro,1058
+Butiama,Nyamimange,Nyamimange,Kyankoma,Kyankoma,Kyankoma,4145
+Butiama,Sirorisimba,Sirorisimba,Kitaramanka,Kitaramanka,Kitaramanka,2098
+Butiama,Sirorisimba,Sirorisimba,Rwasereta,Rwasereta,Rwasereta,1723
+Butiama,Sirorisimba,Sirorisimba,Kyambili,Nyambili,Nyambili,1533
+Butiama,Sirorisimba,Sirorisimba,Sirorisimba,Sirorisimba,Sirorisimba,2866
+Butiama,Buhemba,Buhemba,Matongo,Matongo,Matongo,3346
+Butiama,Buhemba,Buhemba,Biatika,Biatika,Biatika,3604
+Butiama,Buhemba,Buhemba,Buhemba,Kinyariri,Kinyariri,2376
+Butiama,Mirwa,Mirwa,Tarani,Tarani,Tarani,3938
+Butiama,Mirwa,Mirwa,Magunda,Magunga,Magunga,5689
+Butiama,Mirwa,Mirwa,Mirwa,Mirwa,Mirwa,4095
+Butiama,Muriaza,Muriaza,Muriaza,Muriaza,Muriaza,3432
+Butiama,Muriaza,Muriaza,Kizaru,Kizaru,Kizaru,1988
+Butiama,Muriaza,Muriaza,Bumangi,Bumangi,Bumangi,4783
+Butiama,Butiama,Butiama,Buturu,Buturu,Buturu,3967
+Butiama,Butiama,Butiama,Butiama,Butiama,Butiama,10366
+Butiama,Butiama,Butiama,Rwamkoma,Rwamkoma,Rwamkoma,4884
+Butiama,Masaba,Masaba,Nyasirori,Nyasirori,Nyasirori,4790
+Butiama,Masaba,Masaba,Bisarye,Bisarye,Bisarye,4533
+Butiama,Masaba,Masaba,Kwigutu,Kwigutu,Kwigutu,3824
+Butiama,Kyanyari,Kyanyari,Nyakiswa,Nyakiswa,Nyakiswa,4680
+Butiama,Kyanyari,Kyanyari,Nyamikoma,Nyamikoma,Nyamikoma,4795
+Butiama,Kyanyari,Kyanyari,Mwibagi,Mwabagi,Mwabagi,7201
+Butiama,Kukirango,Kukirango,Kyatungwe,Kyatungwe,Kyatungwe,2912
+Butiama,Kukirango,Kukirango,Kamugegi,Kamugeti,Kamugeti,1806
+Butiama,Kukirango,Kukirango,Kyawazaru,Kyawazuru,Kyawazuru,3282
+Butiama,Kukirango,Kukirango,Kiabakari,Kiabakari,Kiabakari,4495
+Butiama,Kukirango,Kukirango,Nyamisisye,Nyamisisye,Nyamisisye,5655
+Butiama,Kukirango,Kukirango,Singu,Singu,Singu,3573
+Butiama,Kukirango,Kukirango,Mwanza Buriga,Mwanzaburiga,Mwanzaburiga,2778
+Butiama,Buruma,Buruma,Tonyo,Tonyo,Tonyo,1439
+Butiama,Buruma,Buruma,Isaba,Isaba,Isaba,2587
+Butiama,Buruma,Buruma,Songora,Songora,Songora,6111
+Butiama,Buruma,Buruma,Mwikoro,Mwikoro,Mwikoro,3734
+Butiama,Buruma,Buruma,Ryamugabo,Ryamugabo,Ryamugabo,2609
+Butiama,Nyakatende,Nyakatende,Nyakatende,Nyakatende,Nyakatende,2639
+Butiama,Nyakatende,Nyakatende,Kabegi,Kabegi,Kabegi,2694
+Butiama,Nyakatende,Nyakatende,Kiemba,Kiemba,Kiemba,4146
+Butiama,Nyakatende,Nyakatende,Kamguruki,Kamguruki,Kamguruki,1723
+Butiama,Nyakatende,Nyakatende,Kigera etuma,Kigera Etuma,Kigera Etuma,8139
+Butiama,Etaro,Etaro,Lukuba,Lukuba,Lukuba,2262
+Butiama,Etaro,Etaro,Mmahare,Mmahare,Mmahare,1303
+Butiama,Etaro,Etaro,Etaro,Etaro,Etaro,4146
+Butiama,Etaro,Etaro,Busamba,Busamba,Busamba,2782
+Butiama,Nyegina,Nyegina,Kurukerege,Kurukerege,Kurukerege,2148
+Butiama,Nyegina,Nyegina,Nyegina,Nyegina,Nyegina,3044
+Butiama,Nyegina,Nyegina,Mkirira,Mkirira,Mkirira,3028
+Butiama,Nyankanga,Nyankanga,Nyabange,Nyabange,Nyabange,3712
+Butiama,Nyankanga,Nyankanga,Nyankanga,Nyankanga,Nyankanga,6022
+Butiama,Bisumwa,Bisumwa,Kyamajoje,Kyamajoje,Kyamajoje,1563
+Butiama,Bisumwa,Bisumwa,Nyabekwabi,Nyabekwabi,Nyabekwabi,3239
+Butiama,Bisumwa,Bisumwa,Nyarukoru,Nyarukoru,Nyarukoru,1275
+Butiama,Bisumwa,Bisumwa,Bisumwa,Bisumwa,Bisumwa,3996
+Butiama,Bukabwa,Bukabwa,Kirumi,Kirumi,Kirumi,3291
+Butiama,Bukabwa,Bukabwa,Bukabwa,Bukabwa,Bukabwa,3127
+Butiama,Bukabwa,Bukabwa,Mmazami,Mmazami,Mmazami,4584
+Butiama,Butuguri,Butuguri,Busirime,Busirime,Busirime,1228
+Butiama,Butuguri,Butuguri,Kisamwene,Kisamwene,Kisamwene,2495
+Butiama,Butuguri,Butuguri,Kibubwa,Kibubwa,Kibubwa,2963
+Butiama,Butuguri,Butuguri,Busegwe,Busegwe,Busegwe,1205
+Butiama,Butuguri,Butuguri,Kigori,Kigori,Kigori,1115
+Butiama,Busegwe,Busegwe,Nyanza,Nyanza,Nyanza,1643
+Butiama,Busegwe,Busegwe,Busegwe,Busegwe,Busegwe,1910
+Butiama,Busegwe,Busegwe,Kigori,Kigori,Kigori,1767
