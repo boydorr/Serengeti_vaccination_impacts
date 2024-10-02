@@ -20,3 +20,10 @@ source("R/CreateVaccination.R")
 
 # Process CT data for downstream scripts
 source("R/process_CT_data.R")
+
+# Figs 2, S1 and S9, Video S1, & Table S1
+source("R/DescriptivePlots.R")
+
+# Get distribution of human bites by a rabid dog 
+source("R/HumanBitesPerDog.R")
+

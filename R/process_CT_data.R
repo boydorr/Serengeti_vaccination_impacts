@@ -159,6 +159,10 @@ length(which(is.na(humans$date)))/nrow(humans)
 # Subset by start date
 humans <- subset(humans, (Date.proxy >= start.date) ); nrow(humans) 
 
+# Save the data
+saveRDS(object = humans, file = paste0("output/clean_human_data.rds"))
+humans = readRDS(file = paste0("output/clean_human_data.rds"))
+
 # Subset out exposures and deaths
 exposures <- subset(humans, Rabid=="Yes")
 deaths <- subset(humans,Patient.outcome=="Died" & Cause.of.death=="Rabies")
