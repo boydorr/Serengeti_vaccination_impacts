@@ -20,7 +20,7 @@ rabid_dogs <- read.csv("output/serengeti_rabid_dogs.csv")
 # Some checks
 humanCTrabid <- humanCT[which(humanCT$Rabid=="Yes" & humanCT$Attacking.species=="Domestic dog"),]
 which(!humanCTrabid$Biter.ID%in%rabid_dogs$ID)
-table(humanCTrabid$Biter.ID[which(!humanCTrabid$Biter.ID%in%rabid_dogs$ID)],useNA = "ifany") # quite a lot of humans bitten by rabid dogs not in the animal data
+table(humanCTrabid$Biter.ID[which(!humanCTrabid$Biter.ID%in%rabid_dogs$ID)],useNA = "ifany") # quite a few humans bitten by rabid dogs not in the animal data
 which(humanCT$Biter.ID%in%rabid_dogs$ID & humanCT$Rabid!="Yes") # Not a huge number (14) of cases where the bite is recorded as non-rabid but the dog was suspect
 humanCT$Rabid[which(humanCT$Biter.ID%in%rabid_dogs$ID & humanCT$Rabid!="Yes")]
 
@@ -32,8 +32,8 @@ humanCT$Rabid[which(humanCT$Biter.ID%in%rabid_dogs$ID & humanCT$Rabid!="Yes")]
 # Humans bitten by each dog
 rabid_dogs$humansBitten <- 0
 bites_by_ID <- table(humanCT$Biter.ID)
-bites_by_ID <- bites_by_ID[-c(1:2)] # remove biter IDs -1 and 0; now length 1207
-bites_by_ID <- bites_by_ID[which(as.numeric(names(bites_by_ID))%in%rabid_dogs$ID)] # length 910
+bites_by_ID <- bites_by_ID[-c(1:2)] # remove biter IDs -1 and 0
+bites_by_ID <- bites_by_ID[which(as.numeric(names(bites_by_ID))%in%rabid_dogs$ID)] 
 rabid_dogs$humansBitten[match(as.numeric(names(bites_by_ID)),rabid_dogs$ID)] <- bites_by_ID
 range(rabid_dogs$humansBitten)
 mean(rabid_dogs$humansBitten)

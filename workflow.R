@@ -27,3 +27,21 @@ source("R/DescriptivePlots.R")
 # Get distribution of human bites by a rabid dog 
 source("R/HumanBitesPerDog.R")
 
+# Fit distance kernels for transmission tree
+# (Note these look very different to the ones presented in the paper, because of
+# the increased distances resulting from randomly jittering the locations)
+source("R/Make_Distance_Kernel.R")
+
+# Fit incubation and infectious periods, serial intervals and generation
+# intervals
+source("R/Make_Incubation_Infectious_Periods.R")
+
+# Fig.S10. Again, note difference in distance kernel for jittered data, relative
+# to the paper version
+source("Plot_TT_dists.R") 
+
+# Generate transmission trees and estimate and plot incursions
+source("R/Run_Transmission_Trees_treerabid.R")
+source("R/incursions_over_time_treerabid.R")
+
+
