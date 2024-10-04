@@ -44,4 +44,10 @@ source("Plot_TT_dists.R")
 source("R/Run_Transmission_Trees_treerabid.R")
 source("R/incursions_over_time_treerabid.R")
 
+# Prepare input data for all monthly models of incidence
+source("R/model_data_prep.R")
+
+# Prepare input data for all annual model of incidence
+source("R/model_data_prep_annual.R")
+
 
