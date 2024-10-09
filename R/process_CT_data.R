@@ -49,6 +49,22 @@ rabid_carnivores$day[ss] <- rabid_carnivores$Symptoms.started[ss] - start.date +
 rabid_carnivores$day[db] <- rabid_carnivores$Date.bitten[db] + mean_inc - start.date + 1
 which(is.na(rabid_carnivores$day))
 
+# Add cell ID to dataset
+gps <- rabid_carnivores[which(!is.na(rabid_carnivores$UTM.Easting)),c("UTM.Easting","UTM.Northing")]
+cell_IDs <- extract(SD_grid,gps)
+gps[which(is.na(cell_IDs)),]
+rabid_carnivores$Village[which(!is.na(rabid_carnivores$UTM.Easting))][which(is.na(cell_IDs))]
+plot(SD_vill)
+plot(SD_grid,add=T)
+plot(SD_vill,add=T)
+points(gps[which(is.na(cell_IDs)),1],gps[which(is.na(cell_IDs)),2],col="red")
+# individual near edge of Machochwe that falls just off the grid - find the closest cell within the grid
+toAssign <- which(is.na(cell_IDs))
+cell_IDs[toAssign] <- apply(X = as.matrix(gps[toAssign,]), MARGIN = 1, 
+                            FUN = function(xy) SD_grid[which.min(replace(distanceFromPoints(SD_grid, xy), is.na(SD_grid), NA))])
+rabid_carnivores$cell_ID[which(!is.na(rabid_carnivores$UTM.Easting))] <- cell_IDs 
+length(which(is.na(rabid_carnivores$cell_ID))) # 43 missing IDs due to lack of gps
+
 # Save the data
 saveRDS(object = rabid_carnivores, file = paste0("output/clean_bite_data.rda"))
 rabid_carnivores = readRDS(file = paste0("output/clean_bite_data.rda"))
