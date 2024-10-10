@@ -1,0 +1,12 @@
+"","Full model","Without prior cases/dog beyond village","Without prior cases/dog at any scale"
+"Intercept","-0.4 (-1.25-0.45)","-0.77 (-2-0.56)","-1.37 (-2.95-0.31)"
+"Vaccination over last 2 months in village","-1.05 (-1.59--0.52)","-1.08 (-1.62--0.54)","-1.44 (-2.01--0.87)"
+"Vaccination at borders over last 2 months","-0.1 (-0.9-0.67)","-0.73 (-1.54-0.1)","-0.98 (-1.85--0.11)"
+"Vaccination in non-bordering villages over last 2 months","-0.32 (-1.31-0.7)","-0.34 (-1.4-0.72)","0.34 (-0.8-1.46)"
+"Log cases/dog over last 2 months in village","0.21 (0.19-0.23)","0.28 (0.26-0.29)",NA
+"Log cases/dog at borders over last 2 months","0.14 (0.12-0.17)",NA,NA
+"Log cases/dog in non-bordering villages over last 2 months","0.41 (0.35-0.46)",NA,NA
+"Log dogs/km2","-0.66 (-0.9--0.44)","-1.87 (-2.22--1.52)","-2.82 (-3.19--2.46)"
+"Human:dog ratio","0.31 (0.19-0.44)","0.4 (0.21-0.6)","0.53 (0.24-0.82)"
+"Village RE SD","0.63 (0.51-0.77)","1.03 (0.81-1.29)","1.57 (1.29-1.9)"
+"shape","0.38 (0.34-0.42)","0.32 (0.29-0.36)","0.18 (0.17-0.2)"

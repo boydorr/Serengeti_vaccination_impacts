@@ -50,4 +50,8 @@ source("R/model_data_prep.R")
 # Prepare input data for all annual model of incidence
 source("R/model_data_prep_annual.R")
 
+# Models describing impact of prior vaccination and prior incidence on current
+# incidence, without considering heterogeneity in coverage
+source("R/incidence_coverage_models.R")
+source("R/incidence_coverage_models_annual.R")
 
