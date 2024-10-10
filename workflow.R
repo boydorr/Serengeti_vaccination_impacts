@@ -59,3 +59,8 @@ source("R/incidence_coverage_models_annual.R")
 # S3)
 source("R/explore_powers.R")
 
+# Fit power mean models
+source("R/Power_mean_model_district_stan.R")
+
+# Plot power mean models
+source("R/Plot_stan_district_monthly.R")

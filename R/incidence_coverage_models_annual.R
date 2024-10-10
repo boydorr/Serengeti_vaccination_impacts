@@ -14,7 +14,7 @@ library(stringr)
 
 set.seed(0)
 
-fit <- T
+fit <- F
 
 
 ## Load data
