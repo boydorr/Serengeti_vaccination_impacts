@@ -55,3 +55,7 @@ source("R/model_data_prep_annual.R")
 source("R/incidence_coverage_models.R")
 source("R/incidence_coverage_models_annual.R")
 
+# Explore feasible values of the power parameter p in heterogeneity models (Fig.
+# S3)
+source("R/explore_powers.R")
+
