@@ -59,8 +59,11 @@ source("R/incidence_coverage_models_annual.R")
 # S3)
 source("R/explore_powers.R")
 
-# Fit power mean models
-source("R/Power_mean_model_district_stan.R")
+# Fit power mean models (commented out as very slow - district not bad but
+# village fits take a day each!!) 
+# source("R/Power_mean_model_district_stan.R")
+# source("R/Power_mean_model_village_stan.R")
 
 # Plot power mean models
 source("R/Plot_stan_district_monthly.R")
+source("R/Plot_stan_village_monthly.R")

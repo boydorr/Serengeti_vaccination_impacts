@@ -21,27 +21,27 @@ fit <- F
 #________________
 
 # Model data
-data_vill <- read.csv("Output/incidence_coverage_model_data_village_annual.csv")
-data_dist <- read.csv("Output/incidence_coverage_model_data_district_annual.csv")
+data_vill <- read.csv("output/incidence_coverage_model_data_village_annual.csv")
+data_dist <- read.csv("output/incidence_coverage_model_data_district_annual.csv")
 
 # Vaccination estimates
-vax_vill <- as.matrix(read.csv("Output/vaccinationCoverageByVillageMonth_Jan2002_Dec2022.csv",header = F,row.names = 1)) # village level
-vax_vill_annual <- as.matrix(read.csv("Output/vcVillByYear.csv",header = F)) # annual district campaign coverages
-vax_dist <- as.matrix(read.csv("Output/districtVaccinationCoverage_Jan2002_Dec2022.csv",header = T)) # district level
-vax_dist_annual <- as.matrix(read.csv("Output/vcDistByYear.csv",header = F)) # annual district campaign coverages
+vax_vill <- as.matrix(read.csv("output/vaccinationCoverageByVillageMonth_Jan2002_Dec2022.csv",header = F,row.names = 1)) # village level
+vax_vill_annual <- as.matrix(read.csv("output/vcVillByYear.csv",header = F)) # annual district campaign coverages
+vax_dist <- as.matrix(read.csv("output/districtVaccinationCoverage_Jan2002_Dec2022.csv",header = T)) # district level
+vax_dist_annual <- as.matrix(read.csv("output/vcDistByYear.csv",header = F)) # annual district campaign coverages
 
 # Case numbers
-cases_dist <- as.matrix(read.csv("Output/Serengeti_monthly_rabid_dogs_2002-01-01_2022-12-31.csv",header=F))
-cases_vill <- as.matrix(read.csv("Output/Serengeti_monthly_rabid_dogs_village_2002-01-01_2022-12-31.csv",header=F,row.names = 1))
+cases_dist <- as.matrix(read.csv("output/Serengeti_monthly_rabid_dogs_2002-01-01_2022-12-31.csv",header=F))
+cases_vill <- as.matrix(read.csv("output/Serengeti_monthly_rabid_dogs_village_2002-01-01_2022-12-31.csv",header=F,row.names = 1))
 
 # Dog population
-dogs <- as.matrix(read.csv("Output/dogPopulationByVillageMonth_Jan2002_Dec2022.csv",row.names = 1,header=F))
+dogs <- as.matrix(read.csv("output/dogPopulationByVillageMonth_Jan2002_Dec2022.csv",row.names = 1,header=F))
 
 # Human population
-humans <- as.matrix(read.csv("Output/humanPopulationByVillageMonth_Jan2002_Dec2022.csv",row.names = 1,header=F))
+humans <- as.matrix(read.csv("output/humanPopulationByVillageMonth_Jan2002_Dec2022.csv",row.names = 1,header=F))
 
 # Serengeti village shapefile
-SD_vill <- readOGR("Output/SD_vill","SD_vill") 
+SD_vill <- readOGR("output/SD_vill","SD_vill") 
 SD_vill<-SD_vill[order(SD_vill$Vill_2012),]
 SD_outline <- gUnaryUnion(SD_vill)# get district outline
 SD_outline<-gBuffer(SD_outline,width=1) # get rid of a few tiny holes
@@ -82,9 +82,9 @@ if(fit==T){
 
   save(model_dist_year_1,model_dist_year_2,model_dist_year_3,model_dist_year_4,model_dist_year_5,
        model_dist_year_6,model_dist_year_7,model_dist_year_8,model_dist_year_9,model_dist_year_10,
-       file="Output/annual_district_models.Rdata")
+       file="output/annual_district_models.Rdata")
 }
-load("Output/annual_district_models.Rdata")
+load("output/annual_district_models.Rdata")
 
 
 loo_compare(loo(model_dist_year_1),loo(model_dist_year_4),loo(model_dist_year_5),loo(model_dist_year_6),loo(model_dist_year_9),loo(model_dist_year_10))
@@ -236,7 +236,7 @@ pars4 <- round(rbind(model_summary$fixed,model_summary$spec_pars),2)[,c(1,3:4)]
 pars4 <- paste0(pars4[,1]," (",pars4[,2],"-",pars4[,3],")")
 pars[4, c("Intercept","District last year", "District ln(Cases/dog) last year","ln(dog density)" ,"Shape")] <- pars4
 
-write.csv(pars,"Output/annual_district_mean_annual_vax_model_pars.csv",row.names=F)
+write.csv(pars,"output/annual_district_mean_annual_vax_model_pars.csv",row.names=F)
 
 
 pars <- data.frame("Intercept"=rep("",4),
@@ -264,7 +264,7 @@ pars4 <- round(rbind(model_summary$fixed,model_summary$spec_pars),2)[,c(1,3:4)]
 pars4 <- paste0(pars4[,1]," (",pars4[,2],"-",pars4[,3],")")
 pars[4, c("Intercept","District last year", "District ln(Cases/dog) last year","ln(dog density)" ,"Shape")] <- pars4
 
-write.csv(pars,"Output/annual_district_campaign_vax_model_pars.csv",row.names=F)
+write.csv(pars,"output/annual_district_campaign_vax_model_pars.csv",row.names=F)
 
 
 
@@ -400,12 +400,12 @@ if(fit==T){
                             control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4,save_pars = save_pars(all = TRUE))
 
   save(model_vill_year_1,model_vill_year_2,model_vill_year_3,model_vill_year_4,model_vill_year_5,
-       file="Output/annual_village_models_average_coverage.Rdata")
+       file="output/annual_village_models_average_coverage.Rdata")
   save(model_vill_year_6,model_vill_year_7,model_vill_year_8,model_vill_year_9,model_vill_year_10,
-       file="Output/annual_village_models_campaign_coverage.Rdata")
+       file="output/annual_village_models_campaign_coverage.Rdata")
 }
-load("Output/annual_village_models_average_coverage.Rdata")
-load("Output/annual_village_models_campaign_coverage.Rdata")
+load("output/annual_village_models_average_coverage.Rdata")
+load("output/annual_village_models_campaign_coverage.Rdata")
 
 # loo_compare(loo(model_vill_year_1,moment_match = TRUE),loo(model_vill_year_4,moment_match = TRUE),loo(model_vill_year_5,moment_match = TRUE),
 #             loo(model_vill_year_6,moment_match = TRUE),loo(model_vill_year_9,moment_match = TRUE),loo(model_vill_year_10,moment_match = TRUE))
@@ -621,7 +621,7 @@ pars[4, c("Intercept","Village last year","Borders last year","Non-bordering vil
           "Village ln(Cases/dog) last year","Borders ln(Cases/dog) last year","Non-bordering villages ln(Cases/dog) last year",
           "Village ln(dog density)","Human:dog ratio","Village random effect standard deviation","Shape")] <- pars4
 
-write.csv(pars,"Output/annual_village_mean_annual_vax_model_pars.csv",row.names=F)
+write.csv(pars,"output/annual_village_mean_annual_vax_model_pars.csv",row.names=F)
 
 
 
@@ -645,7 +645,7 @@ pars[4, c("Intercept","Village last year","Borders last year","Non-bordering vil
           "Village ln(Cases/dog) last year","Borders ln(Cases/dog) last year","Non-bordering villages ln(Cases/dog) last year",
           "Village ln(dog density)","Human:dog ratio","Village random effect standard deviation","Shape")] <- pars8
 
-write.csv(pars,"Output/annual_village_campaign_vax_model_pars.csv",row.names=F)
+write.csv(pars,"output/annual_village_campaign_vax_model_pars.csv",row.names=F)
 
 
 

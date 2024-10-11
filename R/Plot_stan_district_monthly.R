@@ -13,9 +13,9 @@ model_wo_incidence <- readRDS("output/stan_models/incidence_from_vax_model_distr
 model_standardise <- readRDS("output/stan_models/incidence_from_vax_model_district_stan_standardise.rds")
 model_wo_incidence_standardise <- readRDS("output/stan_models/incidence_from_vax_model_district_stan_woPriorCases_standardise.rds")
 
-data_dist <- read.csv("Output/incidence_coverage_model_data_district.csv")
-dogs <- as.matrix(read.csv("Output/dogPopulationByVillageMonth_Jan2002_Dec2022.csv",row.names = 1,header=F))
-vax_vill <- as.matrix(read.csv("Output/vaccinationCoverageByVillageMonth_Jan2002_Dec2022.csv",header = F,row.names = 1)) 
+data_dist <- read.csv("output/incidence_coverage_model_data_district.csv")
+dogs <- as.matrix(read.csv("output/dogPopulationByVillageMonth_Jan2002_Dec2022.csv",row.names = 1,header=F))
+vax_vill <- as.matrix(read.csv("output/vaccinationCoverageByVillageMonth_Jan2002_Dec2022.csv",header = F,row.names = 1)) 
 
 S <- 1 - vax_vill
 n <- exp(colMeans(log(S)))
@@ -47,7 +47,7 @@ pars_prep_1 <- paste0(pars$mean," (",pars$`2.5%`,"-",pars$`97.5%`,")")
 pars_prep_2 <- paste0(pars_wo_incidence$mean," (",pars_wo_incidence$`2.5%`,"-",pars_wo_incidence$`97.5%`,")")
 pars_prep[rownames(pars),1] <- pars_prep_1
 pars_prep[rownames(pars_wo_incidence),2] <- pars_prep_2
-write.csv(pars_prep,"Output/model_dist_month_pars_all_power_mean_models_MSversion.csv")
+write.csv(pars_prep,"output/model_dist_month_pars_all_power_mean_models_MSversion.csv")
 
 
 
