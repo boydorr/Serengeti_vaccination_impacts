@@ -36,10 +36,7 @@ data_wo_cases_standardised$X[,2:ncol(data_wo_cases_standardised$X)] <- scale(dat
 model_vill_month_stan <- stan("stan/power_mean_model_village.stan", data = data, iter = 3000,
                               warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
                               control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
-                              pars = c("beta","p","phi","Intercept","sigma_village","gamma_t","log_lik"))
-log_lik <- extract_log_lik(model_vill_month_stan, merge_chains = FALSE)
-r_eff <- relative_eff(exp(log_lik), cores = 4) 
-loo <- loo(log_lik, r_eff = r_eff, cores = 4)
+                              pars = c("beta","p","phi","Intercept","sigma_village","gamma_t"))
 plot(model_vill_month_stan,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","beta[8]","beta[9]","p","phi"))
 traceplot(model_vill_month_stan,inc_warmup=F,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","beta[8]","beta[9]","p","phi"))
 summary(model_vill_month_stan,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","beta[8]","beta[9]","p","phi"),probs = c(0.025,0.5, 0.975))$summary
@@ -47,12 +44,9 @@ saveRDS(model_vill_month_stan,"output/stan_models/incidence_from_vax_model_villa
 
 # Without distant cases
 model_vill_month_stan_wo_distant_cases <- stan("stan/power_mean_model_village.stan", data = data_wo_distant_cases, iter = 3000,
-                              warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
-                              control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
-                              pars = c("beta","p","phi","Intercept","sigma_village","gamma_t","log_lik"))
-log_lik <- extract_log_lik(model_vill_month_stan_wo_distant_cases, merge_chains = FALSE)
-r_eff <- relative_eff(exp(log_lik), cores = 4) 
-loo <- loo(log_lik, r_eff = r_eff, cores = 4)
+                                               warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
+                                               control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
+                                               pars = c("beta","p","phi","Intercept","sigma_village","gamma_t"))
 plot(model_vill_month_stan_wo_distant_cases,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","p","phi"))
 traceplot(model_vill_month_stan_wo_distant_cases,inc_warmup=F,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","p","phi"))
 summary(model_vill_month_stan_wo_distant_cases,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","p","phi"),probs = c(0.025,0.5, 0.975))$summary
@@ -60,12 +54,9 @@ saveRDS(model_vill_month_stan_wo_distant_cases,"output/stan_models/incidence_fro
 
 # Without cases
 model_vill_month_stan_wo_cases <- stan("stan/power_mean_model_village.stan", data = data_wo_cases, iter = 3000,
-                                               warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
-                                               control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
-                                               pars = c("beta","p","phi","Intercept","sigma_village","gamma_t","log_lik"))
-log_lik <- extract_log_lik(model_vill_month_stan_wo_cases, merge_chains = FALSE)
-r_eff <- relative_eff(exp(log_lik), cores = 4) 
-loo <- loo(log_lik, r_eff = r_eff, cores = 4)
+                                       warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
+                                       control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
+                                       pars = c("beta","p","phi","Intercept","sigma_village","gamma_t"))
 plot(model_vill_month_stan_wo_cases,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","p","phi"))
 traceplot(model_vill_month_stan_wo_cases,inc_warmup=F,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","p","phi"))
 summary(model_vill_month_stan_wo_cases,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","p","phi"),probs = c(0.025,0.5, 0.975))$summary
@@ -77,12 +68,9 @@ saveRDS(model_vill_month_stan_wo_cases,"output/stan_models/incidence_from_vax_mo
 
 # Full model
 model_vill_month_stan_standardised <- stan("stan/power_mean_model_village_standardised.stan", data = data_standardised, iter = 3000,
-                              warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
-                              control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
-                              pars = c("beta","p","phi","Intercept","sigma_village","gamma_t","log_lik"))
-log_lik <- extract_log_lik(model_vill_month_stan_standardised, merge_chains = FALSE)
-r_eff <- relative_eff(exp(log_lik), cores = 4) 
-loo <- loo(log_lik, r_eff = r_eff, cores = 4)
+                                           warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
+                                           control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
+                                           pars = c("beta","p","phi","Intercept","sigma_village","gamma_t"))
 plot(model_vill_month_stan_standardised,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","beta[8]","beta[9]","p","phi"))
 traceplot(model_vill_month_stan_standardised,inc_warmup=F,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","beta[8]","beta[9]","p","phi"))
 summary(model_vill_month_stan_standardised,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","beta[8]","beta[9]","p","phi"),probs = c(0.025,0.5, 0.975))$summary
@@ -90,12 +78,9 @@ saveRDS(model_vill_month_stan_standardised,"output/stan_models/incidence_from_va
 
 # Without distant cases
 model_vill_month_stan_wo_distant_cases_standardised <- stan("stan/power_mean_model_village_standardised.stan", data = data_wo_distant_cases_standardised, iter = 3000,
-                                               warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
-                                               control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
-                                               pars = c("beta","p","phi","Intercept","sigma_village","gamma_t","log_lik"))
-log_lik <- extract_log_lik(model_vill_month_stan_wo_distant_cases_standardised, merge_chains = FALSE)
-r_eff <- relative_eff(exp(log_lik), cores = 4) 
-loo <- loo(log_lik, r_eff = r_eff, cores = 4)
+                                                            warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
+                                                            control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
+                                                            pars = c("beta","p","phi","Intercept","sigma_village","gamma_t"))
 plot(model_vill_month_stan_wo_distant_cases_standardised,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","p","phi"))
 traceplot(model_vill_month_stan_wo_distant_cases_standardised,inc_warmup=F,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","p","phi"))
 summary(model_vill_month_stan_wo_distant_cases_standardised,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","beta[7]","p","phi"),probs = c(0.025,0.5, 0.975))$summary
@@ -103,12 +88,9 @@ saveRDS(model_vill_month_stan_wo_distant_cases_standardised,"output/stan_models/
 
 # Without cases
 model_vill_month_stan_wo_cases_standardised <- stan("stan/power_mean_model_village_standardised.stan", data = data_wo_cases_standardised, iter = 3000,
-                                       warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
-                                       control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
-                                       pars = c("beta","p","phi","Intercept","sigma_village","gamma_t","log_lik"))
-log_lik <- extract_log_lik(model_vill_month_stan_wo_cases_standardised, merge_chains = FALSE)
-r_eff <- relative_eff(exp(log_lik), cores = 4) 
-loo <- loo(log_lik, r_eff = r_eff, cores = 4)
+                                                    warmup = 1500, thin = 1, chains = 4, verbose = TRUE, cores=4, seed=5,
+                                                    control = list(adapt_delta = 0.95, max_treedepth = 10),include = TRUE, 
+                                                    pars = c("beta","p","phi","Intercept","sigma_village","gamma_t"))
 plot(model_vill_month_stan_wo_cases_standardised,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","p","phi"))
 traceplot(model_vill_month_stan_wo_cases_standardised,inc_warmup=F,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","p","phi"))
 summary(model_vill_month_stan_wo_cases_standardised,pars=c("Intercept","beta[2]","beta[3]","beta[4]","beta[5]","beta[6]","p","phi"),probs = c(0.025,0.5, 0.975))$summary
