@@ -78,13 +78,13 @@ if(fit==T){
   model_dist_year_9 <- brm(formula=cases ~ vax_last_year_campaign + incidence_last_year + log_dog_density  + offset(log(dogs)),data=data_dist[-c(1),], family = negbinomial(),warmup = 1500, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4,save_pars = save_pars(all = TRUE))
   model_dist_year_10 <- brm(formula=cases ~ vax_last_year_campaign + log_incidence_last_year + log_dog_density  + offset(log(dogs)),data=data_dist[-c(1),], family = negbinomial(),warmup = 1500, iter = 3000, chains = 4,
-                           control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4,save_pars = save_pars(all = TRUE))
-
+                            control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4,save_pars = save_pars(all = TRUE))
+  
   save(model_dist_year_1,model_dist_year_2,model_dist_year_3,model_dist_year_4,model_dist_year_5,
        model_dist_year_6,model_dist_year_7,model_dist_year_8,model_dist_year_9,model_dist_year_10,
-       file="output/annual_district_models.Rdata")
+       file="output/brms_models/annual_district_models.Rdata")
 }
-load("output/annual_district_models.Rdata")
+load("output/brms_models/annual_district_models.Rdata")
 
 
 loo_compare(loo(model_dist_year_1),loo(model_dist_year_4),loo(model_dist_year_5),loo(model_dist_year_6),loo(model_dist_year_9),loo(model_dist_year_10))
@@ -359,8 +359,8 @@ for(i in 1:length(incidence)){
 for(i in 1:length(incidence)){
   lines(preds_extrap_mat[,i]~coverage,col=cols[as.numeric(findInterval(incidence[i],breaks))],lwd=2,lty=1)}
 points((data_dist$incidence*1000)~data_dist$vax_last_year,
-     col=cols[as.numeric(findInterval(data_dist$incidence_last_year,breaks))],
-     pch=20)
+       col=cols[as.numeric(findInterval(data_dist$incidence_last_year,breaks))],
+       pch=20)
 
 grid <- raster(nrows=10, ncols=10);grid[]<-0.0001
 plot(grid, 
@@ -398,14 +398,14 @@ if(fit==T){
                            control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4,save_pars = save_pars(all = TRUE))
   model_vill_year_10 <- brm(formula=cases ~ vax_last_year_campaign + vax_last_year_neighbours_campaign + vax_last_year_notNeighbours_campaign +log_incidence_last_year + log_incidence_last_year_neighbours + log_incidence_last_year_notNeighbours + log_dog_density + HDR  + (1|village) + offset(log(dogs)),data=data_vill[-c(1:(nrow(cases_vill))),], family = negbinomial(),warmup = 1500, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4,save_pars = save_pars(all = TRUE))
-
+  
   save(model_vill_year_1,model_vill_year_2,model_vill_year_3,model_vill_year_4,model_vill_year_5,
-       file="output/annual_village_models_average_coverage.Rdata")
+       file="output/brms_models/annual_village_models_average_coverage.Rdata")
   save(model_vill_year_6,model_vill_year_7,model_vill_year_8,model_vill_year_9,model_vill_year_10,
-       file="output/annual_village_models_campaign_coverage.Rdata")
+       file="output/brms_models/annual_village_models_campaign_coverage.Rdata")
 }
-load("output/annual_village_models_average_coverage.Rdata")
-load("output/annual_village_models_campaign_coverage.Rdata")
+load("output/brms_models/annual_village_models_average_coverage.Rdata")
+load("output/brms_models/annual_village_models_campaign_coverage.Rdata")
 
 # loo_compare(loo(model_vill_year_1,moment_match = TRUE),loo(model_vill_year_4,moment_match = TRUE),loo(model_vill_year_5,moment_match = TRUE),
 #             loo(model_vill_year_6,moment_match = TRUE),loo(model_vill_year_9,moment_match = TRUE),loo(model_vill_year_10,moment_match = TRUE))
@@ -754,5 +754,5 @@ legend("topright",legend=incidences*1000,lty=1,col=cols,
        title.cex=0.8,cex=0.8,bty="n",lwd=2,yjust=1,title.adj = -0.01)
 
 dev.off()
- 
+
 
