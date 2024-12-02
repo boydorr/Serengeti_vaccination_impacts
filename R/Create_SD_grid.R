@@ -32,12 +32,13 @@ wardGrid <- grid
 wardGrid[] <- values
 plot(wardGrid)
 
-## District grid
+## Cell grid
 cellGrid <- villGrid
 cellGrid[which(!is.na(villGrid[]))] <- 1:length(which(!is.na(villGrid[])))
 plot(cellGrid)
 
 ##Save grids
+if(!dir.exists("output")){dir.create("output")}
 writeRaster(villGrid,file=paste("output/villGrid_",res,"km.grd",sep=""),overwrite=T)
 writeRaster(cellGrid,file=paste("output/cellGrid_",res,"km.grd",sep=""),overwrite=T)
 write.table(as.matrix(cellGrid),paste("output/cell_matrix_",res^2,"kmsq.csv",sep=""),row.names=F,col.names=F,sep=",")

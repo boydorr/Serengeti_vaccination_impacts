@@ -12,7 +12,7 @@ library(rgdal)
 #______________________
 
 # Serengeti shapefile
-SD_vill <- readOGR("data/GIS","SD_Villages_2012_From_HHS_250m_Smoothed_UTM") 
+SD_vill <- readOGR("Output/SD_vill","SD_vill") 
 SD_vill<-SD_vill[order(SD_vill$Vill_2012),]
 SD_outline <- gUnaryUnion(SD_vill)# get district outline
 SD_outline<-gBuffer(SD_outline,width=1) # get rid of a few tiny holes
@@ -33,6 +33,7 @@ villGrid <- raster(paste("Output/villGrid_",res,"km.grd",sep=""))
 years <- 2002:2022
 dogs <- as.matrix(read.csv("Output/dogPopulationByCellMonth_Jan2002_Dec2040_1kmGrid.csv",header=F))
 dogs_vill <- as.matrix(read.csv("Output/dogPopulationByVillageMonth_Jan2002_Dec2022.csv",header=F,row.names = 1))
+dog_dens_vill <- dogs_vill/SD_vill$cells_occ
 dogs <- dogs[,1:(12*length(years))]
 
 
@@ -40,29 +41,30 @@ dogs <- dogs[,1:(12*length(years))]
 ## Plot
 #______________________
 
-pdf("Figs/Fig1.pdf",width=7,height=2.5)
+pdf("Figs/Fig1.pdf",width=7,height=4.5)
 
 colours <- colorRampPalette(c("white",brewer.pal(8,"YlOrRd")))(100)
 cex.axis <- 0.7
 cex.lab <- 0.8
 
 # Tanzania inset
-par(fig=c(0,0.20,0.6,1),mar=c(0,0,0,0),bg="transparent")
+par(fig=c(0,0.20,0.8,1),mar=c(0,0,0,0),bg="transparent")
 plot(TzOutline)
+rect(121654.2-30000,8697442.6-30000,1317214+30000,9891260+30000)
 text(TzOutline,"Tanzania",cex=cex.lab)
 plot(SD_outline,add=T,col="orange",border=NA)
 plot(PAs[which(PAs$SP_ID=="2"),],add=T,col="grey",border=NA)
-legend(-450000,9891260,legend="A",text.font = 2,bty="n",xpd=F)
+legend(-650000,9891260,legend="A",text.font = 2,bty="n",xpd=F)
 
 # Study area map with dog population
-par(fig=c(0,0.5,0,1),mar=c(0,0,0,0),new=T)
+par(fig=c(0,0.5,0.45,1),mar=c(0,0,0,0),new=T)
 popGrid<-villGrid
 popGrid[which(!is.na(villGrid[]))]<-dogs[,ncol(dogs)]
 popGrid <- log10(popGrid)
 popGrid[which(popGrid[]<0)]<-0
 plot(SD_outline,xlim=c(637188-30000,707444.2),ylim=c(9754421-8000,9837984.4))
 plot(popGrid,add=T,col=colours,breaks=seq(0,max((popGrid[]),na.rm=T),length.out=100),legend=F)
-par(fig=c(0,0.5,0,1),mar=c(0,0,0,0),new=T)
+par(fig=c(0,0.5,0.45,1),mar=c(0,0,0,0),new=T)
 plot(SD_vill,add=T,border="grey60",lwd=0.5)
 plot(PAs[which(PAs$SP_ID=="2"),],add=T,col="grey",border=NA)
 plot(SD_outline,add=T)
@@ -75,7 +77,7 @@ plot(popGrid, breaks=seq(0,max((popGrid[]),na.rm=T),length.out=100),
      smallplot=c(0.9,0.92, .25,.75))
 
 # addnortharrow("topright",scale = 0.8)
-par(fig=c(0.6,1,0,1),mar=c(3,3,1.5,1),new=T)
+par(fig=c(0.6,1,0.45,1),mar=c(3,3,1.5,1),new=T)
 plot(colSums(dogs)~c(1:ncol(dogs)),type="l",col="navy",axes=F,lwd=2,ylab="",xlab="",ylim=c(0,90000))
 box(bty="l")
 axis(1,at=seq(1,length(2002:2022)*12,48),labels=paste(seq(2002,2022,4)),cex.axis=cex.axis,padj=-1)
@@ -84,6 +86,35 @@ mtext("Estimated dog population",side=2,line=1.6,cex=cex.lab)
 mtext("Date",side=1,line=1.5,cex=cex.lab)
 legend("topleft",legend="B",text.font = 2,bty="n")
 
+# Blank out bottom portion
+par(fig=c(0,1,0,0.45),mar=c(0,0,0,0),new=T)
+plot(SD_outline,bg="white",border="white")
+
+# Human dog ratio
+par(fig=c(0,0.5,0,0.42),mar=c(0,0,0,4),new=T)
+breaks=seq(0,max((SD_vill$HDR),na.rm=T),length.out=100)
+plot(SD_vill,border="grey60",lwd=0.5, col=colours[findInterval((SD_vill$HDR),breaks,all.inside=T)])
+plot(SD_outline,add=T)
+legend("topleft",legend="C",text.font = 2,bty="n",xpd=F)
+grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
+plot(grid, 
+     breaks=breaks,legend.only=T,col=colours,
+     legend.args=list(text="Human:dog ratio", side=4, line=1.5, cex=cex.lab),
+     axis.args=list(at=seq(0,max(SD_vill$HDR),2),cex.axis=cex.axis),
+     smallplot=c(0.70,0.72, .2,.8))
+
+# Village density
+par(fig=c(0.5,1,0,0.42),mar=c(0,0,0,4),new=T)
+breaks=seq(0,max((dog_dens_vill[]),na.rm=T),length.out=100)
+plot(SD_vill,border="grey60",lwd=0.5, col=colours[findInterval((dog_dens_vill[,ncol(dogs)]),breaks,all.inside=T)])
+plot(SD_outline,add=T)
+legend("topleft",legend="D",text.font = 2,bty="n",xpd=F)
+grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
+plot(grid, 
+     breaks=breaks,legend.only=T,col=colours,
+     legend.args=list(text=bquote("Dogs/"~.(res^2) * "km"^2), side=4, line=2.2, cex=cex.lab),
+     axis.args=list(at=seq(0,250,50),cex.axis=cex.axis),
+     smallplot=c(0.70,0.72, .2,.8))
 
 dev.off()
 
