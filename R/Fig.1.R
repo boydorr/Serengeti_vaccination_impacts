@@ -52,7 +52,7 @@ par(fig=c(0,0.20,0.8,1),mar=c(0,0,0,0),bg="transparent")
 plot(TzOutline)
 rect(121654.2-30000,8697442.6-30000,1317214+30000,9891260+30000)
 text(TzOutline,"Tanzania",cex=cex.lab)
-plot(SD_outline,add=T,col="orange",border=NA)
+plot(SD_outline,add=T,col="blue3",border=NA)
 plot(PAs[which(PAs$SP_ID=="2"),],add=T,col="grey",border=NA)
 legend(-650000,9891260,legend="A",text.font = 2,bty="n",xpd=F)
 
@@ -129,7 +129,7 @@ cex.lab <- 0.8
 par(fig=c(0,0.20,0.6,1),mar=c(0,0,0,0),bg="transparent")
 plot(TzOutline)
 text(TzOutline,"Tanzania",cex=cex.lab)
-plot(SD_outline,add=T,col="orange",border=NA)
+plot(SD_outline,add=T,col="blue3",border=NA)
 plot(PAs[which(PAs$SP_ID=="2"),],add=T,col="grey",border=NA)
 legend(-450000,9891260,legend="A",text.font = 2,bty="n",xpd=F)
 
@@ -173,6 +173,7 @@ range(popGrid[],na.rm=T)
 
 n <- length(popGrid[which(!is.na(popGrid[]))])
 n2 <- length(popGrid[which(popGrid[]>0)])
+round((length(popGrid[which(popGrid[]!=0)])/length(which(!is.na(popGrid[]))))*100)
 
 mean(dogs[,ncol(dogs)])
 sum(dogs[,ncol(dogs)])/n2
@@ -188,4 +189,5 @@ gArea(SD_vill)/1e6
 
 range(colSums(dogs))
 
-
+round(range(dog_dens_vill[,ncol(dogs)]))
+range(SD_vill$HDR)

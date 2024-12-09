@@ -329,6 +329,39 @@ write.table(cbind(vill_2012$Vill_2012,vc_adjust[,((startYear_analysis-startYear)
             col.names = F,row.names = F,sep=",")
 
 
+# Explore what happened with the missed SHI campaign in 2021
+SHI_villages <- c(unique(vax_SHI$Village[which(year(vax_SHI$Vaccination.Date)<2023)]),"Stendi Kuu","Kitembere")
+missed_2021 <- vill_2012_smooth$Vill_2012[which(vaxVillYearBern[,2021-2002+1]==0)]
+missed_2021_SHI <- SHI_villages[which(SHI_villages%in%missed_2021)]
+length(SHI_villages)/nrow(vill_2012_smooth)
+missed_2021 <- which(vaxVillYearBern[,2021-2002+1]==0)
+gap <- matrix(NA,ncol=4,nrow=length(missed_2021))
+for(i in 1: length(missed_2021)){
+  non_zero <- which(vaxVill[missed_2021[i],]>0)
+  gap[i,1] <- vill_2012_smooth$Vill_2012[missed_2021[i]]
+  gap[i,2] <- max(non_zero[which(non_zero<((2021-2000)*12+1))])
+  gap[i,3] <- min(non_zero[which(non_zero>((2021-2000+1)*12))])
+  gap[i,4] <- as.numeric(gap[i,3]) - as.numeric(gap[i,2])
+}
+gap 
+table(as.numeric(gap[,4])) # only village where the gap was >18 month was Nyamatoke (which was not added to SHI program until 2023)
+gap_shi <- gap[which(gap[,1]%in%SHI_villages),]
+table(as.numeric(gap_shi[,4]))
+
+# Explore what happened with the missed northwest campaign in 2018
+missed_2018 <- which(vaxVillYearBern[,2018-2002+1]==0)
+gap <- matrix(NA,ncol=4,nrow=length(missed_2018))
+for(i in 1: length(missed_2018)){
+  non_zero <- which(vaxVill[missed_2018[i],]>0)
+  gap[i,1] <- vill_2012_smooth$Vill_2012[missed_2018[i]]
+  gap[i,2] <- max(non_zero[which(non_zero<((2018-2000)*12+1))])
+  gap[i,3] <- min(non_zero[which(non_zero>((2018-2000+1)*12))])
+  gap[i,4] <- as.numeric(gap[i,3]) - as.numeric(gap[i,2])
+}
+gap 
+table(as.numeric(gap[,4])) # all >1.5 years
+
+
 
 
 ## Campaign coverage by year (assumes no revax of same dogs within a year)

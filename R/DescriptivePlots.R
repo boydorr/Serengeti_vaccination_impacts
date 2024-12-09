@@ -208,69 +208,91 @@ write.csv(ST1, file="output/vaccination_table.csv")
 ## Fig. 2
 #______________________
 
-pdf("Figs/Fig.2.pdf",width=7, height=8)
+pdf("Figs/Fig.2.pdf",width=7, height=8.75)
 cex.axis <- 0.7
 cex.lab <- 0.8
-cex.pt <- 0.4
+cex.pt <- 0.2
+
+
+
+## Campaign completeness
+#------------
+
+par(fig=c(0,0.5,0.79,1))
+par(mar=c(2,3.5,0.9,0))
+
+percent_villages_vax
+b<-barplot(percent_villages_vax,names=NA,axes=F,space=0.2,col="goldenrod1",border=NA,cex.names=cex.axis,ylim=c(0,100))
+axis(2,cex.axis=cex.axis,padj=1.2)#,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)))
+axis(2,cex.axis=cex.axis,at=0,padj=1.2)#,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)))
+axis(1,at=b[c(T,F,F,F)],labels=paste(seq(min(years),max(years),4)),cex.axis=cex.axis,padj=-2)
+mtext("Campaign completeness\n(% villages vaccinated)",side=2,line=1.6,cex=cex.lab)
+mtext("Date",side=1,line=1,cex=cex.lab)
+box(bty="l")
+legend(-3,100,legend="A",text.font = 2,bty="n")
 
 
 
 ## Vaccination numbers
 #------------
 
-par(fig=c(0,0.5,0.75,1))
-par(mar=c(2.2,2.5,0.3,0))
+par(fig=c(0.5,1,0.79,1),new=T)
+par(mar=c(2,3,0.9,0.5))
 
-b<-barplot(n_dogs_vax_dist,names=NA,axes=F,space=0.2,col="goldenrod1",border=NA,cex.names=cex.axis,ylim=c(0,33000))
-axis(2,at=c(10000,20000,30000),cex.axis=cex.axis,labels=format(c(10000,20000,30000),big.mark=","),padj=1.2)#,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)))
+b<-barplot(dogs_dist_annual,names=NA,axes=F,space=0.2,col="navy",border=NA,cex.names=cex.axis,ylim=c(0,max(dogs_dist)))
+b<-barplot(n_dogs_vax_dist,names=NA,axes=F,space=0.2,col="goldenrod1",border=NA,add=T)
+axis(2,at=c(30000,60000,90000),cex.axis=cex.axis,labels=format(c(20000,60000,90000),big.mark=","),padj=1.2)#,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)))
 axis(2,cex.axis=cex.axis,at=0,padj=1.2)#,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)))
-axis(1,at=b[c(T,F,F,F)],labels=paste(seq(min(years),max(years),4)),cex.axis=cex.axis,padj=-1)
-mtext("Dogs vaccinated",side=2,line=1.6,cex=cex.lab)
-mtext("Date",side=1,line=1.5,cex=cex.lab)
+axis(1,at=b[c(T,F,F,F)],labels=paste(seq(min(years),max(years),4)),cex.axis=cex.axis,padj=-2)
+mtext("Dogs",side=2,line=1.6,cex=cex.lab)
+mtext("Date",side=1,line=1,cex=cex.lab)
 box(bty="l")
-legend(-2,35000,legend="A",text.font = 2,bty="n")
+legend(-3,90000,legend="B",text.font = 2,bty="n")
+legend(1.5,90000,c("Vaccinated this year","Not vaccinated this year"),
+       pch=15,col=c("goldenrod1","navy"),bty="n",cex=cex.axis)
+
 
 
 ## Estimated vax coverage in time
 #------------
 
-par(fig=c(0.5,1,0.75,1),new=T)
-par(mar=c(2.2,2.7,0.3,2.7))
+par(fig=c(0,1,0.63,0.79),new=T)
+par(mar=c(1.8,3.5,0.3,3.5))
 
-plot(1:length(vax_dist),vax_dist,type="l",lty=1,col="navy",ylim=c(0,1),axes=F,ylab="",xlab="",lwd=2)
-axis(1,at=seq(1,length(years)*12,48),labels=paste(seq(min(years),max(years),4)),cex.axis=cex.axis,padj=-1)
+plot(1:length(vax_dist),vax_dist,type="l",lty=1,col="navy",ylim=c(0,0.8),axes=F,ylab="",xlab="",lwd=2)
+axis(1,at=seq(1,length(years)*12,48),labels=paste(seq(min(years),max(years),4)),cex.axis=cex.axis,padj=-2)
 axis(2,cex.axis=cex.axis,padj=1.2)
-mtext("Vaccination coverage",side=2,line=1.6,cex=cex.lab)
-mtext("Date",side=1,line=1.5,cex=cex.lab)
+mtext("Rolling vaccination\ncoverage",side=2,line=1.6,cex=cex.lab)
+mtext("Date",side=1,line=0.9,cex=cex.lab)
 box(bty="u")
+legend(-20,0.9,legend="C",text.font = 2,bty="n")
 
-par(fig=c(0.5,1,0.75,1),new=T)
+par(fig=c(0,1,0.63,0.79),new=T)
 
-plot(1:length(vax_dist),sd_cov,type="l",col="orange",ylim=c(0,0.5),axes=F,ylab="",xlab="",lwd=2,lty=6)
-axis(4,cex.axis=cex.axis,padj=-1.2)
-mtext("Heterogeneity in coverage",side=4,line=1.6,cex=cex.lab)
+plot(1:length(vax_dist),sd_cov,type="l",col="orange",ylim=c(0,0.4),axes=F,ylab="",xlab="",lwd=2,lty=6)
+axis(4,cex.axis=cex.axis,padj=-1.5)
+mtext("Heterogeneity in\nrolling coverage",side=4,line=2.2,cex=cex.lab)
 
-legend(-20,1.1,legend="B",text.font = 2,bty="n")
-legend("topright",c("Vaccination coverage","Heterogeneity in coverage"),
+legend("topright",c("Rolling coverage","Heterogeneity in coverage"),
        lty=c(1,6),col=c("navy","orange"),bty="n",lwd=2,cex=cex.axis)
 
 
 ## Case numbers
 #------------
 
-par(fig=c(0,1,0.5,0.75),new=T)
-par(mar=c(3,2.5,1,0.5))
+par(fig=c(0,1,0.42,0.64),new=T)
+par(mar=c(2.5,2.5,1,0.5))
 b<-barplot(c(dog_cases_dist),axes=F,width=1,space=0,col="navy",border="navy",ylim=c(-5,max(dog_cases_dist)))
-lines(monthlyBites~b,col="orange",lwd=2)
+lines(monthlyBites~b,col="orange",lwd=1)
 points(b,rep(-2,length(b)),pch=16,cex=c(0,0.5,0.8)[monthlyDeaths+1],col="firebrick2")
 axis(2,at=seq(0,60,20),cex.axis=cex.axis,padj=1)
-axis(1,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)),cex.axis=cex.axis,padj=-1)
+axis(1,at=seq(1,length(years)*12,24),labels=paste(seq(min(years),max(years),2)),cex.axis=cex.axis,padj=-2)
 mtext("Monthly count",side=2,line=1.5,cex=cex.lab)
-mtext("Date",side=1,line=1.5,cex=cex.lab)
+mtext("Date",side=1,line=1,cex=cex.lab)
 box(bty="l")
-legend(13.5*12,50,c("Probable dog cases","Probable human exposures"),pch=c(15,NA),pt.cex=c(1.7,NA),col=c("navy","orange"),lty=c(NA,1),lwd=2,bty="n",cex=cex.lab)
+legend(13.5*12,50,c("Probable dog cases","Probable human exposures"),pch=c(15,NA),pt.cex=c(1.7,NA),col=c("navy","orange"),lty=c(NA,1),lwd=1,bty="n",cex=cex.lab)
 legend(13.5*12,70,c("1","2"),title="Human deaths:",pch=16,pt.cex=c(0.4,0.8),col="firebrick2",bty="n",cex=cex.lab,ncol = 2)
-legend("topleft",legend="C",text.font = 2,bty="n")
+legend(-20,75,legend="D",text.font = 2,bty="n")
 
 
 ## Campaign coverage in space
@@ -281,8 +303,8 @@ colours=colorRampPalette(c("white",brewer.pal(9, "YlOrRd")))(length(breaks)-1)
 grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
 nrows<-4
 ncols<-6
-rows_top <- rep(rev(seq(0,0.5,length.out=nrows+1)[-1]),each=ncols)
-rows_bottom <- rep(rev(seq(0,0.5,length.out=nrows+1)[-(nrows+1)]),each=ncols)
+rows_top <- rep(rev(seq(0,0.42,length.out=nrows+1)[-1]),each=ncols)
+rows_bottom <- rep(rev(seq(0,0.42,length.out=nrows+1)[-(nrows+1)]),each=ncols)
 cols_start <- rep(seq(0,1,length.out=ncols+1)[-(ncols+1)],nrows)
 cols_end <- rep(seq(0,1,length.out=ncols+1)[-1],nrows)
 for(i in 1:ncol(campaign_cov_vill)){
@@ -290,22 +312,58 @@ for(i in 1:ncol(campaign_cov_vill)){
   
   plot(SD_vill,col=colours[findInterval(campaign_cov_vill[,i],breaks,all.inside=T)],border=NA)
   plot(SD_outline,add=T)
-  points(dog_cases_CT$UTM.Easting[which(dog_cases_CT$year==i+2001)],dog_cases_CT$UTM.Northing[which(dog_cases_CT$year==i+2001)],pch=16,col="blue3",cex=cex.pt)
+  points(dog_cases_CT$UTM.Easting[which(dog_cases_CT$year==i+2001)],dog_cases_CT$UTM.Northing[which(dog_cases_CT$year==i+2001)],pch=16,col="blue",cex=cex.pt)
 
   legend("topright", #121.3,9.8,
          legend=i+2001,text.font=2,
          cex=cex.lab-0.1, bty="n")
-  if(i==1){legend(595000,9850000,legend="D",text.font = 2,bty="n",xpd = T)}
+  if(i==1){legend(590000,9850000,legend="E",text.font = 2,bty="n",xpd = T)}
+}
+par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,0,0,0),new=T)
+plot(grid, 
+     breaks=breaks,legend.only=T,col=colours,
+     legend.args=list(text="Vaccination\ncampaign\ncoverage", side=4, line=3.3, cex=0.7),
+     axis.args=list(at=seq(0,1,0.2) ,labels=seq(0,1,0.2),cex.axis=0.7),
+     smallplot=c(0.23,0.28, .07,.69))
+par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,0,0,0),new=T)
+legend("top" ,"Rabid dog",cex=cex.lab-0.1,pt.cex = cex.pt,pch=16,bty="n",col="blue")
+
+
+dev.off()
+
+
+## Campaign coverage in space (without cases)
+#------------
+
+pdf("Figs/CampaignCoverageMaps.pdf",width=7, height=5.5)
+
+breaks=seq(0,1,0.01)
+colours=colorRampPalette(c("white",brewer.pal(9, "YlOrRd")))(length(breaks)-1)
+grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
+nrows<-4
+ncols<-6
+rows_top <- rep(rev(seq(0,1,length.out=nrows+1)[-1]),each=ncols)
+rows_bottom <- rep(rev(seq(0,1,length.out=nrows+1)[-(nrows+1)]),each=ncols)
+cols_start <- rep(seq(0,1,length.out=ncols+1)[-(ncols+1)],nrows)
+cols_end <- rep(seq(0,1,length.out=ncols+1)[-1],nrows)
+for(i in 1:ncol(campaign_cov_vill)){
+  par(fig=c(cols_start[i],cols_end[i],rows_bottom[i],rows_top[i]),mar=c(0,1,0,0),new=T)
+  
+  plot(SD_vill,col=colours[findInterval(campaign_cov_vill[,i],breaks,all.inside=T)],border=NA)
+  plot(SD_outline,add=T)
+  # points(dog_cases_CT$UTM.Easting[which(dog_cases_CT$year==i+2001)],dog_cases_CT$UTM.Northing[which(dog_cases_CT$year==i+2001)],pch=16,col="blue",cex=cex.pt)
+  
+  legend("topright", #121.3,9.8,
+         legend=i+2001,text.font=2,
+         cex=cex.lab-0.1, bty="n")
 }
 par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,0,0,0),new=T)
 plot(grid, 
      breaks=breaks,legend.only=T,col=colours,
      legend.args=list(text="Vaccination\ncampaign\ncoverage", side=4, line=3.3, cex=0.8),
-     axis.args=list(at=seq(0,1,0.2) ,labels=seq(0,1,0.2),cex.axis=0.7),
-     smallplot=c(0.23,0.28, .04,.67))
+     axis.args=list(at=seq(0,1,0.2) ,labels=seq(0,1,0.2),cex.axis=0.7,hadj=0.3),
+     smallplot=c(0.23,0.28, .15,.85))
 par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,0,0,0),new=T)
-legend("top" ,"Rabid dog",cex=cex.lab,pt.cex = cex.pt,pch=16,bty="n",col="blue3")
-
 
 dev.off()
 
@@ -314,33 +372,37 @@ dev.off()
 #Mean annual coverage (Fig. S1)
 #______________________
 
-pdf("Figs/MeanAnnualCoverage.pdf",width=7, height=8)
+pdf("Figs/MeanAnnualCoverage.pdf",width=7, height=8.75)
+
+panel_a_bottom <- 0.75
+panel_b_bottom <- 0.5
 
 # time series
 set.seed(1)
-villages_to_sample <- 10 #nrow(vax_vill_annual)
-panel_a_top <- 0.6
-par(fig=c(0,0.5,panel_a_top,1),mar=c(5,4,1,1.1))
+villages_to_sample <- 8 #nrow(vax_vill_annual)
+par(fig=c(0,1,panel_a_bottom,1),mar=c(2.5,3.5,0.5,1))
 plot(vax_dist_annual,type="l",col="2",ylim=c(0,1),axes=F,
-     ylab="Mean vaccination coverage",
-     xlab="Year")
-axis(2)
-axis(1,at=seq(1,length(vax_dist_annual),2),labels=seq(1,length(vax_dist_annual),2)+2001)
-cols <- viridis(villages_to_sample)
+     ylab="",xlab="")
+axis(2,padj=1,cex.axis=cex.axis)
+axis(1,at=seq(1,length(vax_dist_annual),2),labels=seq(1,length(vax_dist_annual),2)+2001,padj=-1.5,cex.axis=cex.axis)
+mtext("Mean rolling vaccination\ncoverage",side=2,line=1.5,cex=cex.lab)
+mtext("Year",side=1,line=1.2,cex=cex.lab)
+
+cols <- brewer.pal(villages_to_sample,"Accent")
 samples <-  sample(nrow(vax_vill_annual),villages_to_sample)
-for(i in 1:villages_to_sample){lines(vax_vill_annual[samples[i],],col=cols[i],lty=2)}
-lines(vax_dist_annual,col=1,lwd=2,ylim=c(0,1))
-legend("topright",c("District","Sample villages"),lty=1:2,lwd=2:1,bty="n")
+for(i in 1:villages_to_sample){lines(vax_vill_annual[samples[i],],col=cols[i],lty=2,lwd=2)}
+lines(vax_dist_annual,col=1,lwd=3,ylim=c(0,1))
+legend("topright",c("District","Sample villages"),lty=1:2,lwd=3:2,bty="n")
 legend("topleft","A",text.font=2,cex=1.2,bty="n")
 box(bty="l")
 
-par(fig=c(0.5,1,panel_a_top,1),mar=c(5,5,1,0.1),new=T)
-plot(sd_cov_annual,type="l",ylim=c(0,0.3),axes=F,lwd=2,
-     ylab="Weighted standard deviation\nin coverage",
-     xlab="Year")
-axis(2)
-axis(1,at=seq(1,length(vax_dist_annual),2),labels=seq(1,length(vax_dist_annual),2)+2001)
-
+par(fig=c(0,1,panel_b_bottom,panel_a_bottom),mar=c(3,3.5,0.5,1),new=T)
+plot(sd_cov_annual,type="l",ylim=c(0,0.2),axes=F,lwd=2,
+     ylab="",xlab="")
+mtext("Weighted standard deviation\nin rolling coverage",side=2,line=1.5,cex=cex.lab)
+mtext("Year",side=1,line=1.2,cex=cex.lab)
+axis(2,padj=1,cex.axis=cex.axis)
+axis(1,at=seq(1,length(vax_dist_annual),2),labels=seq(1,length(vax_dist_annual),2)+2001,padj=-1.5,cex.axis=cex.axis)
 legend("topleft","B",text.font=2,cex=1.2,bty="n")
 box(bty="l")
 
@@ -351,8 +413,8 @@ colours=colorRampPalette(c("white",brewer.pal(9, "YlOrRd")))(length(breaks)-1)
 grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
 nrows<-4
 ncols<-6
-rows_top <- rep(rev(seq(0,panel_a_top,length.out=nrows+1)[-1]),each=ncols)
-rows_bottom <- rep(rev(seq(0,panel_a_top,length.out=nrows+1)[-(nrows+1)]),each=ncols)
+rows_top <- rep(rev(seq(0,panel_b_bottom,length.out=nrows+1)[-1]),each=ncols)
+rows_bottom <- rep(rev(seq(0,panel_b_bottom,length.out=nrows+1)[-(nrows+1)]),each=ncols)
 cols_start <- rep(seq(0,1,length.out=ncols+1)[-(ncols+1)],nrows)
 cols_end <- rep(seq(0,1,length.out=ncols+1)[-1],nrows)
 for(i in 1:ncol(vax_vill_annual)){
@@ -360,7 +422,7 @@ for(i in 1:ncol(vax_vill_annual)){
   
   plot(SD_vill,col=colours[findInterval(vax_vill_annual[,i],breaks,all.inside=T)],border=NA)
   plot(SD_outline,add=T)
-  points(dog_cases_CT$UTM.Easting[which(dog_cases_CT$year==i+2001)],dog_cases_CT$UTM.Northing[which(dog_cases_CT$year==i+2001)],pch=16,col="blue3",cex=cex.pt)
+  # points(dog_cases_CT$UTM.Easting[which(dog_cases_CT$year==i+2001)],dog_cases_CT$UTM.Northing[which(dog_cases_CT$year==i+2001)],pch=16,col="blue3",cex=cex.pt)
 
   if(i==1){legend(595000,9850000,"C",text.font=2,cex=1.2,bty="n",xpd=T)}
   legend("topright", #121.3,9.8,
@@ -370,11 +432,11 @@ for(i in 1:ncol(vax_vill_annual)){
 par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,0,0,0),new=T)
 plot(grid, 
      breaks=breaks,legend.only=T,col=colours,
-     legend.args=list(text="Vaccination\nCoverage", side=4, line=3, cex=0.9),
-     axis.args=list(at=seq(0,1,0.2) ,labels=seq(0,1,0.2),cex.axis=0.8),
-     smallplot=c(0.25,0.28, .065,.7))
+     legend.args=list(text="Rolling\nvaccination\nCoverage", side=4, line=3.5, cex=0.9),
+     axis.args=list(at=seq(0,1,0.2) ,labels=seq(0,1,0.2),cex.axis=0.8,hadj=0.3),
+     smallplot=c(0.25,0.29, .15,.85))
 par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,0,0,0),new=T)
-legend("top" ,"Rabid dog",cex=cex.lab,pt.cex = cex.pt,pch=16,bty="n",col="blue3")
+# legend("top" ,"Rabid dog",cex=cex.lab,pt.cex = cex.pt,pch=16,bty="n",col="blue3")
 
 
 dev.off()
