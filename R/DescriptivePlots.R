@@ -102,7 +102,9 @@ which.max(sd_cov_annual)
 n_dogs_vax_dist
 range(n_dogs_vax_dist[-1])
 range(percent_dogs_vax[-1])
+mean(percent_dogs_vax[-1])
 range(campaign_cov_vill[,-1])*100
+range(campaign_cov_vill[which(campaign_cov_vill!=0)])*100
 mean(campaign_cov_vill[,-1])*100
 mean(campaign_cov_vill[which(campaign_cov_vill!=0)])*100
 100*length(which(campaign_cov_vill[,-1]>=0.7))/length(c(campaign_cov_vill[,-1]))
@@ -117,6 +119,7 @@ diff(range(vax_dist_annual[3:length(vax_dist_annual)]))
 quantile(range(vax_dist_annual[3:length(vax_dist_annual)]))
 vax_dist[1]*100
 range(vax_vill)*100
+range(vax_vill[which(vax_vill!=0)])*100
 length(which(vax_dist<0.2))/length(vax_dist) # how often does coverage fall below critical point
 for(y in 2002:2022){
   print(c(y,100*length(which(vax_dist[((y-2002)*12+1):length(vax_dist)]<0.2))/length(vax_dist[((y-2002)*12+1):length(vax_dist)])))
@@ -128,7 +131,9 @@ table(dog_cases_CT$year)
 range(table(dog_cases_CT$year))
 (table(dog_cases_CT$year)/dogs_dist_annual)*100
 range((table(dog_cases_CT$year)/dogs_dist_annual)*100)
-(table(dog_cases_CT$year)/(dogs_dist_annual/1000))
+annual_incidence <- (table(dog_cases_CT$year)/(dogs_dist_annual/1000))
+annual_incidence
+annual_incidence[which(annual_incidence>4)]
 range((table(dog_cases_CT$year)/(dogs_dist_annual/1000)))
 range(dog_cases_dist)
 range(dog_cases_vill)
@@ -440,6 +445,28 @@ par(fig=c(cols_start[i+1],cols_end[i+1],rows_bottom[i+1],rows_top[i+1]),mar=c(0,
 
 
 dev.off()
+
+
+# panel_b_bottom <- 1
+# cex.pt <- 0.4
+# breaks=seq(0,1,0.01)
+# colours=colorRampPalette(c("white",brewer.pal(9, "YlOrRd")))(length(breaks)-1)
+# grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
+# nrows<-4
+# ncols<-6
+# rows_top <- rep(rev(seq(0,panel_b_bottom,length.out=nrows+1)[-1]),each=ncols)
+# rows_bottom <- rep(rev(seq(0,panel_b_bottom,length.out=nrows+1)[-(nrows+1)]),each=ncols)
+# cols_start <- rep(seq(0,1,length.out=ncols+1)[-(ncols+1)],nrows)
+# cols_end <- rep(seq(0,1,length.out=ncols+1)[-1],nrows)
+# for(i in 1:ncol(vax_vill_annual)){
+#   par(fig=c(cols_start[i],cols_end[i],rows_bottom[i],rows_top[i]),mar=c(0,1,0,0),new=T)
+#   values <- ifelse(vax_vill_annual[,i]<0.15,1,0)
+#   plot(SD_vill,col=colours[findInterval(values,breaks,all.inside=T)],border=NA)
+#   plot(SD_outline,add=T)
+#   legend("topright", #121.3,9.8,
+#          legend=i+2001,text.font=2,
+#          cex=cex.lab, bty="n")
+# }
 
 
 

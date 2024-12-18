@@ -54,3 +54,22 @@ human_bites_CI <- quantile(means,c(0.025,0.975))
 human_bites_per_dog <- rabid_dogs
 save(human_bites_per_dog,human_bites_CI,human_bites_fit,file="Output/human_bites_per_dog_outputs.RData")
 
+# Plot 
+pdf("Figs/HumanBitesPerDog.pdf",width=4, height=3)
+cex.axis <- 0.8
+cex.lab <- 0.9
+par(mar=c(2.5,2.5,1.5,1))
+hist(human_bites_per_dog$humansBitten,breaks=seq(-0.5,max(human_bites_per_dog$humansBitten)+0.5,1),
+     ylim=c(0,max(fitted_values,table(human_bites_per_dog$humansBitten)/sum(table(human_bites_per_dog$humansBitten)))),
+     border=F,main="",freq=F,xlab="",ylab="",axes=F)
+axis(2,cex.axis=cex.axis,padj=1)
+axis(1,cex.axis=cex.axis,padj=-1)
+mtext("Density",side=2,line=1.5,cex=cex.lab)
+mtext("Humans bitten by each suspect dog",side=1,line=1.5,cex=cex.lab)
+box(bty="l")
+lines(fitted_values~c(0:50),lwd=2,col="navy")
+legend("topright",
+       c(paste("data (mean=", round(mean(human_bites_per_dog$humansBitten),2),"(95% CI: ", paste0(round(human_bites_CI,2),collapse = "-"),"),\nn=", length(human_bites_per_dog$humansBitten),")",sep=""),
+         paste("negative binomial fit\n(mean=", round(human_bites_fit$estimate["mu"],2),", size=",round(human_bites_fit$estimate["size"],2),")",sep="")),
+       text.col = c("grey40","navy"),bty="n",y.intersp = 2,cex=cex.lab)
+dev.off()

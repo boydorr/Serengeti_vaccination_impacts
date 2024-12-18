@@ -115,6 +115,13 @@ if(run_models==T){
   model_dist_month_brms <- add_criterion(model_dist_month_brms, c("waic","loo"))
   saveRDS(model_dist_month_brms,"output/brms_models/incidence_from_vax_model_district.rds")
 
+  # model_dist_month_brms <- brm(formula = cases~vax_last2monthMean*log_case_rate_last2monthMean + log_dog_density + offset(log(dogs)),
+  #                              data = data_dist[-c(1:2),], family = negbinomial(), 
+  #                              warmup = 1500, iter = 3000, chains = 4, prior = prior1,
+  #                              control = list(adapt_delta = 0.99,max_treedepth = 15), cores=4)
+  # model_dist_month_brms <- add_criterion(model_dist_month_brms, c("waic","loo"))
+  
+  
   model_dist_month_brms_standardise <- brm(formula = cases~vax_last2monthMean + log_case_rate_last2monthMean + log_dog_density + offset(log(dogs)),
                                            data = data_dist2[-c(1:2),], family = negbinomial(), 
                                            warmup = 1500, iter = 3000, chains = 4, prior = prior1,
@@ -264,7 +271,7 @@ axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Cases per 1,000 dogs in district",side=2,line=1.5,cex=cex.lab)
-mtext("Mean vaccination over previous two months",side=1,line=1.5,cex=cex.lab)
+mtext("Mean rolling vaccination over previous two months",side=1,line=1.5,cex=cex.lab)
 for(i in 1:length(case_rate)){
   polygon(c(coverage,rev(coverage)),c(preds_mat_extrap_lower[,i],rev(preds_mat_extrap_upper[,i])),col=scales::alpha(cols[as.numeric(findInterval(case_rate[i]*1000,breaks))],0.25),border=NA)
 }
@@ -303,7 +310,7 @@ out_PI <- which(data_dist$cases[months_plot]<preds_lower|data_dist$cases[months_
 points(data_dist$cases[months_plot]~data_dist$month[months_plot],col="navy",pch=20,cex=cex.pt)
 points(data_dist$cases[out_PI]~data_dist$month[out_PI],col="red",pch=20,cex=cex.pt)
 # points(data_dist$cases[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)]~data_dist$month[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)],col="red",pch=20,cex=cex.pt)
-legend("topright",c("data","model 95% PI"),col=c("navy","skyblue"),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5))
+legend("topright",c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c("skyblue","navy","red"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #9%
 legend("topleft",legend="C",text.font = 2,bty="n")
 
@@ -372,6 +379,16 @@ if(run_models==T){
                                control = list(adapt_delta = 0.95,max_treedepth = 15), cores=4)
   model_vill_month_brms <- add_criterion(model_vill_month_brms, c("waic"))
   saveRDS(model_vill_month_brms,"output/brms_models/incidence_from_vax_model_village.rds")
+  
+  # model_vill_month_brms <- brm(formula = cases~vax_last2monthMean*log_case_rate_last2monthMean + 
+  #                                vax_neighbours_last2monthMean*log_case_rate_neighbours_last2monthMean + 
+  #                                vax_notNeighbours_last2monthMean*log_case_rate_notNeighbours_last2monthMean +
+  #                                log_dog_density + HDR + (1|village) + offset(log(dogs)),
+  #                              data = data_vill[-c(1:(nrow(cases_vill)*2)),], family = negbinomial(), 
+  #                              warmup = 1500, iter = 3000, chains = 4, prior = prior2,
+  #                              control = list(adapt_delta = 0.95,max_treedepth = 15), cores=4)
+  # model_vill_month_brms <- add_criterion(model_vill_month_brms, c("waic"))
+  # 
   
   model_vill_month_brms_standardise <- brm(formula = cases~vax_last2monthMean + vax_neighbours_last2monthMean + vax_notNeighbours_last2monthMean +
                                              log_case_rate_last2monthMean + log_case_rate_neighbours_last2monthMean + log_case_rate_notNeighbours_last2monthMean + 
@@ -630,8 +647,8 @@ cex.pt <- 0.5
 
 # Plot model predictions at different coverages and case rates
 data_vill_case_rate_adjust_dist <- 0.5*min(data_vill$case_rate_last2monthMean_dist[which(data_vill$case_rate_last2monthMean_dist>0)])
-par(mar=c(2.5,2.5,0.5,2))
-par(fig=c(0,0.5,0.66,1))
+par(mar=c(2.5,2.5,0.25,0.1))
+par(fig=c(0.57,1,0.62,1))
 range(data_vill$case_rate_last2monthMean_dist,na.rm = T)
 case_rate <- seq(0,0.001,length.out=5)
 coverage <- seq(0,1,length.out=100)
@@ -655,47 +672,57 @@ plot(NA,ylim=c(0,max(preds_mat_upper)),xlim=c(0,1),bty="l",cex=cex.pt,axes=F,
 axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
-mtext("Cases/1,000 dogs in village",side=2,line=1.5,cex=cex.lab)
-mtext("Mean vaccination coverage at all scales\nover prior two months",side=1,line=2,cex=cex.lab)
+mtext("Cases/1,000 dogs in village\n(mean & 95% CrI)",side=2,line=1.5,cex=cex.lab)
+mtext("Mean rolling vaccination coverage at\nall scales over prior two months",side=1,line=2,cex=cex.lab)
 for(i in 1:length(case_rate)){
   polygon(c(coverage,rev(coverage)),c(preds_mat_lower[,i],rev(preds_mat_upper[,i])),col=scales::alpha(cols[i],0.25),border=NA)
 }
 for(i in 1:length(case_rate)){
   lines((preds_mat[,i])~coverage,col=cols[i],lwd=2,lty=1)
 }
-graphics::legend(0.28,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),lty=1,col=cols,
-                 title="Mean cases/1,000 dogs at all\nscales over prior 2 months:",
-                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=2,lwd=2)
-graphics::legend("topleft",legend="A",text.font = 2,bty="n")
+graphics::legend(0.18,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T))[1:3],pch=15,
+                 col=scales::alpha(cols,0.25)[1:3],pt.cex =2.5,y.intersp = 1.42,text.col="white",
+                 title="Mean cases/1,000 dogs at all scales\n  over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=1)
+graphics::legend(0.455,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T))[4:5],pch=15,
+                 col=scales::alpha(cols,0.25)[c(4:5)],pt.cex =2.5,y.intersp = 1.42,text.col="white",
+                 title="Mean cases/1,000 dogs at all scales\n  over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=1)
+graphics::legend(0.32,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),
+                 col=cols,y.intersp = 1.42,lty=1,lwd=2,title.col = "white",
+                 title="Mean cases/1,000 dogs at all scales\n over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=2)
+graphics::legend(0.18,max((preds_mat_upper))*1.05,legend="Mean cases/1,000 dogs at all\nscales over prior 2 months:",bty="n",cex=0.75)
+graphics::legend("topleft",legend="B",text.font = 2,bty="n")
 
 # standardised exponentiated
-par(fig=c(0.5,1,0.66,1),new=T)
-par(mar=c(1.25,7,0.25,1))
+par(fig=c(0,0.56,0.34,1),new=T)
+par(mar=c(2,9,0.25,0))
 pars_sub <- pars_standardise[2:(nrow(pars)-2),]
 pars_sub_woPriorCases <- pars_standardise_woPriorCases[2:(nrow(pars_standardise_woPriorCases)-2),]
 xlim=c((min(pars_sub$`l-95% CI`)),(max(pars_sub$`u-95% CI`)))
 xlim=log(c(0.5,2))
 # xlim=c((min(pars_sub$`l-95% CI`,pars_sub_woPriorCases$`l-95% CI`)),(max(pars_sub$`u-95% CI`,pars_sub_woPriorCases$`u-95% CI`)))
 plot(NA,xlim=xlim,ylim=c(0.5,nrow(pars_sub)-0.5),axes=F,ylab="",xlab="")
-axis(2,cex.axis=cex.axis-0.1,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(1,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(0.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("grey40"))
-axis(2,cex.axis=cex.axis-0.1,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(2,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(1.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("black"))
+axis(2,cex.axis=cex.axis,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(1,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(0.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("grey40"))
+axis(2,cex.axis=cex.axis,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(2,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(1.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("black"))
 at=log(c(0.5,1,2))
 label=c(0.5,1,2)
 axis(1,cex.axis=cex.axis,padj=-1.5,at=at,label=label)
 lines(c(0,0),c(0,nrow(pars_sub)),lty=3)
-mtext("exp(Standardised coefficient)",side=1,line=1.5,cex=cex.lab)
+mtext("exp(Standardised coefficient)",side=1,line=1.25,cex=cex.lab)
 box(bty="l")
 arrows(x0=(pars_sub$`l-95% CI`),x1=(pars_sub$`u-95% CI`),y0=seq(nrow(pars_sub)-0.5,0.5,-1),y1=seq(nrow(pars_sub)-0.5,0.5,-1),length=0,lwd=2,col="navy")
 # arrows(x0=(pars_sub_woPriorCases$`l-95% CI`),x1=(pars_sub_woPriorCases$`u-95% CI`),y0=seq(nrow(pars_sub)-0.7,1-0.7,-1)[c(1:3,7:nrow(pars))],y1=seq(nrow(pars_sub)-0.7,1-0.7,-1)[c(1:3,7:nrow(pars))],length=0,lwd=2,col="lightblue")
 points((pars_sub$Estimate),seq(nrow(pars_sub)-0.5,0.5,-1),col="red",pch=20,cex=1.3)
 # points((pars_sub_woPriorCases$Estimate),seq(nrow(pars_sub)-0.7,1-0.7,-1)[c(1:3,7:nrow(pars_sub))],col="pink",pch=20,cex=1.3)
-legend("topleft",legend="B",text.font = 2,bty="n")
+legend("topleft",legend="A",text.font = 2,bty="n")
 # legend("topleft",legend=c("With prior cases","Without prior cases"),col=c("navy","lightblue"),lwd=2,cex=0.7,pt.cex =1,text.col = "white")
 # legend("topleft",legend=c("With prior cases","Without prior cases"),col=c("red","pink"),lwd=2,cex=0.7,pt.cex =1,lty=0,pch=20,bty="n",)
 
 # random effect
-par(fig=c(0,0.5,0.33,0.66),new=T)
-par(mar=c(0,1,1.5,4))
+par(fig=c(0.5,1,0.31,0.63),new=T)
+par(mar=c(0,3,1.5,2))
 ranefs <- ranef(model_vill_month_brms)$village[,"Estimate",1]
 breaks=c(seq(min(ranefs),0,length.out=51),
          seq(0,max(ranefs),length.out=50)[-1])
@@ -707,14 +734,14 @@ legend("topleft",legend="C",text.font = 2,bty="n")
 grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
 plot(grid, 
      breaks=breaks,legend.only=T, add=T,col=colours,
-     legend.args=list(text="exp(Village random effect)", side=4, line=2, cex=cex.lab),
+     legend.args=list(text="exp(Village random effect)", side=4, line=1.5, cex=cex.lab),
      axis.args=list(at=log(c(0.25,0.5,1,2,4)),labels=c(0.25,0.50,1.00,2.00,4.00),cex.axis=cex.axis,hadj=0.5),
-     smallplot=c(0.7,0.72, .25,.75))
+     smallplot=c(0.8,0.82, .25,.75))
 
 
 # Plot case predictions and data over time
 par(mar=c(2.5,2.5,1.5,1))
-par(fig=c(0.5,1,0.30,0.63),new=T)
+par(fig=c(0,0.5,0,0.33),new=T)
 preds_mat <- predict(model_vill_month_brms, re_formula=NULL, ndraws=5000, summary=F) 
 preds_mat_dist <- rowsum(t(preds_mat),data_vill$month[-c(1:(nrow(cases_vill)*2))])
 preds_lower <- apply(preds_mat_dist,1,quantile,0.025)
@@ -732,28 +759,9 @@ out_PI <- which(data_dist$cases[months_plot]<preds_lower|data_dist$cases[months_
 points(data_dist$cases[months_plot]~data_dist$month[months_plot],col="navy",pch=20,cex=cex.pt)
 points(data_dist$cases[out_PI]~data_dist$month[out_PI],col="red",pch=20,cex=cex.pt)
 # points(data_dist$cases[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)]~data_dist$month[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)],col="red",pch=20,cex=cex.pt)
-legend("topright",c("data","model 95% PI"),col=c("navy","skyblue"),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5))
+legend("topright",c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c("skyblue","navy","red"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #9%
 legend("topleft",legend="D",text.font = 2,bty="n")
-
-# Bites per dog
-fitted_values <- dnbinom(0:50,mu=human_bites_fit$estimate["mu"],size=human_bites_fit$estimate["size"])
-par(mar=c(2.5,2.5,1.5,1))
-par(fig=c(0,0.5,0,0.33),new=T)
-hist(human_bites_per_dog$humansBitten,breaks=seq(-0.5,max(human_bites_per_dog$humansBitten)+0.5,1),
-     ylim=c(0,max(fitted_values,table(human_bites_per_dog$humansBitten)/sum(table(human_bites_per_dog$humansBitten)))),
-     border=F,main="",freq=F,xlab="",ylab="",axes=F)
-axis(2,cex.axis=cex.axis,padj=1)
-axis(1,cex.axis=cex.axis,padj=-1.5)
-mtext("Density",side=2,line=1.5,cex=cex.lab)
-mtext("Humans bitten by each suspect dog",side=1,line=1.5,cex=cex.lab)
-box(bty="l")
-lines(fitted_values~c(0:50),lwd=2,col="navy")
-legend("topright",
-       c(paste("data (mean=", round(mean(human_bites_per_dog$humansBitten),2),"(95% CI: ", paste0(round(human_bites_CI,2),collapse = "-"),"),\nn=", length(human_bites_per_dog$humansBitten),")",sep=""),
-         paste("negative binomial fit\n(mean=", round(human_bites_fit$estimate["mu"],2),", size=",round(human_bites_fit$estimate["size"],2),")",sep="")),
-       text.col = c("grey40","navy"),bty="n",y.intersp = 2,cex=0.75)
-legend("topleft",legend="E",text.font = 2,bty="n")
 
 # Plot human bite predictions and data over time
 par(mar=c(2.5,2.5,1.5,1))
@@ -774,9 +782,9 @@ polygon(c(months_plot,rev(months_plot)),c(bite_preds_lower,rev(bite_preds_upper)
 out_PI <- which(monthlyBites[months_plot]<bite_preds_lower|monthlyBites[months_plot]>bite_preds_upper)+2
 points(monthlyBites[months_plot]~data_dist$month[months_plot],col="darkorange",pch=20,cex=cex.pt)
 points(monthlyBites[out_PI]~data_dist$month[out_PI],col="red3",pch=20,cex=cex.pt)
-legend("topright",c("data","model 95% PI"),col=c("darkorange",scales::alpha("orange",0.5)),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5))
+legend("topright",c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c(scales::alpha("orange",0.5),"darkorange","red3"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #9%
-legend("topleft",legend="F",text.font = 2,bty="n")
+legend("topleft",legend="E",text.font = 2,bty="n")
 
 dev.off()
 
@@ -792,7 +800,7 @@ cex.pt <- 0.5
 
 # Plot model predictions at different coverages and case rates
 par(mar=c(2.5,2.5,0.5,1))
-par(fig=c(0,0.5,0.5,1))
+par(fig=c(0.5,1,0.5,1))
 range(data_vill$case_rate_last2monthMean_dist,na.rm = T)
 case_rate <- seq(0,0.001,length.out=5)
 coverage <- seq(0,1,length.out=100)
@@ -814,23 +822,34 @@ plot(NA,ylim=c(0,max(preds_mat_upper)),xlim=c(0,1),bty="l",cex=cex.pt,axes=F,
 axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
-mtext("Cases/1,000 dogs in village",side=2,line=1.5,cex=cex.lab)
-mtext("Mean vaccination coverage at all scales\nover prior two months",side=1,line=2,cex=cex.lab)
+mtext("Cases/1,000 dogs in village\n(mean & 95% CrI)",side=2,line=1.5,cex=cex.lab)
+mtext("Mean rolling vaccination coverage at\nall scales over prior two months",side=1,line=2,cex=cex.lab)
 for(i in 1:length(case_rate)){
   polygon(c(coverage,rev(coverage)),c(preds_mat_lower[,i],rev(preds_mat_upper[,i])),col=scales::alpha(cols[i],0.25),border=NA)
 }
 for(i in 1:length(case_rate)){
   lines((preds_mat[,i])~coverage,col=cols[i],lwd=2,lty=1)
 }
-graphics::legend(0.28,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),lty=1,col=cols,
-                 title="Mean cases/1,000 dogs in village\n  over prior 2 months:",
-                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=2,lwd=2)
-graphics::legend("topleft",legend="A",text.font = 2,bty="n")
+graphics::legend(0.2,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T))[1:3],pch=15,
+                 col=scales::alpha(cols,0.25)[1:3],pt.cex =2.5,y.intersp = 1.42,text.col="white",
+                 title="Mean cases/1,000 dogs at all scales\n  over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=1)
+graphics::legend(0.4,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T))[4:5],pch=15,
+                 col=scales::alpha(cols,0.25)[c(4:5)],pt.cex =2.5,y.intersp = 1.42,text.col="white",
+                 title="Mean cases/1,000 dogs at all scales\n  over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=1)
+graphics::legend(0.32,max((preds_mat_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),
+                 col=cols,y.intersp = 1.42,lty=1,lwd=2,title.col = "white",
+                 title="Mean cases/1,000 dogs at all scales\n over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=2)
+graphics::legend(0.2,max((preds_mat_upper))*1.05,legend="Mean cases/1,000 dogs at all\nscales over prior 2 months:",bty="n",cex=0.75)
+
+graphics::legend("topleft",legend="B",text.font = 2,bty="n")
 
 
 # standardised exponentiated
-par(fig=c(0.5,1,0.5,1),new=T)
-par(mar=c(2.5,8.5,0.25,1))
+par(fig=c(0,0.5,0.5,1),new=T)
+par(mar=c(2.5,7.5,0.25,2))
 pars_sub <- pars_standardise_woDistantPriorCases[2:(nrow(pars_standardise_woDistantPriorCases)-2),]
 plot(NA,xlim=c(min(exp(pars_sub$`l-95% CI`)),max(exp(pars_sub$`u-95% CI`))),ylim=c(0.5,nrow(pars_sub)-0.5),axes=F,ylab="",xlab="")
 axis(2,cex.axis=cex.axis-0.1,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(1,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(0.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("grey40"))
@@ -841,7 +860,7 @@ mtext("exp(Standardised coefficient)",side=1,line=1.5,cex=cex.lab)
 box(bty="l")
 arrows(x0=exp(pars_sub$`l-95% CI`),x1=exp(pars_sub$`u-95% CI`),y0=seq(nrow(pars_sub)-0.5,0.5,-1),y1=seq(nrow(pars_sub)-0.5,0.5,-1),length=0,lwd=2,col="navy")
 points(exp(pars_sub$Estimate),seq(nrow(pars_sub)-0.5,0.5,-1),col="red",pch=20,cex=1.3)
-legend("topleft",legend="B",text.font = 2,bty="n")
+legend("topleft",legend="A",text.font = 2,bty="n")
 
 # random effect
 par(fig=c(0,0.5,0,0.5),new=T)
@@ -882,7 +901,7 @@ out_PI <- which(data_dist$cases[months_plot]<preds_lower|data_dist$cases[months_
 points(data_dist$cases[months_plot]~data_dist$month[months_plot],col="navy",pch=20,cex=cex.pt)
 points(data_dist$cases[out_PI]~data_dist$month[out_PI],col="red",pch=20,cex=cex.pt)
 # points(data_dist$cases[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)]~data_dist$month[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)],col="red",pch=20,cex=cex.pt)
-legend("topright",c("data","model 95% PI"),col=c("navy","skyblue"),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5))
+legend("topright",c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c("skyblue","navy","red"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #9%
 legend("topleft",legend="D",text.font = 2,bty="n")
 
@@ -899,8 +918,8 @@ cex.lab <- 0.8
 cex.pt <- 0.5
 
 # Plot model predictions at different coverages 
-par(mar=c(2.5,2.5,0.5,1))
-par(fig=c(0,0.5,0.5,1))
+par(mar=c(2.5,3,0.5,0.5))
+par(fig=c(0.5,1,0.5,1))
 range(data_vill$case_rate_last2monthMean_dist,na.rm = T)
 coverage <- seq(0,1,length.out=100)
 cols=viridis(length(case_rate))
@@ -920,15 +939,15 @@ axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Cases/1,000 dogs in village",side=2,line=1.5,cex=cex.lab)
-mtext("Mean vaccination coverage at all scales\nover prior two months",side=1,line=2,cex=cex.lab)
+mtext("Mean rolling vaccination coverage at\nall scales over prior two months",side=1,line=2,cex=cex.lab)
 polygon(c(coverage,rev(coverage)),c(preds_mat_lower[,1],rev(preds_mat_upper[,1])),col="lightblue",border=NA)
 lines((preds_mat[,1])~coverage,col="navy",lwd=2,lty=1)
-graphics::legend("topleft",legend="A",text.font = 2,bty="n")
+graphics::legend("topleft",legend="B",text.font = 2,bty="n")
 
 
 # standardised exponentiated
-par(fig=c(0.5,1,0.5,1),new=T)
-par(mar=c(2.5,7.5,0.25,1))
+par(fig=c(0,0.5,0.5,1),new=T)
+par(mar=c(2.5,7.8,0.25,1))
 pars_sub <- pars_standardise_woPriorCases[2:(nrow(pars_standardise_woPriorCases)-2),]
 xlim=c((min(pars_sub$`l-95% CI`)),(max(pars_sub$`u-95% CI`)))
 plot(NA,xlim=xlim,ylim=c(0.5,nrow(pars_sub)-0.5),axes=F,ylab="",xlab="")
@@ -942,12 +961,12 @@ mtext("exp(Standardised coefficient)",side=1,line=1.5,cex=cex.lab)
 box(bty="l")
 arrows(x0=(pars_sub$`l-95% CI`),x1=(pars_sub$`u-95% CI`),y0=seq(nrow(pars_sub)-0.5,0.5,-1),y1=seq(nrow(pars_sub)-0.5,0.5,-1),length=0,lwd=2,col="navy")
 points((pars_sub$Estimate),seq(nrow(pars_sub)-0.5,0.5,-1),col="red",pch=20,cex=1.3)
-legend("topleft",legend="B",text.font = 2,bty="n")
+legend("topleft",legend="A",text.font = 2,bty="n")
 
 
 # random effect
-par(fig=c(0,0.5,0,0.5),new=T)
-par(mar=c(0,1,1.5,2))
+par(fig=c(0,0.45,0,0.5),new=T)
+par(mar=c(0,0,1.5,2))
 ranefs <- ranef(model_vill_month_brms_woPriorCases)$village[,"Estimate",1]
 breaks=c(seq(min(ranefs),0,length.out=51),
          seq(0,max(ranefs),length.out=50)[-1])
@@ -965,7 +984,7 @@ plot(grid,
 
 
 # Plot case predictions and data over time
-par(mar=c(2.5,2.5,1.5,1))
+par(mar=c(2.5,3,1.5,0.5))
 par(fig=c(0.5,1,0,0.5),new=T)
 preds_mat <- predict(model_vill_month_brms_woPriorCases, re_formula=NULL, ndraws=5000, summary=F) 
 preds_mat_dist <- rowsum(t(preds_mat),data_vill$month[-c(1:(nrow(cases_vill)*2))])
@@ -983,7 +1002,7 @@ polygon(c(months_plot,rev(months_plot)),c(preds_lower,rev(preds_upper)),col="sky
 out_PI <- which(data_dist$cases[months_plot]<preds_lower|data_dist$cases[months_plot]>preds_upper)+2
 points(data_dist$cases[months_plot]~data_dist$month[months_plot],col="navy",pch=20,cex=cex.pt)
 points(data_dist$cases[out_PI]~data_dist$month[out_PI],col="red",pch=20,cex=cex.pt)
-legend("topright",c("data","model 95% PI"),col=c("navy","skyblue"),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5))
+legend("topright",c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c("skyblue","navy","red"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #9%
 legend("topleft",legend="D",text.font = 2,bty="n")
 

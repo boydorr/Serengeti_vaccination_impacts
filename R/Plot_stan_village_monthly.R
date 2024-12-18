@@ -184,14 +184,14 @@ cex.axis <- 0.7
 cex.lab <- 0.8
 cex.pt <- 0.5
 
-par(fig=c(0,0.5,0.57,1))
-par(mar=c(3,8,0.25,0.2))
+par(fig=c(0,1,0.49,1))
+par(mar=c(3,10,0.25,1))
 pars_sub <- pars_standardise[2:(nrow(pars_standardise)-3),]
 pars_sub_wo_distant_cases <- pars_wo_distant_cases_standardise[2:(nrow(pars_wo_distant_cases_standardise)-3),]
 plot(NA,xlim=c((min(pars_sub$`2.5%`,pars_sub_wo_distant_cases$`2.5%`)),(max(pars_sub$`97.5%`,pars_sub_wo_distant_cases$`97.5%`))),ylim=c(0.2,nrow(pars_sub)-0.15),axes=F,ylab="",xlab="")
 # axis(2,cex.axis=cex.axis,padj=0.5,labels=sapply(rev(rownames(pars_sub)), function(x) paste(strwrap(x, 30), collapse = "\n")),at=seq(0.5,nrow(pars_sub)-0.5,1),las=2)
-axis(2,cex.axis=cex.axis-0.1,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(1,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(0.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("grey40"))
-axis(2,cex.axis=cex.axis-0.1,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(2,nrow(pars_sub),2)], function(x) paste(strwrap(x, 32), collapse = "\n")),at=seq(1.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("black"))
+axis(2,cex.axis=cex.axis,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(1,nrow(pars_sub),2)], function(x) paste(strwrap(x, 39), collapse = "\n")),at=seq(0.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("grey40"))
+axis(2,cex.axis=cex.axis,padj=0.5,labels=sapply(rev(rownames(pars_sub))[seq(2,nrow(pars_sub),2)], function(x) paste(strwrap(x, 39), collapse = "\n")),at=seq(1.5,nrow(pars_sub)-0.5,2),las=2,col.axis=c("black"))
 axis(1,cex.axis=cex.axis,padj=-1.5,at=log(pretty(c(exp(c(pars_sub$`2.5%`,pars_sub_wo_distant_cases$`2.5%`,pars_sub$`97.5%`,pars_sub_wo_distant_cases$`97.5%`))))),label=pretty(exp(c(pars_sub$`2.5%`,pars_sub_wo_distant_cases$`2.5%`,pars_sub$`97.5%`,pars_sub_wo_distant_cases$`97.5%`))))
 lines(c(0,0),c(0,nrow(pars_sub)),lty=3)
 mtext("exp(Standardised coefficient)",side=1,line=1.3,cex=cex.lab)
@@ -201,15 +201,15 @@ points((pars_sub$mean),seq(nrow(pars_sub)-0.5,0.5,-1),col="navy",pch=20,cex=1.3)
 arrows(x0=(pars_sub_wo_distant_cases$`2.5%`),x1=(pars_sub_wo_distant_cases$`97.5%`),y0=seq(nrow(pars_sub)-0.8,1-0.8,-1)[c(1,4:nrow(pars_sub))],y1=seq(nrow(pars_sub)-0.8,1-0.8,-1)[c(1,4:nrow(pars_sub))],length=0,lwd=2,col=scales::alpha("orange",0.3))
 points((pars_sub_wo_distant_cases$mean),seq(nrow(pars_sub)-0.8,1-0.8,-1)[c(1,4:nrow(pars_sub))],col="darkorange2",pch=20,cex=1.3)
 # legend(0.6,4.4,legend="C",text.font = 2,bty="n")
-legend(log(0.43),nrow(pars_sub)+0.2,legend=c("With prior cases\nbeyond focal village","Without prior cases\nbeyond focal village"),col=c(scales::alpha("dodgerblue",0.4),scales::alpha("orange",0.3)),lwd=2,cex=cex.axis-0.1,pt.cex =1,text.col = "white",y.intersp = 1.7,bg="white",xpd=T)
-legend(log(0.45),nrow(pars_sub)+0.2,legend=c("With prior cases\nbeyond focal village","Without prior cases\nbeyond focal village"),col=c("navy","darkorange2"),lwd=2,cex=cex.axis-0.1,pt.cex =1,lty=0,pch=20,bty="n",y.intersp = 1.7,xpd=T)
-legend(log(1.35),8.6,legend="A",text.font = 2,bty="n")
+legend(log(0.43),nrow(pars_sub)+0.2,legend=c("With prior cases\nbeyond focal village ","Without prior cases\nbeyond focal village   "),col=c(scales::alpha("dodgerblue",0.4),scales::alpha("orange",0.3)),lwd=2,cex=cex.axis,pt.cex =1,text.col = "white",y.intersp = 1.7,bg="white",xpd=T)
+legend(log(0.44),nrow(pars_sub)+0.2,legend=c("With prior cases\nbeyond focal village ","Without prior cases\nbeyond focal village   "),col=c("navy","darkorange2"),lwd=2,cex=cex.axis,pt.cex =1,lty=0,pch=20,bty="n",y.intersp = 1.7,xpd=T)
+legend("topright",legend="A",text.font = 2,bty="n")
 
-par(fig=c(0.5,1,0.86,1),new=T)
-par(mar=c(2.5,2,0.25,1))
+par(fig=c(0,1,0.38,0.5),new=T)
+par(mar=c(2,2,0.7,1))
 p <- pars_standardise["p",]
 p_wo_distant_cases <- pars_wo_distant_cases_standardise["p",]
-plot(NA,xlim=c((min(p$`2.5%`,p_wo_distant_cases$`2.5%`)),(max(p$`97.5%`,p_wo_distant_cases$`97.5%`))),ylim=c(0,nrow(p)),axes=F,ylab="",xlab="")
+plot(NA,xlim=c((min(p$`2.5%`,p_wo_distant_cases$`2.5%`)),(max(p$`97.5%`,p_wo_distant_cases$`97.5%`))),ylim=c(0,nrow(p)),axes=F,ylab="",xlab="",new=T)
 # axis(2,cex.axis=cex.axis,padj=0.5,labels=sapply(rev(rownames(p)), function(x) paste(strwrap(x, 20), collapse = "\n")),at=seq(0.5,nrow(p)-0.5,1),las=2,font.axis = 3)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 lines(c(1,1),c(0,nrow(p)),lty=3)
@@ -219,7 +219,7 @@ arrows(x0=(p$`2.5%`),x1=(p$`97.5%`),y0=seq(nrow(p)-0.5,0.5,-1),y1=seq(nrow(p)-0.
 points((p$mean),seq(nrow(p)-0.5,0.5,-1),col="navy",pch=20,cex=1.3)
 arrows(x0=(p_wo_distant_cases$`2.5%`),x1=(p_wo_distant_cases$`97.5%`),y0=1-0.7,y1=1-0.7,length=0,lwd=2,col=scales::alpha("orange",0.3))
 points((p_wo_distant_cases$mean),1-0.7,col="darkorange2",pch=20,cex=1.3)
-legend(11.5,1.3,legend="B",text.font = 2,bty="n")
+legend(12.5,1.6,legend="B",text.font = 2,bty="n",xpd=T,inset=0)
 
 
 
@@ -231,7 +231,7 @@ data_dist$arithmeticMean <- sapply(1:ncol(vax_vill),function(x) powMean(x=S[,x],
 data_dist$max_village_S <- sapply(1:ncol(vax_vill),function(x) max(S[,x]))
 data_dist$min_village_S <- sapply(1:ncol(vax_vill),function(x) min(S[,x]))
 
-par(fig=c(0.5,1,0.57,0.86),new=T)
+par(fig=c(0,1,0,0.35),new=T)
 par(mar=c(3,3.5,0.1,1))
 p_lower <- summary(model)$summary["p","2.5%"]
 p_upper <- summary(model)$summary["p","97.5%"]
@@ -257,19 +257,23 @@ polygon(c(1:ncol(S),rev(1:ncol(S))),
         col=scales::alpha("dodgerblue",0.4),border = NA)
 lines(sapply(1:ncol(S),function(x) powMean(x=S[,x],p=p_mean,wts = dogs[,x])),col="navy",lwd=2)
 lines(data_dist$arithmeticMean,lwd=1,lty=2)
-legend(215,1,legend="C",text.font = 2,bty="n")
+legend("topright",legend="C",text.font = 2,bty="n")
 
-legend(1,0.66,legend=c("Arithmetic mean","With prior cases beyond focal village","Without prior cases beyond focal village"),col=c(NA,scales::alpha("orange",0.3),scales::alpha("dodgerblue",0.4)),pch=15,cex=cex.axis-0.1,pt.cex =2.5,text.col = "white",box.col=NA,y.intersp = 1.7)
-legend(-8,0.66,legend=c("Arithmetic mean","With prior cases beyond focal village","Without prior cases beyond focal village"),col=c(1,"darkorange2","navy"),lwd=c(1,2,2),lty=c(2,1,1),cex=cex.axis-0.1,pt.cex =1,bty="n",y.intersp = 1.7)
+legend(-3.8,0.62,legend=c("Arithmetic mean","With prior cases beyond focal village","Without prior cases beyond focal village"),col=c(NA,scales::alpha("orange",0.3),scales::alpha("dodgerblue",0.4)),pch=15,cex=cex.axis,pt.cex =2.5,text.col = "white",box.col=NA,y.intersp = 1.6)
+legend(-8,0.62,legend=c("Arithmetic mean","With prior cases beyond focal village","Without prior cases beyond focal village"),col=c(1,"darkorange2","navy"),lwd=c(1,2,2),lty=c(2,1,1),cex=cex.axis,pt.cex =1,bty="n",y.intersp = 1.6)
+
+dev.off()
 
 
 
 # Plot model predictions at different susceptibilities and case rates
 #___________________
 
+pdf("Figs/MonthlyModelCases&PowerMeanSuscVill_supplement.pdf",width=7, height=5.5)
+
 data_vill_case_rate_adjust_dist <- 0.5*min(data_vill$case_rate_last2monthMean_dist[which(data_vill$case_rate_last2monthMean_dist>0)])
 par(mar=c(2,4.5,1,0.35))
-par(fig=c(0,0.5,0.285,0.57),new=T)
+par(fig=c(0,0.5,0.5,1))
 range(data_vill$case_rate_last2monthMean_dist,na.rm = T)
 case_rate <- seq(0,0.001,length.out=5)
 susceptibility <- seq(0,1,length.out=50)
@@ -307,16 +311,26 @@ for(i in 1:length(case_rate)){
 for(i in 1:length(case_rate)){
   lines((preds_mat[,i])~susceptibility,col=cols[i],lwd=2,lty=1)
 }
-graphics::legend(0.19,max((preds_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),lty=1,col=cols,
+graphics::legend(0.07,max((preds_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T))[1:3],pch=15,
+                 col=scales::alpha(cols,0.25)[1:3],pt.cex =2.5,y.intersp = 1.42,text.col="white",
                  title="Mean cases/1,000 dogs at all\n scales over prior 2 months:",
-                 title.adj =-0.1,title.cex=0.7,cex=0.7,bty="n",ncol=2,lwd=2)
-graphics::legend(-0.09,2.1,legend="D",text.font = 2,bty="n")
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=1)
+graphics::legend(0.345,max((preds_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T))[4:5],pch=15,
+                 col=scales::alpha(cols,0.25)[c(4:5)],pt.cex =2.5,y.intersp = 1.42,text.col="white",
+                 title="Mean cases/1,000 dogs at all\n scales over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=1)
+graphics::legend(0.21,max((preds_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),
+                 col=cols,y.intersp = 1.42,lty=1,lwd=2,title.col = "white",
+                 title="Mean cases/1,000 dogs at all\n scales over prior 2 months:",
+                 title.adj =-0.1,title.cex=0.75,cex=0.7,bty="n",ncol=2)
+graphics::legend(0.12,max((preds_upper))*1.05,legend="Mean cases/1,000 dogs at all\n scales over prior 2 months:",bty="n",cex=0.75)
+graphics::legend(-0.09,1.9,legend="A",text.font = 2,bty="n")
 
-par(fig=c(0,0.5,0,0.57),new=T)
+par(fig=c(0,0.5,0,1),new=T)
 text(-0.38,1,"Cases/1,000 dogs in village from model:",srt=90,xpd=T,cex=cex.lab)
 
 
-par(fig=c(0,0.5,0,0.285),new=T)
+par(fig=c(0,0.5,0,0.5),new=T)
 par(mar=c(3,4.5,0,0.35))
 samples_pars <- posterior_samples(model_wo_distant_cases, pars = c("Intercept","beta","p","phi"))
 samples_pars <- samples_pars[,-which(colnames(samples_pars)=="beta[1]")]
@@ -351,7 +365,7 @@ for(i in 1:length(case_rate)){
 # graphics::legend(0.23,max((preds_upper)),paste0(format(case_rate*1000,scientific=F,drop0trailing=T)),lty=1,col=cols,
 #                  title="Mean cases/1,000 dogs in village\n  over prior 2 months:",
 #                  title.adj =-0.1,title.cex=0.7,cex=0.7,bty="n",ncol=2,lwd=2)
-graphics::legend(-0.07,1.9,legend="E",text.font = 2,bty="n")
+graphics::legend(-0.07,1.9,legend="B",text.font = 2,bty="n")
 
 
 
@@ -361,7 +375,7 @@ graphics::legend(-0.07,1.9,legend="E",text.font = 2,bty="n")
 # Plot predictions and data over time
 load("Output/preds_PI_stan_village_model.Rdata")
 par(mar=c(1.8,2.5,0.7,1))
-par(fig=c(0.5,1,0.285,0.57),new=T)
+par(fig=c(0.5,1,0.5,1),new=T)
 ylim <- c(0,max(preds_upper,data_vill$cases))
 plot(NA,ylim=ylim,xlim=c(1,max(data_vill$month)),bty="l",
      ylab="",xlab="",cex.lab=cex.lab,axes=F)
@@ -376,9 +390,9 @@ out_PI <- which(data_dist$cases[months_plot]<preds_lower|data_dist$cases[months_
 points(data_dist$cases~data_dist$month,col="navy",pch=20,cex=cex.pt)
 points(data_dist$cases[out_PI]~data_dist$month[out_PI],col="red",pch=20,cex=cex.pt)
 # points(data_dist$cases[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)]~data_dist$month[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)],col="red",pch=20,cex=cex.pt)
-legend(130,145,c("data","95% PI from model\nwith prior cases\nbeyond focal village"),col=c("navy",scales::alpha("dodgerblue",0.4)),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5),y.intersp = 0.85)
+legend(130,120,c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c("skyblue","navy","red"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #4%
-legend(-20,125,legend="F",text.font = 2,bty="n")
+legend(-20,115,legend="C",text.font = 2,bty="n")
 par(fig=c(0.5,1,0,0.57),new=T)
 text(-45,60,"Dog cases in district",srt=90,cex=cex.lab,xpd=T)
 
@@ -386,7 +400,7 @@ text(-45,60,"Dog cases in district",srt=90,cex=cex.lab,xpd=T)
 # Plot predictions and data over time
 load("Output/preds_PI_stan_village_model_wo_distant_cases.Rdata")
 par(mar=c(2.5,2.5,0,1))
-par(fig=c(0.5,1,0,0.285),new=T)
+par(fig=c(0.5,1,0,0.5),new=T)
 # ylim <- c(0,max(preds_upper,data_vill$cases))
 plot(NA,ylim=ylim,xlim=c(1,max(data_vill$month)),bty="l",
      ylab="",xlab="",cex.lab=cex.lab,axes=F)
@@ -401,9 +415,9 @@ out_PI <- which(data_dist$cases[months_plot]<preds_lower|data_dist$cases[months_
 points(data_dist$cases~data_dist$month,col="darkorange",pch=20,cex=cex.pt)
 points(data_dist$cases[out_PI]~data_dist$month[out_PI],col="red2",pch=20,cex=cex.pt)
 # points(data_dist$cases[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)]~data_dist$month[-c(1:2)][which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper)],col="red",pch=20,cex=cex.pt)
-legend(130,120,c("data","95% PI from model\nwithout prior cases\nbeyond focal village"),col=c("darkorange",scales::alpha("orange",0.3)),pch=c(20,15),cex=0.75,bty="n",pt.cex = c(cex.pt,1.5),y.intersp = 0.85)
+legend(130,120,c("model 95% PI","data within 95% PI","data outside 95% PI"),col=c(scales::alpha("orange",0.5),"darkorange","red2"),pch=c(15,20,20),cex=0.75,bty="n",pt.cex = c(1.5,cex.pt,cex.pt))
 length(which(data_dist$cases[-c(1:2)]<preds_lower|data_dist$cases[-c(1:2)]>preds_upper))/length(preds_lower) #4%
-legend(-20,105,legend="G",text.font = 2,bty="n")
+legend(-20,115,legend="D",text.font = 2,bty="n")
 
 dev.off()
 
@@ -441,7 +455,7 @@ plot(diff_arithmetic_annual,ylim=c(0,0.2),type="l",lty=2,col="grey",axes=F)
 axis(2,cex.axis=cex.axis,padj=1)
 axis(1,at=seq(1,length(diff_arithmetic_annual),2),labels=paste(seq(2002,2022,2)),cex.axis=cex.axis,padj=-1.5)
 mtext("Power mean - arithmetic mean susceptibility\n(12 month mean)",side=2,line=1.5,cex=cex.lab)
-mtext("Date",side=1,line=1.5,cex=cex.lab)
+mtext("Year",side=1,line=1.5,cex=cex.lab)
 months_plot <- 1:length(diff_arithmetic_annual)
 polygon(c(months_plot,rev(months_plot)),c(diff_arithmetic_lower_annual,rev(diff_arithmetic_upper_annual)),col="skyblue",border=NA)
 lines(diff_arithmetic_annual,col="navy",lwd=2)
