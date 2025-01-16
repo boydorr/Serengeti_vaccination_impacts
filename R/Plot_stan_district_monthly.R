@@ -43,8 +43,8 @@ rownames(pars_wo_incidence_standardise) <- c("Intercept","Log dogs/km2","Power m
 
 pars_order <- c("Intercept","vax","Power mean susceptibility over last 2 months","Log cases/dog over last 2 months","Log dogs/km2","size","p")                               
 pars_prep <- data.frame(matrix("", nrow=length(pars_order), ncol=2,dimnames = list(pars_order,c("Full model","Without prior cases"))))
-pars_prep_1 <- paste0(pars$mean," (",pars$`2.5%`,"-",pars$`97.5%`,")")
-pars_prep_2 <- paste0(pars_wo_incidence$mean," (",pars_wo_incidence$`2.5%`,"-",pars_wo_incidence$`97.5%`,")")
+pars_prep_1 <- paste0(pars$mean," (",pars$`2.5%`,", ",pars$`97.5%`,")")
+pars_prep_2 <- paste0(pars_wo_incidence$mean," (",pars_wo_incidence$`2.5%`,", ",pars_wo_incidence$`97.5%`,")")
 pars_prep[rownames(pars),1] <- pars_prep_1
 pars_prep[rownames(pars_wo_incidence),2] <- pars_prep_2
 write.csv(pars_prep,"output/model_dist_month_pars_all_power_mean_models_MSversion.csv")

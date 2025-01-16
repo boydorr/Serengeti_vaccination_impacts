@@ -224,13 +224,13 @@ rownames(pars_district_woPriorCases_standardise)[2:nrow(pars_district_woPriorCas
 # Prep for MS table
 pars_district_exp <- round(exp(summary(model_dist_month_brms)$fixed),2)[,c(1,3,4)]
 pars_district_prep <- data.frame(matrix(NA, nrow=nrow(pars_district), ncol=2,dimnames = list(rownames(pars_district),c("Estimate","exp(Estimate)"))))
-pars_district_prep[,1] <- paste0(pars_district$Estimate," (",pars_district$`l-95% CI`,"-",pars_district$`u-95% CI`,")")
-pars_district_prep[1:nrow(pars_district_exp),2] <- paste0(pars_district_exp$Estimate," (",pars_district_exp$`l-95% CI`,"-",pars_district_exp$`u-95% CI`,")")
+pars_district_prep[,1] <- paste0(pars_district$Estimate," (",pars_district$`l-95% CI`,", ",pars_district$`u-95% CI`,")")
+pars_district_prep[1:nrow(pars_district_exp),2] <- paste0(pars_district_exp$Estimate," (",pars_district_exp$`l-95% CI`,", ",pars_district_exp$`u-95% CI`,")")
 write.csv(pars_district_prep,"output/model_dist_month_brms_pars_MSversion.csv")
 pars_district_woPriorCases_exp <- round(exp(summary(model_dist_month_brms_woPriorCases)$fixed),2)[,c(1,3,4)]
 pars_district_woPriorCases_prep <- data.frame(matrix(NA, nrow=nrow(pars_district_woPriorCases), ncol=2,dimnames = list(rownames(pars_district_woPriorCases),c("Estimate","exp(Estimate)"))))
-pars_district_woPriorCases_prep[,1] <- paste0(pars_district_woPriorCases$Estimate," (",pars_district_woPriorCases$`l-95% CI`,"-",pars_district_woPriorCases$`u-95% CI`,")")
-pars_district_woPriorCases_prep[1:nrow(pars_district_woPriorCases_exp),2] <- paste0(pars_district_woPriorCases_exp$Estimate," (",pars_district_woPriorCases_exp$`l-95% CI`,"-",pars_district_woPriorCases_exp$`u-95% CI`,")")
+pars_district_woPriorCases_prep[,1] <- paste0(pars_district_woPriorCases$Estimate," (",pars_district_woPriorCases$`l-95% CI`,", ",pars_district_woPriorCases$`u-95% CI`,")")
+pars_district_woPriorCases_prep[1:nrow(pars_district_woPriorCases_exp),2] <- paste0(pars_district_woPriorCases_exp$Estimate," (",pars_district_woPriorCases_exp$`l-95% CI`,", ",pars_district_woPriorCases_exp$`u-95% CI`,")")
 write.csv(pars_district_woPriorCases_prep,"output/model_dist_month_brms_pars_woPriorCases_MSversion.csv")
 
 
@@ -566,18 +566,18 @@ rownames(pars_woPriorCases)[2:nrow(pars_woPriorCases)] <- c("Vaccination over la
 # Prep for MS table
 pars_exp <- round(exp(model_summary$fixed),2)[,c(1,3,4)]
 pars_prep <- data.frame(matrix(NA, nrow=nrow(pars), ncol=2,dimnames = list(rownames(pars),c("Estimate","exp(Estimate)"))))
-pars_prep[,1] <- paste0(pars$Estimate," (",pars$`l-95% CI`,"-",pars$`u-95% CI`,")")
-pars_prep[1:nrow(pars_exp),2] <- paste0(pars_exp$Estimate," (",pars_exp$`l-95% CI`,"-",pars_exp$`u-95% CI`,")")
+pars_prep[,1] <- paste0(pars$Estimate," (",pars$`l-95% CI`,", ",pars$`u-95% CI`,")")
+pars_prep[1:nrow(pars_exp),2] <- paste0(pars_exp$Estimate," (",pars_exp$`l-95% CI`,", ",pars_exp$`u-95% CI`,")")
 pars_prep2 <- cbind(pars_prep[,1],NA,NA);rownames(pars_prep2)<-rownames(pars_prep);colnames(pars_prep2) <- c("Full model","Without prior cases/dog beyond village","Without prior cases/dog at any scale")
 pars_exp <- round(exp(model_summary_woPriorCases$fixed),2)[,c(1,3,4)]
 pars_prep <- data.frame(matrix(NA, nrow=nrow(pars_woPriorCases), ncol=2,dimnames = list(rownames(pars_woPriorCases),c("Estimate","exp(Estimate)"))))
-pars_prep[,1] <- paste0(pars_woPriorCases$Estimate," (",pars_woPriorCases$`l-95% CI`,"-",pars_woPriorCases$`u-95% CI`,")")
-pars_prep[1:nrow(pars_exp),2] <- paste0(pars_exp$Estimate," (",pars_exp$`l-95% CI`,"-",pars_exp$`u-95% CI`,")")
+pars_prep[,1] <- paste0(pars_woPriorCases$Estimate," (",pars_woPriorCases$`l-95% CI`,", ",pars_woPriorCases$`u-95% CI`,")")
+pars_prep[1:nrow(pars_exp),2] <- paste0(pars_exp$Estimate," (",pars_exp$`l-95% CI`,", ",pars_exp$`u-95% CI`,")")
 pars_prep2[rownames(pars_prep),3] <- pars_prep[,1]
 pars_exp <- round(exp(model_summary_woDistantPriorCases$fixed),2)[,c(1,3,4)]
 pars_prep <- data.frame(matrix(NA, nrow=nrow(pars_woDistantPriorCases), ncol=2,dimnames = list(rownames(pars_woDistantPriorCases),c("Estimate","exp(Estimate)"))))
-pars_prep[,1] <- paste0(pars_woDistantPriorCases$Estimate," (",pars_woDistantPriorCases$`l-95% CI`,"-",pars_woDistantPriorCases$`u-95% CI`,")")
-pars_prep[1:nrow(pars_exp),2] <- paste0(pars_exp$Estimate," (",pars_exp$`l-95% CI`,"-",pars_exp$`u-95% CI`,")")
+pars_prep[,1] <- paste0(pars_woDistantPriorCases$Estimate," (",pars_woDistantPriorCases$`l-95% CI`,", ",pars_woDistantPriorCases$`u-95% CI`,")")
+pars_prep[1:nrow(pars_exp),2] <- paste0(pars_exp$Estimate," (",pars_exp$`l-95% CI`,", ",pars_exp$`u-95% CI`,")")
 pars_prep2[rownames(pars_prep),2] <- pars_prep[,1]
 write.csv(pars_prep2,"output/model_vill_month_pars_all_MSversion.csv")
 
@@ -598,7 +598,7 @@ pars_standardise_woPriorCases <- round(rbind(model_summary_standardise_woPriorCa
 rownames(pars_standardise_woPriorCases)[2:nrow(pars_standardise_woPriorCases)] <- c("Vaccination over last 2 months in village","Vaccination at borders over last 2 months","Vaccination in non-bordering villages over last 2 months",
                                                                                     "Log dogs/km2","Human:dog ratio","Village RE SD","shape")
 
-# some summaries for the manuscript
+# some summaries for the manuscript (full model)
 (1-exp(pars["Vaccination over last 2 months in village",c(1,3,4)]*0.1))*100 # % change with 10% change in village Vaccination
 (1-exp(pars["Vaccination over last 2 months in village",c(1,3,4)]*0.45))*100 # % change with 45% change in village vax
 (1-exp(pars["Vaccination at borders over last 2 months",c(1,3,4)]*0.1))*100 # 
@@ -634,6 +634,13 @@ range_HDR <- range(data_vill$HDR)
 range(exp(ranef(model_vill_month_brms)$village[,"Estimate",1]))
 
 corrplot::corrplot(cor(posterior_samples(model_vill_month_brms)[,c("b_vax_last2monthMean","b_vax_neighbours_last2monthMean","b_vax_notNeighbours_last2monthMean")]))
+
+# some summaries for the manuscript (model without prior cases)
+(1-exp(pars_woPriorCases["Vaccination over last 2 months in village",c(1,3,4)]*0.1))*100 # % change with 10% change in village Vaccination
+mean((1-(exp(posterior_samples(model_vill_month_brms_woPriorCases)[,"b_vax_last2monthMean"]*0.1)*exp(posterior_samples(model_vill_month_brms_woPriorCases)[,"b_vax_neighbours_last2monthMean"]*0.1)*exp(posterior_samples(model_vill_month_brms_woPriorCases)[,"b_vax_notNeighbours_last2monthMean"]*0.1)))*100)
+quantile((1-(exp(posterior_samples(model_vill_month_brms_woPriorCases)[,"b_vax_last2monthMean"]*0.1)*exp(posterior_samples(model_vill_month_brms_woPriorCases)[,"b_vax_neighbours_last2monthMean"]*0.1)*exp(posterior_samples(model_vill_month_brms_woPriorCases)[,"b_vax_notNeighbours_last2monthMean"]*0.1)))*100,c(0.025,0.975))
+(1-exp(pars_woPriorCases["Vaccination at borders over last 2 months",c(1,3,4)]*0.1))*100 # 
+
 
 
 

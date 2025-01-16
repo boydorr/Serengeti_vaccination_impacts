@@ -80,9 +80,9 @@ pars_order <- c("Intercept",
                 "Log cases/dog over last 2 months in village","Log cases/dog at borders over last 2 months","Log cases/dog in non-bordering villages over last 2 months",
                 "Log dogs/km2","Human:dog ratio","Village RE SD","size","p")                               
 pars_prep <- data.frame(matrix("", nrow=length(pars_order), ncol=3,dimnames = list(pars_order,c("Full model","Without distant prior cases","Without prior cases"))))
-pars_prep_1 <- paste0(pars$mean," (",pars$`2.5%`,"-",pars$`97.5%`,")")
-pars_prep_2 <- paste0(pars_wo_distant_cases$mean," (",pars_wo_distant_cases$`2.5%`,"-",pars_wo_distant_cases$`97.5%`,")")
-pars_prep_3 <- paste0(pars_wo_cases$mean," (",pars_wo_cases$`2.5%`,"-",pars_wo_cases$`97.5%`,")")
+pars_prep_1 <- paste0(pars$mean," (",pars$`2.5%`,", ",pars$`97.5%`,")")
+pars_prep_2 <- paste0(pars_wo_distant_cases$mean," (",pars_wo_distant_cases$`2.5%`,", ",pars_wo_distant_cases$`97.5%`,")")
+pars_prep_3 <- paste0(pars_wo_cases$mean," (",pars_wo_cases$`2.5%`,", ",pars_wo_cases$`97.5%`,")")
 pars_prep[rownames(pars),1] <- pars_prep_1
 pars_prep[rownames(pars_wo_distant_cases),2] <- pars_prep_2
 pars_prep[rownames(pars_wo_cases),3] <- pars_prep_3
@@ -476,6 +476,7 @@ sort(diff_arithmetic_annual)
 
 par(mar=c(0,1,1.5,4))
 ranefs <- colMeans(posterior_samples(model, pars = c("gamma_t")))
+range(ranefs)
 breaks=c(seq(min(ranefs),0,length.out=51),
          seq(0,max(ranefs),length.out=50)[-1])
 colours=colorRampPalette(c("dodgerblue","white","red"))(length(breaks)-1)

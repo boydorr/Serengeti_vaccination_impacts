@@ -306,7 +306,7 @@ axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Cases/1,000 dogs in district this year",side=2,line=1.5,cex=cex.lab)
-mtext("Vaccination coverage in\ndistrict over previous years",side=1,line=2,cex=cex.lab)
+mtext("Campaign coverage in\ndistrict over previous years",side=1,line=2,cex=cex.lab)
 polygon(c(coverage,rev(coverage)),c(preds_extrap_lower1[,1],rev(preds_extrap_upper1[,1])),col=alpha(col_pal[1],0.1),border=NA)
 polygon(c(coverage,rev(coverage)),c(preds_extrap_lower2[,1],rev(preds_extrap_upper2[,1])),col=alpha(col_pal[2],0.1),border=NA)
 polygon(c(coverage,rev(coverage)),c(preds_extrap_lower3[,1],rev(preds_extrap_upper3[,1])),col=alpha(col_pal[3],0.1),border=NA)
@@ -318,7 +318,7 @@ lines(preds_extrap2~coverage,col=col_pal[2],lwd=2,lty=1)
 lines(preds_extrap3~coverage,col=col_pal[3],lwd=2,lty=1)
 
 legend("topleft",c("year","2 years","3 years"),lty=1,col=col_pal,
-       title="Vaccination coverage\nover previous:",
+       title="Campaign coverage\nover previous:",
        title.cex=0.8,cex=0.8,bty="n",lwd=2,yjust=1,title.adj = -0.01,inset=0.05)
 
 dev.off()
@@ -353,7 +353,7 @@ axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Cases/1,000 dogs in district this year",side=2,line=1.5,cex=cex.lab)
-mtext("Vaccination coverage in\ndistrict last year",side=1,line=2,cex=cex.lab)
+mtext("Campaign coverage in\ndistrict last year",side=1,line=2,cex=cex.lab)
 for(i in 1:length(incidence)){
   polygon(c(coverage,rev(coverage)),c(preds_mat_extrap_lower[,i],rev(preds_mat_extrap_upper[,i])),col=scales::alpha(cols[as.numeric(findInterval(incidence[i],breaks))],0.1),border=NA)}
 for(i in 1:length(incidence)){
@@ -697,7 +697,7 @@ axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Cases/1,000 dogs in village this year",side=2,line=1.5,cex=cex.lab)
-mtext("Vaccination coverage at all scales\nover previous years",side=1,line=2,cex=cex.lab)
+mtext("Campaign coverage at all scales\nover previous years",side=1,line=2,cex=cex.lab)
 polygon(c(coverage,rev(coverage)),c(preds_lower1[,1],rev(preds_upper1[,1])),col=alpha(col_pal[1],0.1),border=NA)
 polygon(c(coverage,rev(coverage)),c(preds_lower2[,1],rev(preds_upper2[,1])),col=alpha(col_pal[2],0.1),border=NA)
 polygon(c(coverage,rev(coverage)),c(preds_lower3[,1],rev(preds_upper3[,1])),col=alpha(col_pal[3],0.1),border=NA)
@@ -706,7 +706,7 @@ lines(preds2~coverage,col=col_pal[2],lwd=2,lty=1)
 lines(preds3~coverage,col=col_pal[3],lwd=2,lty=1)
 
 legend("topright",c("year","2 years","3 years"),lty=1,col=col_pal,
-       title="Mean vaccination coverage\nover previous:",
+       title="Mean campaign coverage\nover previous:",
        title.cex=0.8,cex=0.8,bty="n",lwd=2,yjust=1,title.adj = -0.01)
 
 dev.off()
@@ -743,7 +743,7 @@ axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Cases/1,000 dogs in village this year",side=2,line=1.5,cex=cex.lab)
-mtext("Vaccination coverage at all scales\nlast year",side=1,line=2,cex=cex.lab)
+mtext("Campaign coverage at all scales\nlast year",side=1,line=2,cex=cex.lab)
 for(i in 1:length(incidence)){
   polygon(c(coverage,rev(coverage)),c(preds_lower[,i],rev(preds_upper[,i])),col=alpha(cols[i],0.1),border=NA)
 }

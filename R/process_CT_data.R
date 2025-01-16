@@ -150,12 +150,12 @@ write.table(ts_village,paste0("output/Serengeti_monthly_rabid_animals_village_",
 # Representation of different species
 rabid_animals$Species[which(rabid_animals$Other.species=="bush baby")] <- "Wildlife: Bush baby"
 filter(rabid_animals,Species=="Unknown") # no clues as to species
-table(rabid_animals$Species)
-nrow(rabid_animals)
-length(grep("Domestic dog",rabid_animals$Species))
-length(grep("Wildlife",rabid_animals$Species))
-length(grep("Livestock",rabid_animals$Species))
-length(grep("Cat",rabid_animals$Species))
+length(which(rabid_animals$Species=="Domestic dog"))/nrow(rabid_animals)
+not_dog <- which(!rabid_animals$Species%in%c("Domestic dog", "Unknown"))
+n_not_dog <- length(not_dog)
+sort(round((table(rabid_animals$Species[not_dog])/n_not_dog)*100,1))
+round((sum(grepl("Livestock",rabid_animals$Species))/n_not_dog)*100,1)
+round((sum(!(grepl("Livestock",rabid_animals$Species)|rabid_animals$Species%in%c("Domestic dog","Cat","Wildlife: Jackal","Unknown")))/n_not_dog)*100,1)
 
 
 
