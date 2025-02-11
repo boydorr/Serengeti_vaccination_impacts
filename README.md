@@ -1,6 +1,6 @@
-# Reducing spatial heterogeneity in coverage improves the effectiveness of dog vaccination against rabies
+# Reducing spatial heterogeneity in coverage improves the effectiveness of dog vaccination campaigns against rabies
 
-https://www.biorxiv.org/content/10.1101/2024.10.03.616420v1
+https://www.biorxiv.org/content/10.1101/2024.10.03.616420v3
 
 Authors: Elaine A Ferguson, Ahmed Lugelo, Anna Czupryna, Danni Anderson, Felix Lankester, Lwitiko Sikana, Jonathan Dushoff, Katie Hampson
 
