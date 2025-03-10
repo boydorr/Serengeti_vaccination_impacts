@@ -378,6 +378,8 @@ colnames(vcVillYear) <- 2002:2022
 hist(vcVillYear)
 max(vcVillYear)
 length(which(vcVillYear>1))
+length(which(vcVillYear>1))/length(which(vcVillYear>0))
+1-length(which(vcVillYear>0.7))/length(which(vcVillYear>0))
 tail(sort(vcVillYear))
 which(vcVillYear>1,arr.ind = T)
 vcVillYear <- vcVillYear/(1+vcVillYear^a)^(1/a)

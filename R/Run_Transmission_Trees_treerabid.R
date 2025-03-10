@@ -148,11 +148,22 @@ lapply(split(consensus_links, interaction(consensus_links$cutoff, consensus_link
 # fwrite(consensus_known$ttrees_all, "output/trees_sampled_best.gz")
 # fwrite(consensus_links, "output/consensus_links_best.csv")
 
-# Write out incursions 
-incs_best <- consensus_links[is.na(id_progen)]
-incursions_95 <- filter(ct_data,id_case %in% filter(incs_best,cutoff==0.95)$id_case)
-incursions_975 <- filter(ct_data,id_case %in% filter(incs_best,cutoff==0.975)$id_case)
-incursions_99 <- filter(ct_data,id_case %in% filter(incs_best,cutoff==0.99)$id_case)
+# Write out incursions (this was the original code used, but instead, we'll
+# now read in the incursion indices determined from the non-jittered coordinates
+# for the manuscript, using the code section below)
+# incs_best <- consensus_links[is.na(id_progen)]
+# incursions_95 <- filter(ct_data,id_case %in% filter(incs_best,cutoff==0.95)$id_case)
+# incursions_975 <- filter(ct_data,id_case %in% filter(incs_best,cutoff==0.975)$id_case)
+# incursions_99 <- filter(ct_data,id_case %in% filter(incs_best,cutoff==0.99)$id_case)
+# write.csv(incursions_95,file=paste0("output/serengeti_incursions_treerabid_prune_95.csv"))
+# write.csv(incursions_975,file=paste0("output/serengeti_incursions_treerabid_prune_975.csv"))
+# write.csv(incursions_99,file=paste0("output/serengeti_incursions_treerabid_prune_99.csv"))
+
+# Write out incursions
+incursion_indices <- readRDS("output/incursion_indices.rds")
+incursions_95 <- ct_data[incursion_indices[["0.95"]]]
+incursions_975 <- ct_data[incursion_indices[["0.975"]]]
+incursions_99 <- ct_data[incursion_indices[["0.99"]]]
 write.csv(incursions_95,file=paste0("output/serengeti_incursions_treerabid_prune_95.csv"))
 write.csv(incursions_975,file=paste0("output/serengeti_incursions_treerabid_prune_975.csv"))
 write.csv(incursions_99,file=paste0("output/serengeti_incursions_treerabid_prune_99.csv"))

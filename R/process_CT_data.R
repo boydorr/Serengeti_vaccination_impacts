@@ -51,7 +51,7 @@ which(is.na(rabid_carnivores$day))
 
 # Add cell ID to dataset
 gps <- rabid_carnivores[which(!is.na(rabid_carnivores$UTM.Easting)),c("UTM.Easting","UTM.Northing")]
-cell_IDs <- extract(SD_grid,gps)
+cell_IDs <- raster::extract(SD_grid,gps)
 gps[which(is.na(cell_IDs)),]
 rabid_carnivores$Village[which(!is.na(rabid_carnivores$UTM.Easting))][which(is.na(cell_IDs))]
 plot(SD_vill)

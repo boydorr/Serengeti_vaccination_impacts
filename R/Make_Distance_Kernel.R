@@ -1,4 +1,3 @@
-# This file is to be run after Data_Cleaning.R
 rm(list=ls())
 library(fitdistrplus)
 
@@ -124,7 +123,7 @@ all_dist_MS_summary <- rbind(c(paste0(signif(all_dist_gamma$estimate,2)," (",sig
                         c(paste0(round(all_dist_weibull$estimate,2)," (",round(boot_all_dist_weibull$CI[,"2.5%"],2),"-",round(boot_all_dist_weibull$CI[,"97.5%"],2),")"),round(all_dist_weibull$aic),round(qweibull(c(0.95,0.975,0.99),shape=all_dist_weibull$estimate["shape"],scale=all_dist_weibull$estimate["scale"]),1)))
 par_names <- rbind(names(all_dist_gamma$estimate), names(all_dist_lnorm$estimate), names(all_dist_weibull$estimate))
 all_dist_MS_summary <- cbind(par_names[,1],all_dist_MS_summary[,1],par_names[,2],all_dist_MS_summary[,2:ncol(all_dist_MS_summary)])
-write.table(all_dist_MS_summary,"output/DK_MS_summary.csv",sep=",",col.names = F,row.names = F)
+# write.table(all_dist_MS_summary,"output/DK_MS_summary.csv",sep=",",col.names = F,row.names = F)
 
 
 
@@ -208,38 +207,41 @@ all_dist_gamma_2_direction_lnorm$aic; all_dist_lnorm_2_direction_lnorm$aic; all_
 
 
 # Write parameters for transmission tree inference
-summarise_dist <- function(dist_fit){
-  
-  c(dist = dist_fit$distname,
-    AIC = round(dist_fit$aic),
-    v1name = names(dist_fit$estimate)[1], 
-    var1 = dist_fit$estimate[1],
-    v2name = names(dist_fit$estimate)[2],
-    var2 = dist_fit$estimate[2])
-  
-}
-dists <- list(all_dist_gamma, all_dist_gamma_2_direction_gamma, 
-              all_dist_lnorm, all_dist_lnorm_2_direction_lnorm,
-              all_dist_weibull, all_dist_weibull_2_direction)
-DK_params = data.frame(
-  kernel_type=rep(c("DK","DK2"),3),
-  dist=NA,
-  AIC=NA,
-  par1name=NA,
-  par1est=NA,
-  par2name=NA,
-  par2est=NA
-)
-for(i in 1:length(dists)){
-    DK_params[i,2:ncol(DK_params)] <- summarise_dist(dists[[i]])
-}
-DK_params$AIC[which(DK_params$kernel_type=="DK2")]<-NA
-write.csv(DK_params, "output/DK_params.csv", row.names=FALSE)
-
-
-# Write distances fitted to for plotting
-write.table(dist_contact_all$distance,
-            "output/distances_between_case_contacts.csv", row.names = F, col.names=F)
+# (This section is commented out to avoid overwriting the distributions and 
+# distances actually used in the paper, which used the exact case coordinates,
+# not the ones above that were deidentified by jittering)
+# summarise_dist <- function(dist_fit){
+#   
+#   c(dist = dist_fit$distname,
+#     AIC = round(dist_fit$aic),
+#     v1name = names(dist_fit$estimate)[1], 
+#     var1 = dist_fit$estimate[1],
+#     v2name = names(dist_fit$estimate)[2],
+#     var2 = dist_fit$estimate[2])
+#   
+# }
+# dists <- list(all_dist_gamma, all_dist_gamma_2_direction_gamma, 
+#               all_dist_lnorm, all_dist_lnorm_2_direction_lnorm,
+#               all_dist_weibull, all_dist_weibull_2_direction)
+# DK_params = data.frame(
+#   kernel_type=rep(c("DK","DK2"),3),
+#   dist=NA,
+#   AIC=NA,
+#   par1name=NA,
+#   par1est=NA,
+#   par2name=NA,
+#   par2est=NA
+# )
+# for(i in 1:length(dists)){
+#     DK_params[i,2:ncol(DK_params)] <- summarise_dist(dists[[i]])
+# }
+# DK_params$AIC[which(DK_params$kernel_type=="DK2")]<-NA
+# write.csv(DK_params, "output/DK_params.csv", row.names=FALSE)
+# 
+# 
+# # Write distances fitted to for plotting
+# write.table(dist_contact_all$distance,
+#             "output/distances_between_case_contacts.csv", row.names = F, col.names=F)
 
 
 
@@ -260,176 +262,176 @@ lines(rep(quantile(dist_contact_all$distance,0.975,na.rm=T), 100),
 
 
 # pdf("figs/SpatialInfectionKernel.pdf",7,9)
-par(mfrow=c(3,2))
-par(mar=c(3,3,3,1))
-
-#  Kernel fitted to max distances
-hist(rabid_carnivores$max_dist_contact, breaks=seq(-0.5,35000.5,500),cex.main=0.9,
-     col="lightgrey",main="Using maximum distance to\nbitee for each biter",xlab="",ylab="",freq=F,axes=F)
-axis(1,cex.axis=0.7,padj=-0.5)
-axis(2,cex.axis=0.7,padj=0.5)
-mtext("Distance from biter to bitee",1,2,cex=0.7)
-mtext("Density",2,2,cex=0.7)
-box(bty="l")
-lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(max_dist_gamma)["shape"],rate=coef(max_dist_gamma)["rate"]),
-      col="navy",lwd=1.5)
-lines(rep(qgamma(.975,shape=coef(max_dist_gamma)["shape"],rate=coef(max_dist_gamma)["rate"]), 100), 
-      seq(0,1,length=100), col="navy",lty=1)
-lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(max_dist_lnorm)["meanlog"],sdlog=coef(max_dist_lnorm)["sdlog"]),
-      col="orange",lwd=1.5,lty=2)
-lines(rep(qlnorm(.975,meanlog=coef(max_dist_lnorm)["meanlog"],sdlog=coef(max_dist_lnorm)["sdlog"]), 100), 
-      seq(0,1,length=100), col="orange",lty=2)
-lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(max_dist_weibull)["shape"],scale=coef(max_dist_weibull)["scale"]),
-      col="green3",lwd=1.5,lty=3)
-lines(rep(qweibull(.975,shape=coef(max_dist_weibull)["shape"],scale=coef(max_dist_weibull)["scale"]), 100), 
-      seq(0,1,length=100), col="green3",lty=3)
-lines(rep(quantile(rabid_carnivores$max_dist_contact[idx],0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-legend("topright",
-       paste(c("gamma","lognormal","weibull"),", AIC=",round(c(max_dist_gamma$aic,max_dist_lnorm$aic,max_dist_weibull$aic)),sep=""),
-       lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
-text(15000,0.001,paste("mean=", round(mean(rabid_carnivores$max_dist_contact,na.rm=T),2),sep=""),cex=0.7)
-
-#  Kernel fitted to all distances
-hist(dist_contact_all$distance, breaks=seq(-0.5,35000.5,500),cex.main=0.9,
-     col="lightgrey",main="Using all distances to\nbitees for each biter",xlab="",ylab="",freq=F,axes=F)
-axis(1,cex.axis=0.7,padj=-0.5)
-axis(2,cex.axis=0.7,padj=0.5)
-mtext("Distance from biter to bitee",1,2,cex=0.7)
-mtext("Density",2,2,cex=0.7)
-box(bty="l")
-lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(all_dist_gamma)["shape"],rate=coef(all_dist_gamma)["rate"]),
-      col="navy",lwd=1.5)
-lines(rep(qgamma(.975,shape=coef(all_dist_gamma)["shape"],rate=coef(all_dist_gamma)["rate"]), 100), 
-      seq(0,1,length=100), col="navy",lty=1)
-lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(all_dist_lnorm)["meanlog"],sdlog=coef(all_dist_lnorm)["sdlog"]),
-      col="orange",lwd=1.5,lty=2)
-lines(rep(qlnorm(.975,meanlog=coef(all_dist_lnorm)["meanlog"],sdlog=coef(all_dist_lnorm)["sdlog"]), 100), 
-      seq(0,1,length=100), col="orange",lty=2)
-lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(all_dist_weibull)["shape"],scale=coef(all_dist_weibull)["scale"]),
-      col="green3",lwd=1.5,lty=3)
-lines(rep(qweibull(.975,shape=coef(all_dist_weibull)["shape"],scale=coef(all_dist_weibull)["scale"]), 100), 
-      seq(0,1,length=100), col="green3",lty=3)
-lines(rep(quantile(dist_contact_all$distance,0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-legend("topright",
-       paste(c("gamma","lognormal","weibull"),", AIC=",round(c(all_dist_gamma$aic,all_dist_lnorm$aic,all_dist_weibull$aic)),sep=""),
-       lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
-text(15000,0.001,paste("mean=", round(mean(dist_contact_all$distance,na.rm=T),2),sep=""),cex=0.7)
-
-#  Kernel sum of two max distances
-hist(sim_max_dists_2, breaks=seq(-0.5,158000.5,500),cex.main=0.9,xlim=c(0,29000),
-     col="lightgrey",main="Sum of two maximum distances from\nbiter to bitee, drawn from gamma",xlab="",ylab="",freq=F,axes=F)
-axis(1,cex.axis=0.7,padj=-0.5)
-axis(2,cex.axis=0.7,padj=0.5)
-mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
-mtext("Density",2,2,cex=0.7)
-box(bty="l")
-lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(max_dist_gamma_2)["shape"],rate=coef(max_dist_gamma_2)["rate"]),
-      col="navy",lwd=1.5)
-lines(rep(qgamma(.975,shape=coef(max_dist_gamma_2)["shape"],rate=coef(max_dist_gamma_2)["rate"]), 100), 
-      seq(0,1,length=100), col="navy",lty=1)
-lines(rep(quantile(sim_max_dists_2,0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(max_dist_lnorm_2)["meanlog"],sdlog=coef(max_dist_lnorm_2)["sdlog"]),
-      col="orange",lwd=1.5,lty=2)
-lines(rep(qlnorm(.975,meanlog=coef(max_dist_lnorm_2)["meanlog"],sdlog=coef(max_dist_lnorm_2)["sdlog"]), 100), 
-      seq(0,1,length=100), col="orange",lty=2)
-lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(max_dist_weibull_2)["shape"],scale=coef(max_dist_weibull_2)["scale"]),
-      col="green3",lwd=1.5,lty=3)
-lines(rep(qweibull(.975,shape=coef(max_dist_weibull_2)["shape"],scale=coef(max_dist_weibull_2)["scale"]), 100), 
-      seq(0,1,length=100), col="green3",lty=3)
-lines(rep(quantile(sim_max_dists_2,0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-legend("topright",
-       paste(c("gamma","lognormal","weibull"),", AIC=",round(c(max_dist_gamma_2$aic,max_dist_lnorm_2$aic,max_dist_weibull_2$aic)),sep=""),
-       lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
-
-text(20000,0.0002,paste("mean=", round(mean(sim_max_dists_2,na.rm=T),2),sep=""),cex=0.7)
-
-
-#  Kernel sum of two distances
-hist(sim_all_dists_2, breaks=seq(-0.5,72000.5,500),cex.main=0.9,xlim=c(0,29000),
-     col="lightgrey",main="Sum of two distances from\nbiter to bitee, drawn from weibull",xlab="",ylab="",freq=F,axes=F)
-axis(1,cex.axis=0.7,padj=-0.5)
-axis(2,cex.axis=0.7,padj=0.5)
-mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
-mtext("Density",2,2,cex=0.7)
-box(bty="l")
-lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(all_dist_gamma_2)["shape"],rate=coef(all_dist_gamma_2)["rate"]),
-      col="navy",lwd=1.5)
-lines(rep(qgamma(.975,shape=coef(all_dist_gamma_2)["shape"],rate=coef(all_dist_gamma_2)["rate"]), 100), 
-      seq(0,1,length=100), col="navy",lty=1)
-lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(all_dist_lnorm_2)["meanlog"],sdlog=coef(all_dist_lnorm_2)["sdlog"]),
-      col="orange",lwd=1.5,lty=2)
-lines(rep(qlnorm(.975,meanlog=coef(all_dist_lnorm_2)["meanlog"],sdlog=coef(all_dist_lnorm_2)["sdlog"]), 100), 
-      seq(0,1,length=100), col="orange",lty=2)
-lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(all_dist_weibull_2)["shape"],scale=coef(all_dist_weibull_2)["scale"]),
-      col="green3",lwd=1.5,lty=3)
-lines(rep(qweibull(.975,shape=coef(all_dist_weibull_2)["shape"],scale=coef(all_dist_weibull_2)["scale"]), 100), 
-      seq(0,1,length=100), col="green3",lty=3)
-lines(rep(quantile(sim_all_dists_2,0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-legend("topright",
-       paste(c("gamma","lognormal","weibull"),", AIC=",round(c(all_dist_gamma_2$aic,all_dist_lnorm_2$aic,all_dist_weibull_2$aic)),sep=""),
-       lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
-text(20000,0.0002,paste("mean=", round(mean(sim_all_dists_2,na.rm=T),2),sep=""),cex=0.7)
-
-
-#  Kernel sum of two max distances accounting for change of direction
-hist(sim_max_dists_2_direction, breaks=seq(-0.5,130000.5,500),cex.main=0.9,xlim=c(0,26500),
-     col="lightgrey",main="Sum of two max distances from biter to bitee,\naccounting for random direction",xlab="",ylab="",freq=F,axes=F)
-axis(1,cex.axis=0.7,padj=-0.5)
-axis(2,cex.axis=0.7,padj=0.5)
-mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
-mtext("Density",2,2,cex=0.7)
-box(bty="l")
-lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(max_dist_gamma_2_direction)["shape"],rate=coef(max_dist_gamma_2_direction)["rate"]),
-      col="navy",lwd=1.5)
-lines(rep(qgamma(.975,shape=coef(max_dist_gamma_2_direction)["shape"],rate=coef(max_dist_gamma_2_direction)["rate"]), 100), 
-      seq(0,1,length=100), col="navy",lty=1)
-lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(max_dist_lnorm_2_direction)["meanlog"],sdlog=coef(max_dist_lnorm_2_direction)["sdlog"]),
-      col="orange",lwd=1.5,lty=2)
-lines(rep(qlnorm(.975,meanlog=coef(max_dist_lnorm_2_direction)["meanlog"],sdlog=coef(max_dist_lnorm_2_direction)["sdlog"]), 100), 
-      seq(0,1,length=100), col="orange",lty=2)
-lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(max_dist_weibull_2_direction)["shape"],scale=coef(max_dist_weibull_2_direction)["scale"]),
-      col="green3",lwd=1.5,lty=3)
-lines(rep(qweibull(.975,shape=coef(max_dist_weibull_2_direction)["shape"],scale=coef(max_dist_weibull_2_direction)["scale"]), 100), 
-      seq(0,1,length=100), col="green3",lty=3)
-lines(rep(quantile(sim_max_dists_2_direction,0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-legend("topright",
-       paste(c("gamma","lognormal","weibull"),", AIC=",round(c(max_dist_gamma_2_direction$aic,max_dist_lnorm_2_direction$aic,max_dist_weibull_2_direction$aic)),sep=""),
-       lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
-text(20000,0.00025,paste("mean=", round(mean(sim_max_dists_2_direction,na.rm=T),2),sep=""),cex=0.7)
-
-
-#  Kernel sum of two distances accounting for change of direction
-hist(sim_dists_2_direction, breaks=seq(-0.5,66000.5,500),cex.main=0.9,xlim=c(0,26500),
-     col="lightgrey",main="Sum of two distances from biter to bitee,\naccounting for random direction",xlab="",ylab="",freq=F,axes=F)
-axis(1,cex.axis=0.7,padj=-0.5)
-axis(2,cex.axis=0.7,padj=0.5)
-mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
-mtext("Density",2,2,cex=0.7)
-box(bty="l")
-lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(all_dist_gamma_2_direction)["shape"],rate=coef(all_dist_gamma_2_direction)["rate"]),
-      col="navy",lwd=1.5)
-lines(rep(qgamma(.975,shape=coef(all_dist_gamma_2_direction)["shape"],rate=coef(all_dist_gamma_2_direction)["rate"]), 100), 
-      seq(0,1,length=100), col="navy",lty=1)
-lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(all_dist_lnorm_2_direction)["meanlog"],sdlog=coef(all_dist_lnorm_2_direction)["sdlog"]),
-      col="orange",lwd=1.5,lty=2)
-lines(rep(qlnorm(.975,meanlog=coef(all_dist_lnorm_2_direction)["meanlog"],sdlog=coef(all_dist_lnorm_2_direction)["sdlog"]), 100), 
-      seq(0,1,length=100), col="orange",lty=2)
-lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(all_dist_weibull_2_direction)["shape"],scale=coef(all_dist_weibull_2_direction)["scale"]),
-      col="green3",lwd=1.5,lty=3)
-lines(rep(qweibull(.975,shape=coef(all_dist_weibull_2_direction)["shape"],scale=coef(all_dist_weibull_2_direction)["scale"]), 100), 
-      seq(0,1,length=100), col="green3",lty=3)
-lines(rep(quantile(sim_dists_2_direction,0.975,na.rm=T), 100), 
-      seq(0,1,length=100), col="lightgrey",lty=4)
-legend("topright",
-       paste(c("gamma","lognormal","weibull"),", AIC=",round(c(all_dist_gamma_2_direction$aic,all_dist_lnorm_2_direction$aic,all_dist_weibull_2_direction$aic)),sep=""),
-       lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
-text(20000,0.00025,paste("mean=", round(mean(sim_dists_2_direction,na.rm=T),2),sep=""),cex=0.7)
+# par(mfrow=c(3,2))
+# par(mar=c(3,3,3,1))
+# 
+# #  Kernel fitted to max distances
+# hist(rabid_carnivores$max_dist_contact, breaks=seq(-0.5,35000.5,500),cex.main=0.9,
+#      col="lightgrey",main="Using maximum distance to\nbitee for each biter",xlab="",ylab="",freq=F,axes=F)
+# axis(1,cex.axis=0.7,padj=-0.5)
+# axis(2,cex.axis=0.7,padj=0.5)
+# mtext("Distance from biter to bitee",1,2,cex=0.7)
+# mtext("Density",2,2,cex=0.7)
+# box(bty="l")
+# lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(max_dist_gamma)["shape"],rate=coef(max_dist_gamma)["rate"]),
+#       col="navy",lwd=1.5)
+# lines(rep(qgamma(.975,shape=coef(max_dist_gamma)["shape"],rate=coef(max_dist_gamma)["rate"]), 100), 
+#       seq(0,1,length=100), col="navy",lty=1)
+# lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(max_dist_lnorm)["meanlog"],sdlog=coef(max_dist_lnorm)["sdlog"]),
+#       col="orange",lwd=1.5,lty=2)
+# lines(rep(qlnorm(.975,meanlog=coef(max_dist_lnorm)["meanlog"],sdlog=coef(max_dist_lnorm)["sdlog"]), 100), 
+#       seq(0,1,length=100), col="orange",lty=2)
+# lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(max_dist_weibull)["shape"],scale=coef(max_dist_weibull)["scale"]),
+#       col="green3",lwd=1.5,lty=3)
+# lines(rep(qweibull(.975,shape=coef(max_dist_weibull)["shape"],scale=coef(max_dist_weibull)["scale"]), 100), 
+#       seq(0,1,length=100), col="green3",lty=3)
+# lines(rep(quantile(rabid_carnivores$max_dist_contact[idx],0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# legend("topright",
+#        paste(c("gamma","lognormal","weibull"),", AIC=",round(c(max_dist_gamma$aic,max_dist_lnorm$aic,max_dist_weibull$aic)),sep=""),
+#        lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
+# text(15000,0.001,paste("mean=", round(mean(rabid_carnivores$max_dist_contact,na.rm=T),2),sep=""),cex=0.7)
+# 
+# #  Kernel fitted to all distances
+# hist(dist_contact_all$distance, breaks=seq(-0.5,35000.5,500),cex.main=0.9,
+#      col="lightgrey",main="Using all distances to\nbitees for each biter",xlab="",ylab="",freq=F,axes=F)
+# axis(1,cex.axis=0.7,padj=-0.5)
+# axis(2,cex.axis=0.7,padj=0.5)
+# mtext("Distance from biter to bitee",1,2,cex=0.7)
+# mtext("Density",2,2,cex=0.7)
+# box(bty="l")
+# lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(all_dist_gamma)["shape"],rate=coef(all_dist_gamma)["rate"]),
+#       col="navy",lwd=1.5)
+# lines(rep(qgamma(.975,shape=coef(all_dist_gamma)["shape"],rate=coef(all_dist_gamma)["rate"]), 100), 
+#       seq(0,1,length=100), col="navy",lty=1)
+# lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(all_dist_lnorm)["meanlog"],sdlog=coef(all_dist_lnorm)["sdlog"]),
+#       col="orange",lwd=1.5,lty=2)
+# lines(rep(qlnorm(.975,meanlog=coef(all_dist_lnorm)["meanlog"],sdlog=coef(all_dist_lnorm)["sdlog"]), 100), 
+#       seq(0,1,length=100), col="orange",lty=2)
+# lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(all_dist_weibull)["shape"],scale=coef(all_dist_weibull)["scale"]),
+#       col="green3",lwd=1.5,lty=3)
+# lines(rep(qweibull(.975,shape=coef(all_dist_weibull)["shape"],scale=coef(all_dist_weibull)["scale"]), 100), 
+#       seq(0,1,length=100), col="green3",lty=3)
+# lines(rep(quantile(dist_contact_all$distance,0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# legend("topright",
+#        paste(c("gamma","lognormal","weibull"),", AIC=",round(c(all_dist_gamma$aic,all_dist_lnorm$aic,all_dist_weibull$aic)),sep=""),
+#        lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
+# text(15000,0.001,paste("mean=", round(mean(dist_contact_all$distance,na.rm=T),2),sep=""),cex=0.7)
+# 
+# #  Kernel sum of two max distances
+# hist(sim_max_dists_2, breaks=seq(-0.5,158000.5,500),cex.main=0.9,xlim=c(0,29000),
+#      col="lightgrey",main="Sum of two maximum distances from\nbiter to bitee, drawn from gamma",xlab="",ylab="",freq=F,axes=F)
+# axis(1,cex.axis=0.7,padj=-0.5)
+# axis(2,cex.axis=0.7,padj=0.5)
+# mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
+# mtext("Density",2,2,cex=0.7)
+# box(bty="l")
+# lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(max_dist_gamma_2)["shape"],rate=coef(max_dist_gamma_2)["rate"]),
+#       col="navy",lwd=1.5)
+# lines(rep(qgamma(.975,shape=coef(max_dist_gamma_2)["shape"],rate=coef(max_dist_gamma_2)["rate"]), 100), 
+#       seq(0,1,length=100), col="navy",lty=1)
+# lines(rep(quantile(sim_max_dists_2,0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(max_dist_lnorm_2)["meanlog"],sdlog=coef(max_dist_lnorm_2)["sdlog"]),
+#       col="orange",lwd=1.5,lty=2)
+# lines(rep(qlnorm(.975,meanlog=coef(max_dist_lnorm_2)["meanlog"],sdlog=coef(max_dist_lnorm_2)["sdlog"]), 100), 
+#       seq(0,1,length=100), col="orange",lty=2)
+# lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(max_dist_weibull_2)["shape"],scale=coef(max_dist_weibull_2)["scale"]),
+#       col="green3",lwd=1.5,lty=3)
+# lines(rep(qweibull(.975,shape=coef(max_dist_weibull_2)["shape"],scale=coef(max_dist_weibull_2)["scale"]), 100), 
+#       seq(0,1,length=100), col="green3",lty=3)
+# lines(rep(quantile(sim_max_dists_2,0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# legend("topright",
+#        paste(c("gamma","lognormal","weibull"),", AIC=",round(c(max_dist_gamma_2$aic,max_dist_lnorm_2$aic,max_dist_weibull_2$aic)),sep=""),
+#        lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
+# 
+# text(20000,0.0002,paste("mean=", round(mean(sim_max_dists_2,na.rm=T),2),sep=""),cex=0.7)
+# 
+# 
+# #  Kernel sum of two distances
+# hist(sim_all_dists_2, breaks=seq(-0.5,72000.5,500),cex.main=0.9,xlim=c(0,29000),
+#      col="lightgrey",main="Sum of two distances from\nbiter to bitee, drawn from weibull",xlab="",ylab="",freq=F,axes=F)
+# axis(1,cex.axis=0.7,padj=-0.5)
+# axis(2,cex.axis=0.7,padj=0.5)
+# mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
+# mtext("Density",2,2,cex=0.7)
+# box(bty="l")
+# lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(all_dist_gamma_2)["shape"],rate=coef(all_dist_gamma_2)["rate"]),
+#       col="navy",lwd=1.5)
+# lines(rep(qgamma(.975,shape=coef(all_dist_gamma_2)["shape"],rate=coef(all_dist_gamma_2)["rate"]), 100), 
+#       seq(0,1,length=100), col="navy",lty=1)
+# lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(all_dist_lnorm_2)["meanlog"],sdlog=coef(all_dist_lnorm_2)["sdlog"]),
+#       col="orange",lwd=1.5,lty=2)
+# lines(rep(qlnorm(.975,meanlog=coef(all_dist_lnorm_2)["meanlog"],sdlog=coef(all_dist_lnorm_2)["sdlog"]), 100), 
+#       seq(0,1,length=100), col="orange",lty=2)
+# lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(all_dist_weibull_2)["shape"],scale=coef(all_dist_weibull_2)["scale"]),
+#       col="green3",lwd=1.5,lty=3)
+# lines(rep(qweibull(.975,shape=coef(all_dist_weibull_2)["shape"],scale=coef(all_dist_weibull_2)["scale"]), 100), 
+#       seq(0,1,length=100), col="green3",lty=3)
+# lines(rep(quantile(sim_all_dists_2,0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# legend("topright",
+#        paste(c("gamma","lognormal","weibull"),", AIC=",round(c(all_dist_gamma_2$aic,all_dist_lnorm_2$aic,all_dist_weibull_2$aic)),sep=""),
+#        lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
+# text(20000,0.0002,paste("mean=", round(mean(sim_all_dists_2,na.rm=T),2),sep=""),cex=0.7)
+# 
+# 
+# #  Kernel sum of two max distances accounting for change of direction
+# hist(sim_max_dists_2_direction, breaks=seq(-0.5,130000.5,500),cex.main=0.9,xlim=c(0,26500),
+#      col="lightgrey",main="Sum of two max distances from biter to bitee,\naccounting for random direction",xlab="",ylab="",freq=F,axes=F)
+# axis(1,cex.axis=0.7,padj=-0.5)
+# axis(2,cex.axis=0.7,padj=0.5)
+# mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
+# mtext("Density",2,2,cex=0.7)
+# box(bty="l")
+# lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(max_dist_gamma_2_direction)["shape"],rate=coef(max_dist_gamma_2_direction)["rate"]),
+#       col="navy",lwd=1.5)
+# lines(rep(qgamma(.975,shape=coef(max_dist_gamma_2_direction)["shape"],rate=coef(max_dist_gamma_2_direction)["rate"]), 100), 
+#       seq(0,1,length=100), col="navy",lty=1)
+# lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(max_dist_lnorm_2_direction)["meanlog"],sdlog=coef(max_dist_lnorm_2_direction)["sdlog"]),
+#       col="orange",lwd=1.5,lty=2)
+# lines(rep(qlnorm(.975,meanlog=coef(max_dist_lnorm_2_direction)["meanlog"],sdlog=coef(max_dist_lnorm_2_direction)["sdlog"]), 100), 
+#       seq(0,1,length=100), col="orange",lty=2)
+# lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(max_dist_weibull_2_direction)["shape"],scale=coef(max_dist_weibull_2_direction)["scale"]),
+#       col="green3",lwd=1.5,lty=3)
+# lines(rep(qweibull(.975,shape=coef(max_dist_weibull_2_direction)["shape"],scale=coef(max_dist_weibull_2_direction)["scale"]), 100), 
+#       seq(0,1,length=100), col="green3",lty=3)
+# lines(rep(quantile(sim_max_dists_2_direction,0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# legend("topright",
+#        paste(c("gamma","lognormal","weibull"),", AIC=",round(c(max_dist_gamma_2_direction$aic,max_dist_lnorm_2_direction$aic,max_dist_weibull_2_direction$aic)),sep=""),
+#        lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
+# text(20000,0.00025,paste("mean=", round(mean(sim_max_dists_2_direction,na.rm=T),2),sep=""),cex=0.7)
+# 
+# 
+# #  Kernel sum of two distances accounting for change of direction
+# hist(sim_dists_2_direction, breaks=seq(-0.5,66000.5,500),cex.main=0.9,xlim=c(0,26500),
+#      col="lightgrey",main="Sum of two distances from biter to bitee,\naccounting for random direction",xlab="",ylab="",freq=F,axes=F)
+# axis(1,cex.axis=0.7,padj=-0.5)
+# axis(2,cex.axis=0.7,padj=0.5)
+# mtext("Sum of two distances from biter to bitee",1,2,cex=0.7)
+# mtext("Density",2,2,cex=0.7)
+# box(bty="l")
+# lines(seq(0,16500,100),dgamma(seq(0,16500,100),shape=coef(all_dist_gamma_2_direction)["shape"],rate=coef(all_dist_gamma_2_direction)["rate"]),
+#       col="navy",lwd=1.5)
+# lines(rep(qgamma(.975,shape=coef(all_dist_gamma_2_direction)["shape"],rate=coef(all_dist_gamma_2_direction)["rate"]), 100), 
+#       seq(0,1,length=100), col="navy",lty=1)
+# lines(seq(0,16500,100),dlnorm(seq(0,16500,100),meanlog=coef(all_dist_lnorm_2_direction)["meanlog"],sdlog=coef(all_dist_lnorm_2_direction)["sdlog"]),
+#       col="orange",lwd=1.5,lty=2)
+# lines(rep(qlnorm(.975,meanlog=coef(all_dist_lnorm_2_direction)["meanlog"],sdlog=coef(all_dist_lnorm_2_direction)["sdlog"]), 100), 
+#       seq(0,1,length=100), col="orange",lty=2)
+# lines(seq(0,16500,100),dweibull(seq(0,16500,100),shape=coef(all_dist_weibull_2_direction)["shape"],scale=coef(all_dist_weibull_2_direction)["scale"]),
+#       col="green3",lwd=1.5,lty=3)
+# lines(rep(qweibull(.975,shape=coef(all_dist_weibull_2_direction)["shape"],scale=coef(all_dist_weibull_2_direction)["scale"]), 100), 
+#       seq(0,1,length=100), col="green3",lty=3)
+# lines(rep(quantile(sim_dists_2_direction,0.975,na.rm=T), 100), 
+#       seq(0,1,length=100), col="lightgrey",lty=4)
+# legend("topright",
+#        paste(c("gamma","lognormal","weibull"),", AIC=",round(c(all_dist_gamma_2_direction$aic,all_dist_lnorm_2_direction$aic,all_dist_weibull_2_direction$aic)),sep=""),
+#        lty=c(1:3),col=c("navy","orange","green3"),bty="n",lwd=1.5,cex=0.7)
+# text(20000,0.00025,paste("mean=", round(mean(sim_dists_2_direction,na.rm=T),2),sep=""),cex=0.7)
 
 
 # dev.off()

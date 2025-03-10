@@ -197,6 +197,9 @@ SD_vill$HHS_humans <- c(rowsum(Census$humansTotal, Census$Village))
 SD_vill$HHS_dogs <- c(rowsum(Census$dogsTotal, Census$Village))
 SD_vill$HDR <- SD_vill$HHS_humans/SD_vill$HHS_dogs
 
+## Overall HDR
+sum(Census$humansTotal)/sum(Census$dogsTotal)
+
 
 
 ## Get dog village populations through time

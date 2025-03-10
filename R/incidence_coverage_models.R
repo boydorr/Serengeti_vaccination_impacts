@@ -457,15 +457,89 @@ model_vill_month_brms_standardise_woPriorCases <- readRDS("output/brms_models/in
 model_immunity_vill_month_brms_unlogged<-readRDS("output/brms_models/incidence_from_immunity_model_village_unlogged.rds")
 model_immunity_vill_month_brms <- readRDS("output/brms_models/incidence_from_immunity_model_village.rds")
 
-model_vill_month_brms_unlogged$criteria$waic
-model_vill_month_brms$criteria$waic# logged model better
 
-model_immunity_vill_month_brms_unlogged$criteria$waic
-model_immunity_vill_month_brms$criteria$waic# logged model better
 
-model_vill_month_brms$criteria$waic
-model_immunity_vill_month_brms$criteria$waic
-#vaccination model slightly better than immunity model so stick with simpler one with no immunity loss
+# WAIC
+#--------------
+
+model_sim<-"model_immunity_vill_month_brms"
+samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_immune_last2monthMean", "b_immune_neighbours_last2monthMean", "b_immune_notNeighbours_last2monthMean", "b_log_case_rate_last2monthMean", "b_log_case_rate_neighbours_last2monthMean", "b_log_case_rate_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
+samples_reffs <- posterior_samples(get(model_sim), pars = c("r_village"))
+log_lik_mat <- matrix(NA,nrow=nrow(data_vill),ncol=nrow(samples_pars))
+X <- t(as.matrix(cbind(1,
+                       data_vill$immune_last2monthMean,data_vill$immune_neighbours_last2monthMean,data_vill$immune_notNeighbours_last2monthMean,
+                       data_vill$log_case_rate_last2monthMean,data_vill$log_case_rate_neighbours_last2monthMean,data_vill$log_case_rate_notNeighbours_last2monthMean,
+                       data_vill$log_dog_density,data_vill$HDR,
+                       "village_re"=NA,log(data_vill$dogs))))
+for(i in 1:nrow(samples_pars)){
+  X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
+  mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
+  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+}
+log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
+waic_full_immunity <- waic(log_lik_mat)
+
+model_sim<-"model_vill_month_brms_unlogged"
+samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_vax_last2monthMean", "b_vax_neighbours_last2monthMean", "b_vax_notNeighbours_last2monthMean", "b_case_rate_last2monthMean", "b_case_rate_neighbours_last2monthMean", "b_case_rate_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
+samples_reffs <- posterior_samples(get(model_sim), pars = c("r_village"))
+log_lik_mat <- matrix(NA,nrow=nrow(data_vill),ncol=nrow(samples_pars))
+X <- t(as.matrix(cbind(1,
+                       data_vill$vax_last2monthMean,data_vill$vax_neighbours_last2monthMean,data_vill$vax_notNeighbours_last2monthMean,
+                       data_vill$case_rate_last2monthMean,data_vill$case_rate_neighbours_last2monthMean,data_vill$case_rate_notNeighbours_last2monthMean,
+                       data_vill$log_dog_density,data_vill$HDR,
+                       "village_re"=NA,log(data_vill$dogs))))
+for(i in 1:nrow(samples_pars)){
+  X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
+  mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
+  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+}
+log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
+waic_full_unlogged <- waic(log_lik_mat)
+
+model_sim<-"model_vill_month_brms"
+samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_vax_last2monthMean", "b_vax_neighbours_last2monthMean", "b_vax_notNeighbours_last2monthMean", "b_log_case_rate_last2monthMean", "b_log_case_rate_neighbours_last2monthMean", "b_log_case_rate_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
+samples_reffs <- posterior_samples(get(model_sim), pars = c("r_village"))
+log_lik_mat <- matrix(NA,nrow=nrow(data_vill),ncol=nrow(samples_pars))
+X <- t(as.matrix(cbind(1,
+                       data_vill$vax_last2monthMean,data_vill$vax_neighbours_last2monthMean,data_vill$vax_notNeighbours_last2monthMean,
+                       data_vill$log_case_rate_last2monthMean,data_vill$log_case_rate_neighbours_last2monthMean,data_vill$log_case_rate_notNeighbours_last2monthMean,
+                       data_vill$log_dog_density,data_vill$HDR,
+                       "village_re"=NA,log(data_vill$dogs))))
+for(i in 1:nrow(samples_pars)){
+  X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
+  mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
+  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+}
+log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
+waic_full <- waic(log_lik_mat)
+
+model_sim<-"model_vill_month_brms_woPriorCases"
+samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_vax_last2monthMean", "b_vax_neighbours_last2monthMean", "b_vax_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
+samples_reffs <- posterior_samples(get(model_sim), pars = c("r_village"))
+log_lik_mat <- matrix(NA,nrow=nrow(data_vill),ncol=nrow(samples_pars))
+X <- t(as.matrix(cbind(1,
+                       data_vill$vax_last2monthMean,data_vill$vax_neighbours_last2monthMean,data_vill$vax_notNeighbours_last2monthMean,
+                       data_vill$log_dog_density,data_vill$HDR,
+                       "village_re"=NA,log(data_vill$dogs))))
+for(i in 1:nrow(samples_pars)){
+  X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
+  mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
+  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+}
+log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
+waic_woPriorCases <- waic(log_lik_mat)
+
+waic_full
+waic_full_unlogged
+# logged a little better
+
+waic_full
+waic_woPriorCases
+# better with prior cases
+
+waic_full
+waic_full_immunity
+#vaccination model basically identical to immunity model so stick with simpler one with no immunity loss
 
 
 

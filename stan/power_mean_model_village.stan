@@ -123,14 +123,4 @@ generated quantities {
   // actual intercept
   real Intercept = beta[1] - dot_product(means_Xa, beta[2:(K+2)]);
 
-  //real log_post;
-  //log_post=neg_binomial_2_log_lpmf(Y | Xa*beta + gamma_t[V] + offsets, phi) + gamma_lpdf(phi | 0.01, 0.01) + normal_lpdf(p | 0, 10);
-  
-
-  // log-likelihood
-  vector[N] log_lik;
-  for (m in 1:N) {
-    log_lik[m] = neg_binomial_2_log_lpmf(Y[m] | Xa[m]*beta + gamma_t[V] + offsets[m], phi);
-  }
-
 }

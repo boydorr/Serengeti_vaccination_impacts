@@ -36,6 +36,10 @@ dogs_vill <- as.matrix(read.csv("Output/dogPopulationByVillageMonth_Jan2002_Dec2
 dog_dens_vill <- dogs_vill/SD_vill$cells_occ
 dogs <- dogs[,1:(12*length(years))]
 
+# Human population
+humans <- as.matrix(read.csv("Output/humanPopulationByCellMonth_Jan2002_Dec2040_1kmGrid.csv",header=F))
+humans <- humans[,1:(12*length(years))]
+
 
 
 ## Plot
@@ -92,15 +96,15 @@ plot(SD_outline,bg="white",border="white")
 
 # Human dog ratio
 par(fig=c(0,0.5,0,0.42),mar=c(0,0,0,4),new=T)
-breaks=seq(0,max((SD_vill$HDR),na.rm=T),length.out=100)
+breaks=seq(min(SD_vill$HDR),max(SD_vill$HDR),length.out=100)
 plot(SD_vill,border="grey60",lwd=0.5, col=colours[findInterval((SD_vill$HDR),breaks,all.inside=T)])
 plot(SD_outline,add=T)
 legend("topleft",legend="C",text.font = 2,bty="n",xpd=F)
-grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-1
+grid <- raster(extent(SD_vill),crs=SD_vill@proj4string);res(grid) <- 1000;grid[]<-5
 plot(grid, 
      breaks=breaks,legend.only=T,col=colours,
      legend.args=list(text="Human:dog ratio", side=4, line=1.5, cex=cex.lab),
-     axis.args=list(at=seq(0,max(SD_vill$HDR),2),cex.axis=cex.axis),
+     axis.args=list(at=pretty(c(min(SD_vill$HDR),max(SD_vill$HDR)),n = 4),cex.axis=cex.axis),
      smallplot=c(0.70,0.72, .2,.8))
 
 # Village density
@@ -191,3 +195,5 @@ range(colSums(dogs))
 
 round(range(dog_dens_vill[,ncol(dogs)]))
 range(SD_vill$HDR)
+
+as.numeric(colSums(humans)/colSums(dogs))

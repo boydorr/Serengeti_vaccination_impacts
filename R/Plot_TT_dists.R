@@ -62,14 +62,14 @@ legend("topleft","A",text.font=2,bty="n",cex=1.1)
 
 interval <-200
 hist(distances,breaks=seq(-0.5,max(distances)+interval,interval),
-     # ylim=c(0,max(fitted_values_distance[-1])),
+     ylim=c(0,max(fitted_values_distance[-1])),
      xlim=c(0,max(distances)),
      border=F,main="Distance Kernel",freq=F,xlab="",ylab="",axes=F,cex.main=cex.main)
 axis(2,cex.axis=cex.axis,padj=1)
 axis(1,cex.axis=cex.axis,padj=-1.5)
 box(bty="l")
 mtext("Density",side=2,line=1.5,cex=cex.lab)
-mtext("Distance (m)",side=1,line=2,cex=cex.lab)
+mtext("Distance (km)",side=1,line=2,cex=cex.lab)
 box(bty="l")
 lines(fitted_values_distance~distance_seq,lwd=2,col="navy")
 legend(-0.025*max(distances),0.85*max(fitted_values_distance[-1]),
