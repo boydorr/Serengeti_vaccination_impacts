@@ -29,9 +29,6 @@ vax_dist <- vax_dist[,1]
 cases_dist <- as.matrix(read.csv("output/Serengeti_monthly_rabid_dogs_2002-01-01_2022-12-31.csv",header=F))
 cases_vill <- as.matrix(read.csv("output/Serengeti_monthly_rabid_dogs_village_2002-01-01_2022-12-31.csv",header=F,row.names = 1))
 
-# Rabies cases
-ct_data <- read.csv("output/serengeti_rabid_dogs.csv")
-
 # Serengeti village shapefile
 SD_vill <- readOGR("output/SD_vill","SD_vill") 
 SD_vill<-SD_vill[order(SD_vill$Vill_2012),]

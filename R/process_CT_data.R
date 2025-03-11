@@ -92,14 +92,16 @@ table_rabid_dogs <- table(rabid_dogs$month)
 ts[as.numeric(rownames(table_rabid_dogs))] <- table_rabid_dogs
 write.table(ts,paste0("output/Serengeti_monthly_rabid_dogs_",start.date,"_",end.date,".csv"),row.names = F,col.names = F,sep=",")
 
-# And cases per month per village
+# And cases per month per village (not saving this in this public version of the
+# repo to avoid overwriting the file produced using the exact locations, which
+# is already included in the output folder)
 ts_village <- matrix(0,ncol=12*(year(end.date)-year(start.date)+1),nrow=nrow(SD_vill))
 for(i in 1:nrow(SD_vill)){
   table_rabid_dogs_i <- table(c(rabid_dogs$month[which(SD_vill$Vill_2012[vill_grid[match(rabid_dogs$cell_ID,SD_grid[])]]==SD_vill$Vill_2012[i])],
                                 rabid_dogs$month[which(is.na(rabid_dogs$UTM.Easting)&rabid_dogs$Village==SD_vill$Vill_2012[i])]))
   ts_village[i,as.numeric(rownames(table_rabid_dogs_i))] <- table_rabid_dogs_i 
 }
-write.table(ts_village,paste0("output/Serengeti_monthly_rabid_dogs_village_",start.date,"_",end.date,".csv"),row.names = SD_vill$Vill_2012,col.names = F,sep=",")
+# write.table(ts_village,paste0("output/Serengeti_monthly_rabid_dogs_village_",start.date,"_",end.date,".csv"),row.names = SD_vill$Vill_2012,col.names = F,sep=",")
 
 
 # Animal cases
