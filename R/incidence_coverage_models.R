@@ -474,10 +474,11 @@ X <- t(as.matrix(cbind(1,
 for(i in 1:nrow(samples_pars)){
   X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
   mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
-  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+  log_lik_mat[,i] <- dnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log = T)
 }
 log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
 waic_full_immunity <- waic(log_lik_mat)
+loo_full_immunity <- loo(log_lik_mat)
 
 model_sim<-"model_vill_month_brms_unlogged"
 samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_vax_last2monthMean", "b_vax_neighbours_last2monthMean", "b_vax_notNeighbours_last2monthMean", "b_case_rate_last2monthMean", "b_case_rate_neighbours_last2monthMean", "b_case_rate_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
@@ -491,10 +492,11 @@ X <- t(as.matrix(cbind(1,
 for(i in 1:nrow(samples_pars)){
   X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
   mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
-  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+  log_lik_mat[,i] <- dnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log = T)
 }
 log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
 waic_full_unlogged <- waic(log_lik_mat)
+loo_full_unlogged <- loo(log_lik_mat)
 
 model_sim<-"model_vill_month_brms"
 samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_vax_last2monthMean", "b_vax_neighbours_last2monthMean", "b_vax_notNeighbours_last2monthMean", "b_log_case_rate_last2monthMean", "b_log_case_rate_neighbours_last2monthMean", "b_log_case_rate_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
@@ -508,10 +510,12 @@ X <- t(as.matrix(cbind(1,
 for(i in 1:nrow(samples_pars)){
   X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
   mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
-  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+  log_lik_mat[,i] <- dnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log = T)
 }
 log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
 waic_full <- waic(log_lik_mat)
+loo_full <- loo(log_lik_mat)
+
 
 model_sim<-"model_vill_month_brms_woPriorCases"
 samples_pars <- posterior_samples(get(model_sim), pars = c("b_Intercept", "b_vax_last2monthMean", "b_vax_neighbours_last2monthMean", "b_vax_notNeighbours_last2monthMean", "b_log_dog_density", "b_HDR","shape"))
@@ -524,21 +528,28 @@ X <- t(as.matrix(cbind(1,
 for(i in 1:nrow(samples_pars)){
   X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
   mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(ncol(samples_pars)-1))]),1,1)))
-  log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log.p = T)
+  log_lik_mat[,i] <- dnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"shape"],log = T)
 }
 log_lik_mat <- t(log_lik_mat[(88*2+1):nrow(log_lik_mat),])
 waic_woPriorCases <- waic(log_lik_mat)
+loo_woPriorCases <- loo(log_lik_mat)
 
 waic_full
 waic_full_unlogged
+loo_full
+loo_full_unlogged
 # logged a little better
 
 waic_full
 waic_woPriorCases
+loo_full
+loo_woPriorCases
 # better with prior cases
 
 waic_full
 waic_full_immunity
+loo_full
+loo_full_immunity
 #vaccination model basically identical to immunity model so stick with simpler one with no immunity loss
 
 

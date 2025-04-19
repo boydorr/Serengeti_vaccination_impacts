@@ -136,7 +136,7 @@ for(model_sim in c("model","model_wo_cases","model_wo_distant_cases")){
     X["power_mean_notNeighbours_last2MonthMean",] <- (c(cbind(NA,power_mean_notNeighbours[,-ncol(vax_vill)]))+c(cbind(NA,NA,power_mean_notNeighbours[,-((ncol(vax_vill)-1):ncol(vax_vill))])))/2
     X["village_re",] <- rep(as.numeric(samples_reffs[i,]),ncol(vax_vill))
     mu <- exp(colSums(X*c(as.numeric(samples_pars[i,c(1:(length(pars_sim)+3))]),1,1)))
-    log_lik_mat[,i] <- pnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"phi"],log.p = T)
+    log_lik_mat[,i] <- dnbinom(data_vill$cases,mu=mu,size=samples_pars[i,"phi"],log = T)
   }
 
   saveRDS(log_lik_mat,
