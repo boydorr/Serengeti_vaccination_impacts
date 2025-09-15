@@ -152,7 +152,7 @@ for(i in 3:length(vax_dist)){
     neighbour_coverages_last2months <-  coverages_w_park_mara[neighbours,]
     notNeighbour_coverages_last2months <- coverages[notNeighbours,]
     immune <- immune_vill[,(i-2):(i-1)] 
-    immune_w_park_mara <-  rbind(immune,colMeans(immune[neighbours[which(!neighbours%in%(nrow(SD_vill)+1:2))],,drop=F]),0.05) # assume average of neighbour immune in park and 9% coverage in Mara
+    immune_w_park_mara <-  rbind(immune,colMeans(immune[neighbours[which(!neighbours%in%(nrow(SD_vill)+1:2))],,drop=F]),0.05) # assume average of neighbour immune in park and 5% immunity in Mara
     neighbour_immune_last2months <-  immune_w_park_mara[neighbours,]
     notNeighbour_immune_last2months <- immune[notNeighbours,]
     
