@@ -1,6 +1,10 @@
 # Improved effectiveness of vaccination campaigns against rabies by reducing spatial heterogeneity in coverage
 
-Authors: Elaine A Ferguson, Ahmed Lugelo, Anna Czupryna, Danni Anderson, Felix Lankester, Lwitiko Sikana, Jonathan Dushoff, Katie Hampson
+Elaine A Ferguson, Ahmed Lugelo, Anna Czupryna, Danni Anderson, Felix Lankester, Lwitiko Sikana, Jonathan Dushoff, Katie Hampson
+
+https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3002872
+
+<a href="https://doi.org/10.5281/zenodo.15249730"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.15249730.svg" alt="DOI"></a>
 
 This repository includes the code and de-identified data used in Ferguson et al. 2025 to analyse of the impacts of rabies vaccination in Serengeti District over 2002-2022. 
 
